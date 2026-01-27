@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin TU - Sekolah Admin</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <span class="material-icons">school</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white;">Sekolah Admin</h3>
+            </div>
+
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-link active">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="school_profile.html" class="nav-link">
+                    <span class="material-icons">domain</span>
+                    <span>Biodata Sekolah</span>
+                </a>
+                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 12px 16px;"></div>
+                <p
+                    style="padding: 0 16px; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase;">
+                    Administrasi</p>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">people</span>
+                    <span>Data Siswa</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">supervisor_account</span>
+                    <span>Kepegawaian</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">payments</span>
+                    <span>Keuangan / SPP</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">mail</span>
+                    <span>Persuratan</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">inventory_2</span>
+                    <span>Inventaris & Sarpras</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">settings</span>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="index.html" class="nav-link" style="color: #F87171 !important;">
+                    <span class="material-icons" style="color: inherit !important;">logout</span>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--primary-color);">admin_panel_settings</span>
+                        <h2>Admin Operasional</h2>
+                    </div>
+                </div>
+
+                <!-- Global Power Search -->
+                <div class="power-search">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Cari Siswa, NIP Guru, atau No. Surat...">
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="text-align: right; margin-right: 8px;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
+                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding">
+
+                <!-- Quick Shortcuts -->
+                <div class="shortcut-row">
+                    <div class="btn-shortcut">
+                        <span class="material-icons" style="color: var(--primary-color);">person_add</span>
+                        Input Siswa Baru
+                    </div>
+                    <div class="btn-shortcut">
+                        <span class="material-icons" style="color: var(--success);">post_add</span>
+                        Buat Surat Baru
+                    </div>
+                    <div class="btn-shortcut">
+                        <span class="material-icons" style="color: var(--warning);">add_card</span>
+                        Catat Pembayaran
+                    </div>
+                    <div class="btn-shortcut">
+                        <span class="material-icons" style="color: var(--secondary-color);">sync</span>
+                        Sinkron Dapodik
+                    </div>
+                </div>
+
+                <!-- Main Stats Grid (High Density) -->
+                <div class="stats-grid">
+                    <!-- Absensi Siswa -->
+                    <div class="stat-card-premium">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                            <div class="stat-lbl" style="font-weight: 700; color: var(--text-main);">Absensi Siswa (Hari
+                                Ini)</div>
+                            <span class="badge info">95% Hadir</span>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 24px; font-weight: 700;">1,180</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Siswa Hadir</div>
+                            </div>
+                            <div style="width: 1px; height: 30px; background: var(--border-light);"></div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 20px; font-weight: 700; color: var(--error);">15</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Tanpa Ket. (Alpha)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Keuangan Kas -->
+                    <div class="stat-card-premium">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                            <div class="stat-lbl" style="font-weight: 700; color: var(--text-main);">Kas Harian (Petty
+                                Cash)</div>
+                            <span class="badge success">Surplus</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                                <span style="color: var(--text-muted);">Masuk Hari Ini</span>
+                                <b class="text-success">+ Rp 2.45M</b>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                                <span style="color: var(--text-muted);">Keluar Hari Ini</span>
+                                <b class="text-error">- Rp 450rb</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Persuratan -->
+                    <div class="stat-card-premium">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                            <div class="stat-lbl" style="font-weight: 700; color: var(--text-main);">Traffic Persuratan
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div>
+                                <div style="font-size: 20px; font-weight: 700;">08</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Surat Keluar</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--warning);">03</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Belum Diproses</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 11px; color: var(--text-light);">No. Terakhir:
+                            <b>045/SMAS-TU/I/2026</b>
+                        </div>
+                    </div>
+
+                    <!-- Kepegawaian -->
+                    <div class="stat-card-premium">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                            <div class="stat-lbl" style="font-weight: 700; color: var(--text-main);">Kehadiran Guru
+                            </div>
+                            <span class="badge warning">2 Izin</span>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-muted);">
+                            <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 4px;">
+                                <span class="material-icons"
+                                    style="font-size: 14px; color: var(--warning);">account_circle</span>
+                                Pak Joko (Dinas Luar)
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span class="material-icons"
+                                    style="font-size: 14px; color: var(--warning);">account_circle</span>
+                                Bu Siti (Sakit)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Three Column Operational Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+
+                    <!-- Col 1: Reminders & Reminders -->
+                    <div class="card" style="display: flex; flex-direction: column;">
+                        <h3 class="section-title" style="margin-bottom: 16px;">⚠️ Pengingat & To-do List</h3>
+                        <div class="reminder-item urgent">
+                            <span class="material-icons icon" style="color: #EF4444;">inventory_2</span>
+                            <div class="text">Stok Kertas A4 tinggal 2 rim (Min. 5 rim)</div>
+                            <span class="action-link">Beli</span>
+                        </div>
+                        <div class="reminder-item info">
+                            <span class="material-icons icon" style="color: #3B82F6;">history_edu</span>
+                            <div class="text">SK Berkala Pak Dedi expired 1 Feb 2026</div>
+                            <span class="action-link">Proses</span>
+                        </div>
+                        <div class="reminder-item">
+                            <span class="material-icons icon" style="color: #F59E0B;">rate_review</span>
+                            <div class="text">3 Guru belum input Nilai Rapor (Kelas 9A)</div>
+                            <span class="action-link">Ingatkan</span>
+                        </div>
+                        <div class="reminder-item info">
+                            <span class="material-icons icon" style="color: #3B82F6;">laptop</span>
+                            <div class="text">Peminjaman Proyektor: Pak Budi (Kembali 14:00)</div>
+                            <span class="action-link">Cek</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Academic Progress & Charts -->
+                    <div class="card">
+                        <h3 class="section-title" style="margin-bottom: 16px;">📊 Progress Input Nilai (Tengah Semester)
+                        </h3>
+                        <div style="height: 250px;">
+                            <canvas id="academicProgressChart"></canvas>
+                        </div>
+                        <div style="margin-top: 16px; border-top: 1px solid var(--border-light); padding-top: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 12px; font-weight: 600;">Overall Progress</span>
+                                <span style="font-size: 14px; font-weight: 700; color: var(--primary-color);">78%</span>
+                            </div>
+                            <div
+                                style="width: 100%; height: 6px; background: #E5E7EB; border-radius: 10px; margin-top: 8px; overflow: hidden;">
+                                <div style="width: 78%; height: 100%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Finance Detail & SPP -->
+                    <div class="card">
+                        <div class="section-head">
+                            <h3 class="section-title">Tunggakan SPP (Top List)</h3>
+                            <span class="badge warning">45 Siswa</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #F9FAFB; border-radius: 8px;">
+                                <div style="font-size: 13px;">
+                                    <b>Budi Santoso</b> (Kelas 9C)
+                                    <div style="font-size: 11px; color: var(--text-muted);">Menunggak 2 Bulan</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 13px; font-weight: 700; color: var(--error);">Rp 500rb</div>
+                                    <span class="material-icons"
+                                        style="font-size: 16px; color: #10B981; cursor: pointer;">whatsapp</span>
+                                </div>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #F9FAFB; border-radius: 8px;">
+                                <div style="font-size: 13px;">
+                                    <b>Siti Aminah</b> (Kelas 8A)
+                                    <div style="font-size: 11px; color: var(--text-muted);">Menunggak 1 Bulan</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 13px; font-weight: 700; color: var(--error);">Rp 250rb</div>
+                                    <span class="material-icons"
+                                        style="font-size: 16px; color: #10B981; cursor: pointer;">whatsapp</span>
+                                </div>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #F9FAFB; border-radius: 8px;">
+                                <div style="font-size: 13px;">
+                                    <b>Ahmad Fauzi</b> (Kelas 7B)
+                                    <div style="font-size: 11px; color: var(--text-muted);">Menunggak 1 Bulan</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 13px; font-weight: 700; color: var(--error);">Rp 250rb</div>
+                                    <span class="material-icons"
+                                        style="font-size: 16px; color: #10B981; cursor: pointer;">whatsapp</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; margin-top: 16px; font-size: 12px;">Lihat
+                            Seluruh Tunggakan</button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chart Config -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('academicProgressChart').getContext('2d');
+
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#6B7280';
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Matematika', 'B. Indo', 'B. Inggris', 'IPA', 'IPS', 'Agama'],
+                    datasets: [{
+                        label: 'Sudah Input (%)',
+                        data: [100, 95, 80, 70, 60, 45],
+                        backgroundColor: '#4F46E5',
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: '#1F2937', padding: 10 }
+                    },
+                    scales: {
+                        x: { max: 100, beginAtZero: true, grid: { borderDash: [4, 4] } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Sekolah - Sekolah Admin</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
+                <div class="sidebar-logo" style="background: var(--primary-color);">
+                    <span class="material-icons">school</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
+                    <span style="font-weight: 300; opacity: 0.7;">Admin</span></h3>
+            </div>
+
+            <nav class="nav-links" style="padding: 32px 24px;">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="school_profile.html" class="nav-link active">
+                    <span class="material-icons">domain</span>
+                    <span>Biodata Sekolah</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 32px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Akademik</p>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">people</span>
+                    <span>Data Siswa</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">supervisor_account</span>
+                    <span>Data Guru</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">class</span>
+                    <span>Manajemen Kelas</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">settings</span>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="index.html" class="nav-link" style="color: #F87171; opacity: 0.8;">
+                    <span class="material-icons">logout</span>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar" style="padding: 0 48px;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <a href="dashboard.html"
+                        style="width: 36px; height: 36px; border-radius: 10px; background: var(--border-light); color: var(--text-main); display: flex; align-items: center; justify-content: center; transition: var(--transition-fast);">
+                        <span class="material-icons" style="font-size: 20px;">arrow_back</span>
+                    </a>
+                    <div class="page-header">
+                        <h2 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Profil Satuan Pendidikan
+                        </h2>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="text-align: right;">
+                        <div
+                            style="font-size: 11px; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px;">
+                            Admin Sekolah</div>
+                        <div style="font-size: 15px; font-weight: 700;">SMA Negeri 1 Bekasi</div>
+                    </div>
+                    <div class="user-avatar"
+                        style="width: 44px; height: 44px; background: #0F172A; font-weight: 800; border: 2px solid white; box-shadow: var(--shadow-sm);">
+                        A</div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding" style="padding: 40px 48px;">
+
+                <form id="profileForm" onsubmit="handleSave(event)" style="max-width: 900px; margin: 0 auto;">
+
+                    <!-- Section: Logo -->
+                    <div class="card" style="margin-bottom: 32px; border-radius: 24px; padding: 40px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Identitas Visual</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Logo resmi untuk
+                                    dokumen & aplikasi</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; margin-top: 32px;">
+                            <div
+                                style="width: 160px; height: 160px; background: #F8FAFC; border-radius: 24px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px dashed var(--border-light); position: relative;">
+                                <span class="material-icons" style="font-size: 64px; color: #E2E8F0;"
+                                    id="logo-icon">school</span>
+                                <img id="logo-preview" src=""
+                                    style="width: 100%; height: 100%; object-fit: contain; display: none; padding: 20px;">
+                            </div>
+
+                            <div style="flex: 1;">
+                                <div class="upload-area" onclick="document.getElementById('logo-upload').click()"
+                                    style="border: 2px dashed var(--border-light); border-radius: 20px; padding: 40px; text-align: center; cursor: pointer; transition: var(--transition-fast);">
+                                    <div
+                                        style="width: 56px; height: 56px; background: var(--primary-light); color: var(--primary-color); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                                        <span class="material-icons" style="font-size: 28px;">cloud_upload</span>
+                                    </div>
+                                    <h4 style="font-size: 16px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">
+                                        Tarik atau Klik untuk Upload</h4>
+                                    <p style="font-size: 13px; color: var(--text-muted);">Format: PNG, JPG (Maks 2MB).
+                                        Disarankan resolusi tinggi.</p>
+                                    <input type="file" id="logo-upload" accept="image/*" hidden
+                                        onchange="previewLogo(this)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: General Info -->
+                    <div class="card" style="margin-bottom: 32px; border-radius: 24px; padding: 40px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Informasi Dasar</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Detail identitas
+                                    pokok satuan pendidikan</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid"
+                            style="grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px;">
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Nama
+                                    Sekolah</label>
+                                <input type="text" class="input-modern" value="SMA Negeri 1 Bekasi" required
+                                    style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">NPSN</label>
+                                <input type="text" class="input-modern" value="20212345"
+                                    style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Jenjang</label>
+                                <select class="input-modern" style="border-radius: 12px; padding: 12px 16px;">
+                                    <option>SD / MI</option>
+                                    <option>SMP / MTs</option>
+                                    <option selected>SMA / MA</option>
+                                    <option>SMK</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Status</label>
+                                <select class="input-modern" style="border-radius: 12px; padding: 12px 16px;">
+                                    <option selected>Negeri</option>
+                                    <option>Swasta</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Contact -->
+                    <div class="card" style="margin-bottom: 32px; border-radius: 24px; padding: 40px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Domisili & Kontak</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Alamat
+                                    operasional dan jalur komunikasi resmi</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 32px;">
+                            <div class="form-group-modern" style="margin-bottom: 24px;">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Alamat
+                                    Lengkap</label>
+                                <textarea class="input-modern" rows="3"
+                                    style="border-radius: 12px; padding: 12px 16px; line-height: 1.6;">Jl. Veteran No. 32, Kelurahan Marga Jaya, Kecamatan Bekasi Selatan, Kota Bekasi 17141</textarea>
+                            </div>
+
+                            <div class="form-grid" style="grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                                <div class="form-group-modern">
+                                    <label class="form-label-modern"
+                                        style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Telepon</label>
+                                    <input type="tel" class="input-modern" value="021-8841000"
+                                        style="border-radius: 12px; padding: 12px 16px;">
+                                </div>
+
+                                <div class="form-group-modern">
+                                    <label class="form-label-modern"
+                                        style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Email
+                                        Official</label>
+                                    <input type="email" class="input-modern" value="info@sman1bekasi.sch.id"
+                                        style="border-radius: 12px; padding: 12px 16px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div
+                        style="display: flex; justify-content: flex-end; gap: 16px; margin-bottom: 60px; padding: 0 10px;">
+                        <button type="button" class="btn-secondary" onclick="window.history.back()"
+                            style="border-radius: 12px; font-weight: 700; background: white; border: 1px solid var(--border-light); color: var(--text-muted); padding: 12px 24px;">Batal</button>
+                        <button type="submit" class="context-action-btn primary"
+                            style="border-radius: 12px; height: auto; padding: 12px 32px; font-size: 14px; font-weight: 800; box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const preview = document.getElementById('logo-preview');
+                    const icon = document.getElementById('logo-icon');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    icon.style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function handleSave(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<span class="material-icons" style="animation: spin 1s linear infinite; font-size: 18px;">sync</span> Mengunci Data...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-icons" style="font-size: 18px;">check</span> Profil Diperbarui!';
+                btn.style.background = '#10B981';
+                btn.style.boxShadow = '0 10px 20px rgba(16, 185, 129, 0.2)';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.style.background = '';
+                    btn.style.boxShadow = '';
+                }, 2000);
+            }, 1200);
+        }
+    </script>
+    <style>
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color) !important;
+            background: rgba(79, 70, 229, 0.02);
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kepala Sekolah Command Center - Edumanesia</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header">
+                <div class="sidebar-logo" style="background: var(--secondary-color);">
+                    <span class="material-icons">workspace_premium</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white;">Edu Command</h3>
+            </div>
+
+            <nav class="nav-links">
+                <p
+                    style="padding: 0 16px; margin: 16px 0 8px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase;">
+                    Managerial</p>
+                <a href="kepsek_dashboard.html" class="nav-link active">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard Utama</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">analytics</span>
+                    <span>Supervisi Akademik</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">account_balance_wallet</span>
+                    <span>Keuangan & BOS</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">security</span>
+                    <span>Kedisiplinan & BK</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 32px 0 8px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase;">
+                    Sistem</p>
+                <a href="dashboard.html" class="nav-link">
+                    <span class="material-icons">admin_panel_settings</span>
+                    <span>Admin Panel</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="index.html" class="nav-link" style="color: #F87171 !important;">
+                    <span class="material-icons" style="color: inherit !important;">logout</span>
+                    <span>Keluar Luar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="page-header">
+                    <h2>Command Center <span class="text-muted">/ Kepala Sekolah</span></h2>
+                </div>
+
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="text-align: right;">
+                        <div
+                            style="font-size: 11px; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">
+                            Kepala Sekolah</div>
+                        <div style="font-size: 15px; font-weight: 700;">Bpk. Budi Santoso, M.Pd</div>
+                    </div>
+                    <div class="user-avatar"
+                        style="background: var(--secondary-color); font-weight: 800; border: 2px solid white;">BS</div>
+                    <div style="position: relative; cursor: pointer;">
+                        <span class="material-icons" style="color: var(--text-muted);">notifications</span>
+                        <span
+                            style="position: absolute; top: -5px; right: -5px; background: var(--error); color: white; font-size: 9px; padding: 2px 5px; border-radius: 10px; font-weight: 700;">5</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding">
+
+                <!-- Morning Pulse & Inspirational Quote -->
+                <div class="pulse-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h1 style="font-size: 22px; margin: 0; color: #1E293B;">Selamat Pagi, Pak Budi.</h1>
+                            <p style="font-size: 14px; color: var(--text-muted); font-style: italic; margin: 4px 0 0;">
+                                "Kualitas sekolah ditentukan dari 5 menit pertama jam pelajaran."</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">DATA TERKINI:
+                            </div>
+                            <div style="font-size: 14px; font-weight: 700; color: var(--primary-color);">Senin, 25 Jan
+                                2026 - 07:30 WIB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Hari Ini -->
+                <div class="kpi-row-managerial">
+                    <!-- Guru & Staff -->
+                    <div class="card"
+                        style="border-left: 6px solid var(--primary-color); padding: 32px; border-radius: 24px;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;">
+                            <h4
+                                style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light);">
+                                Guru & Staff</h4>
+                            <div
+                                style="width: 36px; height: 36px; background: rgba(79, 70, 229, 0.1); color: var(--primary-color); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons" style="font-size: 20px;">groups</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 36px; font-weight: 800; color: #1E293B; letter-spacing: -1px;">42 <span
+                                style="font-size: 16px; color: var(--text-muted); font-weight: 400; letter-spacing: 0;">/
+                                45 Hadir</span></div>
+                        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+                            <div
+                                style="font-size: 12px; color: var(--error); display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                                <div style="width: 6px; height: 6px; background: var(--error); border-radius: 50%;">
+                                </div>
+                                Pak Eko (Sakit) - Kelas X-A Kosong!
+                            </div>
+                            <div
+                                style="font-size: 12px; color: var(--warning); display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                                <div style="width: 6px; height: 6px; background: var(--warning); border-radius: 50%;">
+                                </div>
+                                Bu Rina (Dinas Luar)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Siswa Today -->
+                    <div class="card"
+                        style="border-left: 6px solid var(--success); padding: 32px; border-radius: 24px;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;">
+                            <h4
+                                style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light);">
+                                Kehadiran Siswa</h4>
+                            <div
+                                style="width: 36px; height: 36px; background: rgba(16, 185, 129, 0.1); color: var(--success); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons" style="font-size: 20px;">how_to_reg</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 36px; font-weight: 800; color: #1E293B; letter-spacing: -1px;">98.2%
+                            <span
+                                style="font-size: 16px; color: var(--text-muted); font-weight: 400; letter-spacing: 0;">Hadir</span>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 16px; line-height: 1.5;">12
+                            Siswa Tanpa Keterangan (Alpha). Rekomendasi: Kirim WA otomatis ke ortu.</p>
+                    </div>
+
+                    <!-- Kelas Kosong Alarm -->
+                    <div class="card"
+                        style="border-left: 6px solid #EA580C; padding: 32px; border-radius: 24px; display: flex; align-items: center; gap: 24px;">
+                        <div
+                            style="width: 48px; height: 48px; background: rgba(234, 88, 12, 0.1); color: #EA580C; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <span class="material-icons" style="font-size: 28px;">meeting_room</span>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 800; font-size: 18px; color: #1E293B; letter-spacing: -0.5px;">2
+                                Kelas Kosong!</div>
+                            <div style="font-size: 13px; color: #C2410C; margin-top: 2px;">Kelas <b>X-A</b> dan
+                                <b>XI-C</b> belum ada guru ganti.
+                            </div>
+                        </div>
+                        <button class="context-action-btn primary"
+                            style="background: #EA580C; border-radius: 100px; padding: 10px 20px; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);">Tugaskan
+                            Piket</button>
+                    </div>
+                </div>
+
+                <!-- Main Grid: Supervision & Finance -->
+                <div class="grid-2-1" style="gap: 32px; margin-bottom: 32px;">
+                    <!-- Academic Supervision -->
+                    <div class="card">
+                        <div class="section-head">
+                            <div>
+                                <h3 class="section-title">Supervisi Kurikulum (Progress Materi)</h3>
+                                <p style="font-size: 12px; color: var(--text-muted);">Monitoring capaian target ajar per
+                                    tingkat</p>
+                            </div>
+                            <button class="btn-secondary" style="font-size: 11px;">E-Supervisi Detail</button>
+                        </div>
+                        <div style="height: 280px;">
+                            <canvas id="curriculumChart"></canvas>
+                        </div>
+                        <div style="margin-top: 24px; padding: 16px; background: #F8FAFC; border-radius: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px; color: var(--error);">
+                                <span class="material-icons">report</span>
+                                <div>
+                                    <div style="font-size: 13px; font-weight: 700;">Ketertinggalan Materi: Kelas 11
+                                    </div>
+                                    <div style="font-size: 11px;">Rata-rata tertinggal 15% dari target semester ini.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finance Monitoring -->
+                    <div class="card">
+                        <h3 class="section-title">Kesehatan Finansial (Dana BOS)</h3>
+                        <div style="margin: 24px 0;">
+                            <div
+                                style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">
+                                <span>Realisasi Anggaran Tahunan</span>
+                                <b>24% Terpakai</b>
+                            </div>
+                            <div class="budget-progress-bar">
+                                <div class="budget-progress-fill" style="width: 24%;"></div>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; margin-top: 8px;">
+                                <span>Total: Rp 500.000.000</span>
+                                <span style="color: var(--primary-color);">Sisa: Rp 380jt</span>
+                            </div>
+                        </div>
+
+                        <div style="border-top: 1px solid var(--border-light); padding-top: 20px;">
+                            <h4
+                                style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-light);">
+                                Approval Menunggu (3)</h4>
+                            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; background: #F9FAFB; padding: 12px; border-radius: 8px;">
+                                    <div style="font-size: 13px;">
+                                        <b>Pengadaan Chromebook</b>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Rp 25.000.000 - Wakasek
+                                            Sarpras</div>
+                                    </div>
+                                    <button class="context-action-btn primary">Setujui</button>
+                                </div>
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; background: #F9FAFB; padding: 12px; border-radius: 8px;">
+                                    <div style="font-size: 13px;">
+                                        <b>Konsumsi Rapat Wali Murid</b>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Rp 1.500.000 - Tata
+                                            Usaha</div>
+                                    </div>
+                                    <button class="context-action-btn primary">Setujui</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Issues -->
+                <div class="issue-card">
+                    <h3 class="section-title"
+                        style="margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--error);">assignment_late</span>
+                        Isu Prioritas (Action Needed)
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                        <div class="issue-item high">
+                            <div
+                                style="width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: #EF4444;">
+                                <span class="material-icons">crisis_alert</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Peningkatan "Bullying
+                                    Verbal"</div>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0;">Terjadi lonjakan
+                                    laporan di Kelas 10 minggu ini. Butuh intervensi BK.</p>
+                                <button class="context-action-btn"
+                                    style="background: white; border: 1px solid #EF4444; color: #EF4444; margin-top: 8px;">Instruksi
+                                    OSIS/BK</button>
+                            </div>
+                        </div>
+                        <div class="issue-item medium">
+                            <div
+                                style="width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: #F59E0B;">
+                                <span class="material-icons">construction</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 14px; font-weight: 800; color: #1E293B;">AC Lab Komputer Mati
+                                </div>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0;">Laporan sarpras
+                                    sudah 3 hari belum diperbaiki oleh teknisi luar.</p>
+                                <button class="context-action-btn"
+                                    style="background: white; border: 1px solid #F59E0B; color: #F59E0B; margin-top: 8px;">Hubungi
+                                    Vendor</button>
+                            </div>
+                        </div>
+                        <div class="issue-item medium"
+                            style="border-left-color: var(--secondary-color); background: #EFF6FF;">
+                            <div
+                                style="width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; color: var(--secondary-color);">
+                                <span class="material-icons">history_edu</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Administrasi Ujian</div>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0;">5 Guru belum
+                                    mengumpulkan Soal UTS (Deadline besok jam 12:00).</p>
+                                <button class="context-action-btn"
+                                    style="background: white; border: 1px solid var(--secondary-color); color: var(--secondary-color); margin-top: 8px;">Kirim
+                                    Notifikasi Blast</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Chart Configuration -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('curriculumChart').getContext('2d');
+
+            Chart.defaults.font.family = "'Outfit', 'Inter', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Kelas 10', 'Kelas 11', 'Kelas 12'],
+                    datasets: [
+                        {
+                            label: 'Capaian Materi (%)',
+                            data: [82, 65, 88],
+                            backgroundColor: '#4F46E5',
+                            borderRadius: 12,
+                            barThickness: 40
+                        },
+                        {
+                            label: 'Target Kurikulum (%)',
+                            data: [80, 80, 85],
+                            backgroundColor: '#E2E8F0',
+                            borderRadius: 12,
+                            barThickness: 40
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 8, font: { weight: '700' } } }
+                    },
+                    scales: {
+                        y: {
+                            max: 100,
+                            beginAtZero: true,
+                            grid: { borderDash: [4, 4], color: '#f1f5f9' },
+                            ticks: { font: { weight: '600' } }
+                        },
+                        x: { grid: { display: false }, ticks: { font: { weight: '700' } } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

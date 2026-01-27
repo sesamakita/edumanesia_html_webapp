@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sekolah Admin</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card-glass">
+            <div class="login-header">
+                <div class="login-icon-box">
+                    <span class="material-icons" style="font-size: 32px;">school</span>
+                </div>
+                <h1 class="login-title">Sekolah Admin</h1>
+                <p class="text-muted">Masuk untuk mengelola data sekolah</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-floating">
+                    <input type="email" id="email" class="form-control" placeholder=" " required>
+                    <label for="email">Email Address</label>
+                </div>
+
+                <div class="form-floating">
+                    <input type="password" id="password" class="form-control" placeholder=" " required>
+                    <label for="password">Password</label>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-muted); cursor: pointer;">
+                        <input type="checkbox" style="accent-color: var(--primary-color);"> Ingat saya
+                    </label>
+                    <a href="#" style="color: var(--primary-color); font-size: 14px; font-weight: 600;">Lupa Password?</a>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    Masuk ke Dashboard
+                    <span class="material-icons" style="font-size: 18px;">arrow_forward</span>
+                </button>
+            </form>
+            
+            <div style="margin-top: 24px; text-align: center; font-size: 14px; color: var(--text-muted);">
+                Belum punya akun? <a href="#" style="color: var(--primary-color); font-weight: 600;">Hubungi Admin Pusat</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Simple login handler for demo
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            // Loading state
+            btn.innerHTML = '<span class="material-icons" style="animation: spin 1s linear infinite;">refresh</span> Memproses...';
+            btn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+    </script>
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>

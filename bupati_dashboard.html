@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bupati Dashboard - Smart Regency Education</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Chart.js & Leaflet -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
+                <div class="sidebar-logo" style="background: var(--secondary-color);">
+                    <span class="material-icons">account_balance</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">SMART
+                    <span style="font-weight: 300; opacity: 0.7;">Regency</span></h3>
+            </div>
+
+            <nav class="nav-links" style="padding: 32px 24px;">
+                <p
+                    style="padding: 0 16px; margin-bottom: 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Overview</p>
+                <a href="bupati_dashboard.html" class="nav-link active">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard Bupati</span>
+                </a>
+                <a href="gubernur_dashboard.html" class="nav-link">
+                    <span class="material-icons">insights</span>
+                    <span>Switch to Province</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 32px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Data Sektoral</p>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">engineering</span>
+                    <span>Sarpras & DAK</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">groups</span>
+                    <span>SDM & Guru</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-icons">health_and_safety</span>
+                    <span>Layanan SPM</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="index.html" class="nav-link" style="color: #F87171; opacity: 0.8;">
+                    <span class="material-icons">logout</span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar" style="padding: 0 48px;">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 40px; height: 40px; border-radius: 12px; background: rgba(236, 72, 153, 0.1); color: var(--secondary-color); display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="font-size: 20px;">account_balance</span>
+                        </div>
+                        <h2 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Kesehatan Pendidikan
+                            <span style="font-weight: 400; color: var(--text-light); margin-left: 8px;">/
+                                Kabupaten</span></h2>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="text-align: right;">
+                        <div
+                            style="font-size: 11px; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1px;">
+                            Kab. Bekasi</div>
+                        <div style="font-size: 15px; font-weight: 700;">Dani Ramdan</div>
+                    </div>
+                    <div class="user-avatar"
+                        style="width: 44px; height: 44px; background: #0F172A; font-weight: 800; border: 2px solid white; box-shadow: var(--shadow-sm);">
+                        BK</div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding" style="padding: 40px 48px;">
+
+                <!-- Morning Summary Header -->
+                <div class="bupati-alert-header"
+                    style="border-radius: 24px; padding: 40px; background: linear-gradient(135deg, #1E1B4B, #302C7A);">
+                    <h1
+                        style="font-size: 28px; margin-bottom: 12px; color: white; font-weight: 800; letter-spacing: -1px;">
+                        Selamat Pagi, Pak Bupati.</h1>
+                    <p style="font-size: 16px; opacity: 0.8; color: white; line-height: 1.6;">Hari ini ada <b
+                            style="color: #FDA4AF;">3 SD</b> dilaporkan mengalami kerusakan atap akibat hujan semalam.
+                        Mohon instruksi untuk tinjauan lapangan segera.</p>
+                </div>
+
+                <!-- Top KPI Row -->
+                <div class="kpi-h-view" style="margin-bottom: 40px;">
+                    <div class="kpi-h-card" style="border-left: 6px solid var(--secondary-color);">
+                        <span class="label">SPM Score Index</span>
+                        <span class="value">88.2%</span>
+                        <div class="glass-pill"
+                            style="color: var(--secondary-color); width: fit-content; margin-top: 8px; font-weight: 800;">
+                            Target 100%</div>
+                    </div>
+                    <div class="kpi-h-card" style="border-left: 6px solid var(--error);">
+                        <span class="label">Sekolah Rusak Berat</span>
+                        <span class="value">45 <span style="font-size: 16px; opacity: 0.5;">Unit</span></span>
+                        <div class="glass-pill"
+                            style="color: var(--error); width: fit-content; margin-top: 8px; font-weight: 800;">Rp 15.2M
+                            Estimasi</div>
+                    </div>
+                    <div class="kpi-h-card" style="border-left: 6px solid var(--warning);">
+                        <span class="label">Kekurangan Guru ASN</span>
+                        <span class="value">250 <span style="font-size: 16px; opacity: 0.5;">Jiwa</span></span>
+                        <div class="glass-pill"
+                            style="color: var(--warning); width: fit-content; margin-top: 8px; font-weight: 800;">
+                            Dominan Guru SD</div>
+                    </div>
+                    <div class="kpi-h-card" style="border-left: 6px solid var(--info);">
+                        <span class="label">Anak Tidak Sekolah</span>
+                        <span class="value">124 <span style="font-size: 16px; opacity: 0.5;">Anak</span></span>
+                        <div class="glass-pill"
+                            style="color: var(--info); width: fit-content; margin-top: 8px; font-weight: 800;">Turun 12%
+                            MoM</div>
+                    </div>
+                </div>
+
+                <!-- Main Section: Map and Infrastructure -->
+                <div class="grid-map-side" style="margin-bottom: 40px; gap: 32px;">
+                    <!-- Map Card -->
+                    <div class="card"
+                        style="padding: 0; overflow: hidden; display: flex; flex-direction: column; position: relative; border-radius: 24px;">
+                        <div
+                            style="padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light);">
+                            <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Peta
+                                Literasi & Sarpras per Kecamatan</h3>
+                        </div>
+                        <div id="districtMap" style="height: 500px; width: 100%;"></div>
+
+                        <div class="map-overlay-frosted" style="bottom: 20px; left: 20px; top: auto; right: auto;">
+                            <h4
+                                style="font-size: 11px; font-weight: 800; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light);">
+                                Status Kecamatan</h4>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    <span
+                                        style="width: 10px; height: 10px; background: #10B981; border-radius: 50%;"></span>
+                                    Baik
+                                </div>
+                                <div
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    <span
+                                        style="width: 10px; height: 10px; background: #F59E0B; border-radius: 50%;"></span>
+                                    Cukup
+                                </div>
+                                <div
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    <span
+                                        style="width: 10px; height: 10px; background: #EF4444; border-radius: 50%;"></span>
+                                    Kritis
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Stats: Classroom Condition -->
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        <div class="card" style="border-radius: 24px; padding: 32px;">
+                            <h3 class="section-title">Radar Unit Kelas</h3>
+                            <div style="height: 200px; margin-bottom: 24px;">
+                                <canvas id="classroomChart"></canvas>
+                            </div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 20px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                    <span style="font-weight: 600;">Total Ruang Kelas</span>
+                                    <b style="color: #1E293B;">2,450 Unit</b>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span style="font-weight: 600;">Layak Pakai</span>
+                                    <b class="text-success" style="font-size: 16px;">82%</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Health Integration -->
+                        <div class="card" style="border-radius: 24px; padding: 32px;">
+                            <h3 class="section-title">Status Kesehatan</h3>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div class="health-widget" style="margin: 0; padding: 16px; border-radius: 16px;">
+                                    <div class="icon-box"
+                                        style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; border-radius: 12px;">
+                                        <span class="material-icons">child_care</span></div>
+                                    <div>
+                                        <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Indikasi
+                                            Stunting</div>
+                                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">12
+                                            Siswa di SDN 01 Tambun</div>
+                                    </div>
+                                </div>
+                                <div class="health-widget"
+                                    style="margin: 0; padding: 16px; border-radius: 16px; background: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130,  Blue 0.1);">
+                                    <div class="icon-box"
+                                        style="background: rgba(59, 130, 246, 0.1); color: #3B82F6; border-radius: 12px;">
+                                        <span class="material-icons">vaccines</span></div>
+                                    <div>
+                                        <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Cakupan BIAS
+                                        </div>
+                                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">94.2%
+                                            (Kec. Cibarusah)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: HR & Action List -->
+                <div class="grid-2-1" style="gap: 32px;">
+                    <!-- HR Distribution -->
+                    <div class="card" style="border-radius: 24px; padding: 32px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Kepegawaian Guru</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Komparasi ASN vs
+                                    Non-ASN per Wilayah</p>
+                            </div>
+                        </div>
+                        <div style="height: 320px;">
+                            <canvas id="teacherDeptChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Action List -->
+                    <div class="card" style="border-radius: 24px; padding: 32px;">
+                        <div class="section-head-premium" style="border-left-color: var(--secondary-color);">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Instruksi Cepat</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Tugas yang butuh
+                                    atensi Bupati</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+                            <div class="action-item"
+                                style="margin: 0; padding: 16px; border-radius: 16px; background: #F8FAFC;">
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Renovasi DAK Fisik
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">12 Proposal
+                                        butuh persetujuan</div>
+                                </div>
+                                <button class="context-action-btn primary"
+                                    style="background: var(--primary-color);">Review</button>
+                            </div>
+
+                            <div class="action-item"
+                                style="margin: 0; padding: 16px; border-radius: 16px; background: white; border: 1px solid var(--border-light); border-left: 4px solid var(--secondary-color);">
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Anak Putus Sekolah
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Kec.
+                                        Karangbahagia (15 Anak)</div>
+                                </div>
+                                <button class="context-action-btn primary"
+                                    style="background: var(--secondary-color);">Lihat List</button>
+                            </div>
+
+                            <div class="action-item"
+                                style="margin: 0; padding: 16px; border-radius: 16px; background: white; border: 1px solid var(--border-light); border-left: 4px solid var(--success);">
+                                <div>
+                                    <div style="font-size: 14px; font-weight: 800; color: #1E293B;">Laporan BIAS</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Hasil audit
+                                        berkala Dinkes</div>
+                                </div>
+                                <button class="context-action-btn primary" style="background: var(--success);">Cek
+                                    Data</button>
+                            </div>
+                        </div>
+
+                        <p
+                            style="text-align: center; font-size: 11px; color: var(--text-light); margin-top: 32px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                            <span class="material-icons"
+                                style="font-size: 12px; vertical-align: middle; margin-right: 4px;">sync</span>
+                            sinkronisasi Dapodik & SIK-NG
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize District Map
+            const map = L.map('districtMap', {
+                zoomControl: false,
+                scrollWheelZoom: false,
+                attributionControl: false
+            }).setView([-6.2687, 107.1333], 10);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+            const kecamatans = [
+                { name: "Cikarang Pusat", coords: [-6.3644, 107.1534], color: "#10B981", val: "A" },
+                { name: "Tambun Selatan", coords: [-6.2625, 107.0625], color: "#F59E0B", val: "B" },
+                { name: "Muara Gembong", coords: [-5.9912, 107.0347], color: "#EF4444", val: "C" },
+                { name: "Cibarusah", coords: [-6.4444, 107.0422], color: "#F59E0B", val: "B" }
+            ];
+
+            kecamatans.forEach(k => {
+                L.circle(k.coords, {
+                    color: k.color,
+                    fillColor: k.color,
+                    fillOpacity: 0.6,
+                    radius: 2500,
+                    weight: 2
+                }).addTo(map).bindPopup(`<div style="padding: 10px;"><b>Kecamatan ${k.name}</b><br>Status: <span style="color: ${k.color}; font-weight: 800;">${k.val}</span></div>`);
+            });
+
+            // 2. Classroom Chart
+            const classCtx = document.getElementById('classroomChart').getContext('2d');
+            new Chart(classCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Baik', 'Cukup', 'Kritis'],
+                    datasets: [{
+                        data: [1800, 500, 150],
+                        backgroundColor: ['#4F46E5', '#818CF8', '#E2E8F0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 10,
+                                usePointStyle: true,
+                                font: { size: 10, weight: '700' },
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 3. Teacher Distribution Chart
+            const teacherCtx = document.getElementById('teacherDeptChart').getContext('2d');
+            new Chart(teacherCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Cikarang', 'Tambun', 'Cibitung', 'Kedung', 'Suka', 'Muara'],
+                    datasets: [
+                        {
+                            label: 'ASN (PNS/PPPK)',
+                            data: [350, 280, 220, 150, 120, 45],
+                            backgroundColor: '#4F46E5',
+                            borderRadius: 8,
+                            barThickness: 20
+                        },
+                        {
+                            label: 'Non-ASN (Honorer)',
+                            data: [120, 150, 200, 210, 250, 310],
+                            backgroundColor: '#E2E8F0',
+                            borderRadius: 8,
+                            barThickness: 20
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            stacked: true,
+                            grid: { borderDash: [4, 4], color: '#f1f5f9' },
+                            ticks: { font: { weight: '600' } }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { font: { weight: '700' } }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: { boxWidth: 10, usePointStyle: true, font: { weight: '700' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
