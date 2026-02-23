@@ -7,6 +7,9 @@
     <title>Biodata Sekolah - Sekolah Admin</title>
     <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,7 +23,8 @@
                     <span class="material-icons">school</span>
                 </div>
                 <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
-                    <span style="font-weight: 300; opacity: 0.7;">Admin</span></h3>
+                    <span style="font-weight: 300; opacity: 0.7;">Admin</span>
+                </h3>
             </div>
 
             <nav class="nav-links" style="padding: 32px 24px;">
@@ -34,23 +38,39 @@
                 </a>
 
                 <p
-                    style="padding: 0 16px; margin: 32px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
                     Akademik</p>
-                <a href="#" class="nav-link">
+                <a href="students.html" class="nav-link">
                     <span class="material-icons">people</span>
                     <span>Data Siswa</span>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="teachers.html" class="nav-link">
                     <span class="material-icons">supervisor_account</span>
                     <span>Data Guru</span>
                 </a>
-                <a href="#" class="nav-link">
+                <a href="classes.html" class="nav-link">
                     <span class="material-icons">class</span>
                     <span>Manajemen Kelas</span>
                 </a>
 
+                <p
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Administrasi</p>
+                <a href="spp.html" class="nav-link">
+                    <span class="material-icons">payments</span>
+                    <span>Keuangan / SPP</span>
+                </a>
+                <a href="persuratan.html" class="nav-link">
+                    <span class="material-icons">mail</span>
+                    <span>Persuratan</span>
+                </a>
+                <a href="inventaris.html" class="nav-link">
+                    <span class="material-icons">inventory_2</span>
+                    <span>Inventaris & Sarpras</span>
+                </a>
+
                 <div style="margin-top: auto;"></div>
-                <a href="#" class="nav-link">
+                <a href="settings.html" class="nav-link">
                     <span class="material-icons">settings</span>
                     <span>Pengaturan</span>
                 </a>
@@ -64,28 +84,28 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Navbar -->
-            <header class="top-navbar" style="padding: 0 48px;">
-                <div style="display: flex; align-items: center; gap: 16px;">
-                    <a href="dashboard.html"
-                        style="width: 36px; height: 36px; border-radius: 10px; background: var(--border-light); color: var(--text-main); display: flex; align-items: center; justify-content: center; transition: var(--transition-fast);">
-                        <span class="material-icons" style="font-size: 20px;">arrow_back</span>
-                    </a>
-                    <div class="page-header">
-                        <h2 style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Profil Satuan Pendidikan
-                        </h2>
+            <header class="top-navbar">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--primary-color);">domain</span>
+                        <h2>Biodata Sekolah</h2>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 24px; align-items: center;">
-                    <div style="text-align: right;">
-                        <div
-                            style="font-size: 11px; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px;">
-                            Admin Sekolah</div>
-                        <div style="font-size: 15px; font-weight: 700;">SMA Negeri 1 Bekasi</div>
+                <!-- Global Power Search -->
+                <div class="power-search">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Cari Setting, Menu, atau Bantuan...">
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="text-align: right; margin-right: 8px;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
+                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
                     </div>
-                    <div class="user-avatar"
-                        style="width: 44px; height: 44px; background: #0F172A; font-weight: 800; border: 2px solid white; box-shadow: var(--shadow-sm);">
-                        A</div>
+                    <div class="user-menu">
+                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                    </div>
                 </div>
             </header>
 
@@ -127,6 +147,166 @@
                                     <input type="file" id="logo-upload" accept="image/*" hidden
                                         onchange="previewLogo(this)">
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: App Gradient Colors -->
+                    <div class="card" style="margin-bottom: 32px; border-radius: 24px; padding: 40px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Warna Tema Aplikasi Mobile</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Pengaturan warna
+                                    gradient untuk tampilan logo di aplikasi mobile</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 32px;">
+                            <!-- Color Pickers -->
+                            <div style="flex: 1; min-width: 280px;">
+                                <h4
+                                    style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 20px;">
+                                    Pilih Warna Gradient</h4>
+
+                                <div style="display: flex; flex-direction: column; gap: 20px;">
+                                    <!-- Color 1 -->
+                                    <div class="form-group-modern">
+                                        <label class="form-label-modern"
+                                            style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                                            Warna Awal (Atas)</label>
+                                        <div style="display: flex; gap: 12px; align-items: center;">
+                                            <input type="color" id="gradientColor1" value="#4F46E5"
+                                                style="width: 60px; height: 44px; border: none; border-radius: 12px; cursor: pointer; padding: 0;"
+                                                onchange="updateGradientPreview()">
+                                            <input type="text" id="gradientHex1" class="input-modern" value="#4F46E5"
+                                                style="border-radius: 12px; padding: 12px 16px; flex: 1; font-family: monospace;"
+                                                onchange="syncColorFromHex(1)">
+                                        </div>
+                                    </div>
+
+                                    <!-- Color 2 -->
+                                    <div class="form-group-modern">
+                                        <label class="form-label-modern"
+                                            style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                                            Warna Akhir (Bawah)</label>
+                                        <div style="display: flex; gap: 12px; align-items: center;">
+                                            <input type="color" id="gradientColor2" value="#7C3AED"
+                                                style="width: 60px; height: 44px; border: none; border-radius: 12px; cursor: pointer; padding: 0;"
+                                                onchange="updateGradientPreview()">
+                                            <input type="text" id="gradientHex2" class="input-modern" value="#7C3AED"
+                                                style="border-radius: 12px; padding: 12px 16px; flex: 1; font-family: monospace;"
+                                                onchange="syncColorFromHex(2)">
+                                        </div>
+                                    </div>
+
+                                    <!-- Gradient Direction -->
+                                    <div class="form-group-modern">
+                                        <label class="form-label-modern"
+                                            style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                                            Arah Gradient</label>
+                                        <select id="gradientDirection" class="input-modern"
+                                            style="border-radius: 12px; padding: 12px 16px;"
+                                            onchange="updateGradientPreview()">
+                                            <option value="to bottom" selected>Atas ke Bawah ↓</option>
+                                            <option value="to right">Kiri ke Kanan →</option>
+                                            <option value="to bottom right">Diagonal ↘</option>
+                                            <option value="to top right">Diagonal ↗</option>
+                                            <option value="135deg">Diagonal 135°</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Preset Templates -->
+                                <h4
+                                    style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin: 32px 0 16px;">
+                                    Template Warna Preset</h4>
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                                    <button type="button" onclick="applyPreset('#4F46E5', '#7C3AED')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #4F46E5, #7C3AED);"
+                                        title="Indigo Purple"></button>
+                                    <button type="button" onclick="applyPreset('#0EA5E9', '#6366F1')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #0EA5E9, #6366F1);"
+                                        title="Sky Blue"></button>
+                                    <button type="button" onclick="applyPreset('#10B981', '#059669')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #10B981, #059669);"
+                                        title="Emerald"></button>
+                                    <button type="button" onclick="applyPreset('#F59E0B', '#EA580C')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #F59E0B, #EA580C);"
+                                        title="Orange"></button>
+                                    <button type="button" onclick="applyPreset('#EC4899', '#DB2777')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #EC4899, #DB2777);"
+                                        title="Pink"></button>
+                                    <button type="button" onclick="applyPreset('#EF4444', '#DC2626')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #EF4444, #DC2626);"
+                                        title="Red"></button>
+                                    <button type="button" onclick="applyPreset('#1E293B', '#334155')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #1E293B, #334155);"
+                                        title="Dark Slate"></button>
+                                    <button type="button" onclick="applyPreset('#065F46', '#047857')"
+                                        style="width: 100%; aspect-ratio: 1; border-radius: 12px; border: 2px solid transparent; cursor: pointer; background: linear-gradient(135deg, #065F46, #047857);"
+                                        title="Dark Green"></button>
+                                </div>
+                            </div>
+
+                            <!-- Live Preview -->
+                            <div style="flex: 1; min-width: 280px;">
+                                <h4
+                                    style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 20px;">
+                                    Preview Tampilan Mobile</h4>
+
+                                <!-- Phone Mockup -->
+                                <div style="max-width: 260px; margin: 0 auto;">
+                                    <div
+                                        style="background: #1F2937; border-radius: 32px; padding: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+                                        <div
+                                            style="background: #000; border-radius: 24px; overflow: hidden; position: relative;">
+                                            <!-- Notch -->
+                                            <div
+                                                style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 24px; background: #000; border-radius: 0 0 16px 16px; z-index: 10;">
+                                            </div>
+
+                                            <!-- Screen Content -->
+                                            <div id="mobilePreview"
+                                                style="height: 400px; background: linear-gradient(to bottom, #4F46E5, #7C3AED); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px;">
+                                                <!-- Logo Container -->
+                                                <div
+                                                    style="width: 100px; height: 100px; background: rgba(255,255,255,0.2); border-radius: 24px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); margin-bottom: 24px;">
+                                                    <span class="material-icons" style="font-size: 48px; color: white;"
+                                                        id="preview-logo-icon">school</span>
+                                                    <img id="preview-logo-img" src=""
+                                                        style="width: 70%; height: 70%; object-fit: contain; display: none;">
+                                                </div>
+
+                                                <!-- School Name -->
+                                                <div style="color: white; text-align: center;">
+                                                    <div style="font-size: 18px; font-weight: 800; margin-bottom: 4px;">
+                                                        SMA Negeri 1 Bekasi</div>
+                                                    <div style="font-size: 12px; opacity: 0.8;">Sistem Informasi Sekolah
+                                                    </div>
+                                                </div>
+
+                                                <!-- Loading indicator -->
+                                                <div style="margin-top: 48px; display: flex; gap: 8px;">
+                                                    <div
+                                                        style="width: 8px; height: 8px; background: rgba(255,255,255,0.6); border-radius: 50%;">
+                                                    </div>
+                                                    <div
+                                                        style="width: 8px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 50%;">
+                                                    </div>
+                                                    <div
+                                                        style="width: 8px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 50%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p
+                                    style="font-size: 11px; color: var(--text-light); text-align: center; margin-top: 16px;">
+                                    Preview tampilan splash screen aplikasi mobile
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -178,6 +358,99 @@
                                     <option>Swasta</option>
                                 </select>
                             </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Tahun
+                                    Berdiri</label>
+                                <input type="number" class="input-modern" value="1985" min="1900" max="2030"
+                                    style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Akreditasi</label>
+                                <select class="input-modern" style="border-radius: 12px; padding: 12px 16px;">
+                                    <option selected>A (Unggul)</option>
+                                    <option>B (Baik)</option>
+                                    <option>C (Cukup)</option>
+                                    <option>Belum Terakreditasi</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Kepala
+                                    Sekolah</label>
+                                <input type="text" class="input-modern" value="Drs. Budi Santoso, M.Pd"
+                                    style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Jumlah
+                                    Rombel</label>
+                                <input type="number" class="input-modern" value="36" min="1"
+                                    style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+
+                            <div class="form-group-modern" style="grid-column: span 2;">
+                                <label class="form-label-modern"
+                                    style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Website
+                                    Sekolah</label>
+                                <input type="url" class="input-modern" value="https://www.sman1bekasi.sch.id"
+                                    placeholder="https://..." style="border-radius: 12px; padding: 12px 16px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Location / GPS -->
+                    <div class="card" style="margin-bottom: 32px; border-radius: 24px; padding: 40px;">
+                        <div class="section-head-premium">
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                                    Lokasi & Koordinat GPS</h3>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Titik koordinat
+                                    untuk pemetaan geospasial</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 32px;">
+                            <div class="form-grid"
+                                style="grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+                                <div class="form-group-modern">
+                                    <label class="form-label-modern"
+                                        style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Latitude</label>
+                                    <input type="text" class="input-modern" value="-6.2483" placeholder="-6.xxxxxx"
+                                        style="border-radius: 12px; padding: 12px 16px;">
+                                </div>
+
+                                <div class="form-group-modern">
+                                    <label class="form-label-modern"
+                                        style="font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Longitude</label>
+                                    <input type="text" class="input-modern" value="107.0025" placeholder="107.xxxxxx"
+                                        style="border-radius: 12px; padding: 12px 16px;">
+                                </div>
+                            </div>
+
+                            <!-- Map Preview -->
+                            <div
+                                style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border-light); position: relative;">
+                                <div id="schoolMap" style="height: 280px; width: 100%; background: #F1F5F9;"></div>
+                                <div style="position: absolute; top: 16px; right: 16px; z-index: 1000;">
+                                    <button type="button" onclick="updateMapLocation()"
+                                        class="context-action-btn primary"
+                                        style="border-radius: 100px; padding: 10px 20px; font-size: 12px; display: flex; align-items: center; gap: 8px;">
+                                        <span class="material-icons" style="font-size: 16px;">my_location</span>
+                                        Update Lokasi
+                                    </button>
+                                </div>
+                            </div>
+                            <p
+                                style="font-size: 11px; color: var(--text-light); margin-top: 12px; display: flex; align-items: center; gap: 6px;">
+                                <span class="material-icons" style="font-size: 14px;">info</span>
+                                Klik tombol "Update Lokasi" setelah mengubah koordinat untuk memperbarui peta
+                            </p>
                         </div>
                     </div>
 
@@ -238,6 +511,87 @@
     </div>
 
     <script>
+        // Map initialization
+        let schoolMap;
+        let schoolMarker;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize map with default coordinates
+            schoolMap = L.map('schoolMap', {
+                zoomControl: true,
+                scrollWheelZoom: true
+            }).setView([-6.2483, 107.0025], 16);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(schoolMap);
+
+            // Add marker
+            schoolMarker = L.marker([-6.2483, 107.0025]).addTo(schoolMap)
+                .bindPopup('<b>SMA Negeri 1 Bekasi</b><br>Lokasi Sekolah')
+                .openPopup();
+        });
+
+        // Gradient Color Functions
+        function updateGradientPreview() {
+            const color1 = document.getElementById('gradientColor1').value;
+            const color2 = document.getElementById('gradientColor2').value;
+            const direction = document.getElementById('gradientDirection').value;
+
+            // Update hex inputs
+            document.getElementById('gradientHex1').value = color1.toUpperCase();
+            document.getElementById('gradientHex2').value = color2.toUpperCase();
+
+            // Update mobile preview
+            const preview = document.getElementById('mobilePreview');
+            preview.style.background = `linear-gradient(${direction}, ${color1}, ${color2})`;
+        }
+
+        function syncColorFromHex(num) {
+            const hexInput = document.getElementById('gradientHex' + num);
+            const colorInput = document.getElementById('gradientColor' + num);
+
+            let hex = hexInput.value.trim();
+
+            // Add # if missing
+            if (!hex.startsWith('#')) {
+                hex = '#' + hex;
+            }
+
+            // Validate hex color
+            if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+                colorInput.value = hex;
+                hexInput.value = hex.toUpperCase();
+                updateGradientPreview();
+            } else {
+                alert('Format warna tidak valid. Gunakan format hex: #RRGGBB');
+            }
+        }
+
+        function applyPreset(color1, color2) {
+            document.getElementById('gradientColor1').value = color1;
+            document.getElementById('gradientColor2').value = color2;
+            document.getElementById('gradientHex1').value = color1;
+            document.getElementById('gradientHex2').value = color2;
+            updateGradientPreview();
+        }
+
+        function updateMapLocation() {
+            const latInput = document.querySelector('input[placeholder="-6.xxxxxx"]');
+            const lngInput = document.querySelector('input[placeholder="107.xxxxxx"]');
+
+            const lat = parseFloat(latInput.value);
+            const lng = parseFloat(lngInput.value);
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+                schoolMap.setView([lat, lng], 16);
+                schoolMarker.setLatLng([lat, lng]);
+                schoolMarker.openPopup();
+            } else {
+                alert('Koordinat tidak valid. Pastikan format: Latitude (mis: -6.2483), Longitude (mis: 107.0025)');
+            }
+        }
+
         function previewLogo(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -284,6 +638,40 @@
         .upload-area:hover {
             border-color: var(--primary-color) !important;
             background: rgba(79, 70, 229, 0.02);
+        }
+
+        /* Color Picker Styles */
+        input[type="color"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 60px !important;
+            height: 44px !important;
+            border: 2px solid var(--border-light) !important;
+            border-radius: 12px !important;
+            cursor: pointer;
+            padding: 4px !important;
+            background: white;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 8px;
+        }
+
+        input[type="color"]::-moz-color-swatch {
+            border: none;
+            border-radius: 8px;
+        }
+
+        input[type="color"]:hover {
+            border-color: var(--primary-color) !important;
         }
     </style>
 </body>

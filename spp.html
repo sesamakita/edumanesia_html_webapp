@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keuangan & SPP - Edumanesia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
+                <div class="sidebar-logo" style="background: var(--primary-color);">
+                    <span class="material-icons">school</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
+                    <span style="font-weight: 300; opacity: 0.7;">Admin</span>
+                </h3>
+            </div>
+
+            <nav class="nav-links" style="padding: 32px 24px;">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="school_profile.html" class="nav-link">
+                    <span class="material-icons">domain</span>
+                    <span>Biodata Sekolah</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Akademik</p>
+                <a href="students.html" class="nav-link">
+                    <span class="material-icons">people</span>
+                    <span>Data Siswa</span>
+                </a>
+                <a href="teachers.html" class="nav-link">
+                    <span class="material-icons">supervisor_account</span>
+                    <span>Data Guru</span>
+                </a>
+                <a href="classes.html" class="nav-link">
+                    <span class="material-icons">class</span>
+                    <span>Manajemen Kelas</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Administrasi</p>
+                <a href="spp.html" class="nav-link active">
+                    <span class="material-icons">payments</span>
+                    <span>Keuangan / SPP</span>
+                </a>
+                <a href="persuratan.html" class="nav-link">
+                    <span class="material-icons">mail</span>
+                    <span>Persuratan</span>
+                </a>
+                <a href="inventaris.html" class="nav-link">
+                    <span class="material-icons">inventory_2</span>
+                    <span>Inventaris & Sarpras</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="settings.html" class="nav-link">
+                    <span class="material-icons">settings</span>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="index.html" class="nav-link" style="color: #F87171; opacity: 0.8;">
+                    <span class="material-icons">logout</span>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--primary-color);">payments</span>
+                        <h2>Keuangan / SPP</h2>
+                    </div>
+                </div>
+
+                <!-- Global Power Search -->
+                <div class="power-search">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Cari Siswa, NIS, atau Status..." id="searchInput">
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="text-align: right; margin-right: 8px;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
+                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding">
+
+                <!-- Overview Cards -->
+                <!-- Main Stats Grid (High Density) -->
+                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
+                    <!-- Total Tagihan -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Total<br>Tagihan</div>
+                            <span class="badge info"
+                                style="background: rgba(79, 70, 229, 0.1); color: #4F46E5; border: 1px solid rgba(79, 70, 229, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Februari
+                                2026</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 20px; font-weight: 800; color: var(--text-primary); line-height: 1;">
+                                Rp
+                            </div>
+                            <div
+                                style="font-size: 32px; font-weight: 800; color: var(--text-primary); letter-spacing: -1px; line-height: 1.2;">
+                                150.000.000</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
+                                <span class="material-icons"
+                                    style="font-size: 16px; color: #4F46E5;">receipt_long</span>
+                                300 siswa × Rp 500.000
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sudah Terbayar -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Sudah<br>Terbayar
+                            </div>
+                            <span class="badge success"
+                                style="background: rgba(16, 185, 129, 0.1); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">78%
+                                Tercapai</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 20px; font-weight: 800; color: #059669; line-height: 1;">Rp</div>
+                            <div
+                                style="font-size: 32px; font-weight: 800; color: #059669; letter-spacing: -1px; line-height: 1.2;">
+                                117.000.000</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
+                                <span class="material-icons"
+                                    style="font-size: 16px; color: #059669;">check_circle</span>
+                                234 Siswa Lunas
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Belum Bayar -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl" style="font-size: 14px; font-weight: 700; color: var(--text-main);">
+                                Belum
+                                Bayar</div>
+                            <span class="badge warning"
+                                style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">16%
+                                Pending</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 20px; font-weight: 800; color: #F59E0B; line-height: 1;">Rp</div>
+                            <div
+                                style="font-size: 32px; font-weight: 800; color: #F59E0B; letter-spacing: -1px; line-height: 1.2;">
+                                24.000.000</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
+                                <span class="material-icons" style="font-size: 16px; color: #F59E0B;">schedule</span>
+                                48 Siswa Belum Bayar
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tunggakan -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Tunggakan<br>(Overdue)
+                            </div>
+                            <span class="badge danger"
+                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">6%
+                                Macet</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 20px; font-weight: 800; color: #DC2626; line-height: 1;">Rp</div>
+                            <div
+                                style="font-size: 32px; font-weight: 800; color: #DC2626; letter-spacing: -1px; line-height: 1.2;">
+                                9.000.000</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
+                                <span class="material-icons" style="font-size: 16px; color: #DC2626;">warning</span>
+                                18 Siswa Menunggak
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter & Actions Panel -->
+                <div class="stat-card-premium"
+                    style="padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <!-- Filters -->
+                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--primary-color);">calendar_today</span>
+                            <select id="filterBulan"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; font-weight: 500; background: #F8FAFC; color: var(--text-main); cursor: pointer; outline: none; transition: all 0.2s; box-shadow: var(--shadow-sm);">
+                                <option value="02-2026">Februari 2026</option>
+                                <option value="01-2026">Januari 2026</option>
+                                <option value="12-2025">Desember 2025</option>
+                            </select>
+                        </div>
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted);">class</span>
+                            <select id="filterKelas"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; cursor: pointer; outline: none; transition: all 0.2s; min-width: 160px;">
+                                <option value="all">Semua Kelas</option>
+                                <option value="7A">Kelas 7A</option>
+                                <option value="7B">Kelas 7B</option>
+                                <option value="8A">Kelas 8A</option>
+                                <option value="8B">Kelas 8B</option>
+                                <option value="9A">Kelas 9A</option>
+                                <option value="9B">Kelas 9B</option>
+                            </select>
+                        </div>
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted);">filter_list</span>
+                            <select id="filterStatus"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; cursor: pointer; outline: none; transition: all 0.2s; min-width: 160px;">
+                                <option value="all">Semua Status</option>
+                                <option value="lunas">✓ Lunas</option>
+                                <option value="belum">⏳ Belum Bayar</option>
+                                <option value="tunggak">⚠️ Tunggakan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <button onclick="sendBulkReminder()"
+                            style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: white; color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow-sm);">
+                            <span class="material-icons" style="font-size: 18px;">notifications_active</span>
+                            Kirim Reminder
+                        </button>
+                        <button onclick="exportSPP()"
+                            style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: white; color: #059669; border: 1px solid #10B981; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow-sm);">
+                            <span class="material-icons" style="font-size: 18px;">download</span>
+                            Export
+                        </button>
+                        <button onclick="openInputModal()"
+                            style="display: flex; align-items: center; gap: 8px; padding: 12px 24px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: white; border: none; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">
+                            <span class="material-icons" style="font-size: 18px;">add</span>
+                            Catat Pembayaran
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment Status Table -->
+                <div class="stat-card-premium"
+                    style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div
+                        style="padding: 24px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.5);">
+                        <div>
+                            <h3
+                                style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                                <span class="material-icons" style="color: var(--primary-color);">table_chart</span>
+                                Status Pembayaran SPP
+                            </h3>
+                            <p style="margin: 4px 0 0; font-size: 13px; color: var(--text-muted);">Periode: Februari
+                                2026 • Total: 300 siswa</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; font-size: 12px; font-weight: 500;">
+                            <span
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 20px; color: #059669;">
+                                <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+                                Lunas (234)
+                            </span>
+                            <span
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(245, 158, 11, 0.1); border-radius: 20px; color: #F59E0B;">
+                                <span style="width: 6px; height: 6px; background: #F59E0B; border-radius: 50%;"></span>
+                                Belum (48)
+                            </span>
+                            <span
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 20px; color: #DC2626;">
+                                <span style="width: 6px; height: 6px; background: #DC2626; border-radius: 50%;"></span>
+                                Tunggak (18)
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1; overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px;">
+                            <thead>
+                                <tr style="background: #F8FAFC; position: sticky; top: 0;">
+                                    <th
+                                        style="padding: 14px 16px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Siswa</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Kelas</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: right; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Nominal</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Jatuh Tempo</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Tgl Bayar</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Status</th>
+                                    <th
+                                        style="padding: 14px 16px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sppTableBody">
+                                <!-- Row 1 - Lunas -->
+                                <tr>
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
+                                                AF</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Ahmad Farhan</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024001
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        9A</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 500.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        10 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
+                                        05 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
+                                            Lunas</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <button onclick="printKwitansi('Ahmad Farhan')"
+                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
+                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
+                                            Kwitansi
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 - Lunas -->
+                                <tr>
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FCE7F3; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #DB2777; font-size: 12px;">
+                                                SA</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Siti Aisyah</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024002
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        9A</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 500.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        10 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
+                                        03 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
+                                            Lunas</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <button onclick="printKwitansi('Siti Aisyah')"
+                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
+                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
+                                            Kwitansi
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 - Belum Bayar -->
+                                <tr style="background: #FFFBEB;">
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
+                                                BS</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Budi Santoso</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024003
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        9B</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 500.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        10 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        —</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⏳
+                                            Belum Bayar</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; gap: 6px; justify-content: center;">
+                                            <button onclick="inputPembayaran('Budi Santoso')"
+                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
+                                            <button onclick="sendReminder('Budi Santoso')"
+                                                style="padding: 6px 10px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 4 - Tunggakan -->
+                                <tr style="background: #FEF2F2;">
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FEF3C7; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #D97706; font-size: 12px;">
+                                                RP</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Rizky Pratama</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024004
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        8A</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 1.000.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #DC2626; font-weight: 500;">
+                                        10 Jan 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        —</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #FEE2E2; color: #DC2626; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⚠️
+                                            Tunggak 2 bln</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; gap: 6px; justify-content: center;">
+                                            <button onclick="inputPembayaran('Rizky Pratama')"
+                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
+                                            <button onclick="sendReminder('Rizky Pratama')"
+                                                style="padding: 6px 10px; background: #DC2626; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 5 - Lunas -->
+                                <tr>
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FCE7F3; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #DB2777; font-size: 12px;">
+                                                DL</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Dewi Lestari</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024005
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        8B</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 500.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        10 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
+                                        08 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
+                                            Lunas</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <button onclick="printKwitansi('Dewi Lestari')"
+                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
+                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
+                                            Kwitansi
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Row 6 - Belum Bayar -->
+                                <tr style="background: #FFFBEB;">
+                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
+                                                AW</div>
+                                            <div>
+                                                <div style="font-weight: 500;">Andi Wijaya</div>
+                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024006
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        7A</td>
+                                    <td
+                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
+                                        Rp 500.000</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        10 Feb 2026</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        —</td>
+                                    <td
+                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <span
+                                            style="background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⏳
+                                            Belum Bayar</span>
+                                    </td>
+                                    <td
+                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                                        <div style="display: flex; gap: 6px; justify-content: center;">
+                                            <button onclick="inputPembayaran('Andi Wijaya')"
+                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
+                                            <button onclick="sendReminder('Andi Wijaya')"
+                                                style="padding: 6px 10px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Footer -->
+                    <div
+                        style="padding: 16px 24px; background: #F8FAFC; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Menampilkan 6 dari 300 siswa</div>
+                        <div style="display: flex; gap: 8px;">
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">←
+                                Sebelumnya</button>
+                            <button
+                                style="padding: 6px 12px; border: none; background: #4F46E5; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">1</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">2</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">3</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">Selanjutnya
+                                →</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Payment Input Modal -->
+    <div id="paymentModal"
+        style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; border-radius: 16px; width: 90%; max-width: 450px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin: 0; font-size: 18px;">💳 Catat Pembayaran SPP</h3>
+                <button onclick="closeModal()"
+                    style="background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Nama
+                        Siswa</label>
+                    <input type="text" id="modalSiswa"
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;"
+                        readonly>
+                </div>
+                <div>
+                    <label
+                        style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Nominal
+                        Pembayaran</label>
+                    <input type="text" id="modalNominal" value="Rp 500.000"
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                </div>
+                <div>
+                    <label
+                        style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Tanggal
+                        Pembayaran</label>
+                    <input type="date" id="modalTanggal"
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                </div>
+                <div>
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Metode
+                        Pembayaran</label>
+                    <select id="modalMetode"
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                        <option>Tunai</option>
+                        <option>Transfer Bank</option>
+                        <option>QRIS</option>
+                    </select>
+                </div>
+                <button onclick="savePembayaran()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #059669 0%, #10B981 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 8px;">
+                    ✓ Simpan Pembayaran
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize date
+        document.getElementById('modalTanggal').value = new Date().toISOString().split('T')[0];
+
+        function openInputModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+            document.getElementById('modalSiswa').value = '';
+        }
+
+        function inputPembayaran(nama) {
+            document.getElementById('paymentModal').style.display = 'flex';
+            document.getElementById('modalSiswa').value = nama;
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function savePembayaran() {
+            const siswa = document.getElementById('modalSiswa').value;
+            showToast(`✅ Pembayaran ${siswa} berhasil dicatat!`);
+            closeModal();
+        }
+
+        function printKwitansi(nama) {
+            const htmlContent = `
+                <html>
+                <head>
+                    <title>Kwitansi SPP - ${nama}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto; }
+                        .header { text-align: center; border-bottom: 2px solid #4F46E5; padding-bottom: 20px; margin-bottom: 30px; }
+                        .logo { font-size: 32px; margin-bottom: 10px; }
+                        h1 { margin: 0; color: #4F46E5; }
+                        .kwitansi-no { color: #6B7280; font-size: 14px; margin-top: 5px; }
+                        .detail { margin: 20px 0; }
+                        .row { display: flex; padding: 10px 0; border-bottom: 1px solid #E5E7EB; }
+                        .label { width: 150px; color: #6B7280; }
+                        .value { font-weight: 600; }
+                        .total { background: #F3F4F6; padding: 15px; border-radius: 8px; margin-top: 20px; display: flex; justify-content: space-between; }
+                        .total-label { font-weight: 600; }
+                        .total-value { font-size: 20px; font-weight: 700; color: #059669; }
+                        .footer { margin-top: 40px; text-align: center; color: #9CA3AF; font-size: 12px; }
+                        .stamp { margin-top: 30px; text-align: right; }
+                        .stamp-box { display: inline-block; border: 2px solid #059669; padding: 15px 30px; border-radius: 8px; color: #059669; font-weight: 700; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <div class="logo">🎓</div>
+                        <h1>EDUMANESIA</h1>
+                        <div class="kwitansi-no">KWITANSI #SPP-2026-${Math.floor(Math.random() * 9000) + 1000}</div>
+                    </div>
+                    <div class="detail">
+                        <div class="row"><span class="label">Nama Siswa</span><span class="value">${nama}</span></div>
+                        <div class="row"><span class="label">Kelas</span><span class="value">9A</span></div>
+                        <div class="row"><span class="label">Periode</span><span class="value">Februari 2026</span></div>
+                        <div class="row"><span class="label">Tanggal Bayar</span><span class="value">${new Date().toLocaleDateString('id-ID')}</span></div>
+                        <div class="row"><span class="label">Metode</span><span class="value">Tunai</span></div>
+                    </div>
+                    <div class="total">
+                        <span class="total-label">TOTAL PEMBAYARAN</span>
+                        <span class="total-value">Rp 500.000</span>
+                    </div>
+                    <div class="stamp">
+                        <div class="stamp-box">LUNAS ✓</div>
+                    </div>
+                    <div class="footer">
+                        Dicetak pada: ${new Date().toLocaleString('id-ID')}<br>
+                        Terima kasih atas pembayaran Anda
+                    </div>
+                </body>
+                </html>
+            `;
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(htmlContent);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => printWindow.print(), 500);
+        }
+
+        function sendReminder(nama) {
+            showToast(`📱 Reminder terkirim ke orang tua ${nama}`);
+        }
+
+        function sendBulkReminder() {
+            showToast('📱 Reminder massal terkirim ke 66 orang tua');
+        }
+
+        function exportSPP() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Laporan SPP - Februari 2026\n\n";
+            csvContent += "Nama,NIS,Kelas,Nominal,Jatuh Tempo,Tgl Bayar,Status\n";
+            csvContent += "Ahmad Farhan,2024001,9A,500000,10/02/2026,05/02/2026,Lunas\n";
+            csvContent += "Siti Aisyah,2024002,9A,500000,10/02/2026,03/02/2026,Lunas\n";
+            csvContent += "Budi Santoso,2024003,9B,500000,10/02/2026,-,Belum Bayar\n";
+            csvContent += "Rizky Pratama,2024004,8A,1000000,10/01/2026,-,Tunggak\n";
+            csvContent += "Dewi Lestari,2024005,8B,500000,10/02/2026,08/02/2026,Lunas\n";
+            csvContent += "Andi Wijaya,2024006,7A,500000,10/02/2026,-,Belum Bayar\n";
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Laporan_SPP_Feb2026.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('✅ File Excel berhasil diunduh!');
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #1F2937; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; z-index: 9999;';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#sppTableBody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

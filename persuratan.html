@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keuangan & SPP - Edumanesia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
+                <div class="sidebar-logo" style="background: var(--primary-color);">
+                    <span class="material-icons">school</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
+                    <span style="font-weight: 300; opacity: 0.7;">Admin</span>
+                </h3>
+            </div>
+
+            <nav class="nav-links" style="padding: 32px 24px;">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="school_profile.html" class="nav-link">
+                    <span class="material-icons">domain</span>
+                    <span>Biodata Sekolah</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Akademik</p>
+                <a href="students.html" class="nav-link">
+                    <span class="material-icons">people</span>
+                    <span>Data Siswa</span>
+                </a>
+                <a href="teachers.html" class="nav-link">
+                    <span class="material-icons">supervisor_account</span>
+                    <span>Data Guru</span>
+                </a>
+                <a href="classes.html" class="nav-link">
+                    <span class="material-icons">class</span>
+                    <span>Manajemen Kelas</span>
+                </a>
+
+                <p
+                    style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Administrasi</p>
+                <a href="spp.html" class="nav-link">
+                    <span class="material-icons">payments</span>
+                    <span>Keuangan / SPP</span>
+                </a>
+                <a href="persuratan.html" class="nav-link active">
+                    <span class="material-icons">mail</span>
+                    <span>Persuratan</span>
+                </a>
+                <a href="inventaris.html" class="nav-link">
+                    <span class="material-icons">inventory_2</span>
+                    <span>Inventaris & Sarpras</span>
+                </a>
+
+                <div style="margin-top: auto;"></div>
+                <a href="settings.html" class="nav-link">
+                    <span class="material-icons">settings</span>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="index.html" class="nav-link" style="color: #F87171; opacity: 0.8;">
+                    <span class="material-icons">logout</span>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--primary-color);">admin_panel_settings</span>
+                        <h2>Persuratan</h2>
+                    </div>
+                </div>
+
+                <!-- Global Power Search -->
+                <div class="power-search">
+                    <span class="material-icons">search</span>
+                    <input type="text" placeholder="Cari No. Surat, Perihal, atau Instansi..." id="searchInput">
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="text-align: right; margin-right: 8px;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
+                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding">
+
+                <!-- Overview Cards -->
+                <!-- Main Stats Grid (High Density) -->
+                <!-- Main Stats Grid (High Density) -->
+                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
+                    <!-- Surat Masuk -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Surat<br>Masuk</div>
+                            <span class="badge info"
+                                style="background: rgba(59, 130, 246, 0.1); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Bulan
+                                Ini</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div
+                                style="font-size: 42px; font-weight: 800; color: var(--text-primary); letter-spacing: -1px; line-height: 1.2;">
+                                48</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                <span class="material-icons"
+                                    style="font-size: 16px; color: #3B82F6;">move_to_inbox</span>
+                                12 Belum Dibaca
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Surat Keluar -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Surat<br>Keluar
+                            </div>
+                            <span class="badge success"
+                                style="background: rgba(16, 185, 129, 0.1); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Bulan
+                                Ini</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div
+                                style="font-size: 42px; font-weight: 800; color: #059669; letter-spacing: -1px; line-height: 1.2;">
+                                32</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                <span class="material-icons" style="font-size: 16px; color: #059669;">outbox</span>
+                                28 Terkirim
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Butuh Disposisi -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl" style="font-size: 14px; font-weight: 700; color: var(--text-main);">
+                                Butuh
+                                Disposisi</div>
+                            <span class="badge warning"
+                                style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Action
+                                Req.</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div
+                                style="font-size: 42px; font-weight: 800; color: #F59E0B; letter-spacing: -1px; line-height: 1.2;">
+                                05</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                <span class="material-icons"
+                                    style="font-size: 16px; color: #F59E0B;">assignment_return</span>
+                                Menunggu Kepsek
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Urgent -->
+                    <div class="stat-card-premium" style="position: relative; overflow: hidden; padding: 24px;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                            <div class="stat-lbl"
+                                style="font-size: 14px; font-weight: 700; color: var(--text-main); line-height: 1.4;">
+                                Dokumen<br>Urgent
+                            </div>
+                            <span class="badge danger"
+                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.2); font-size: 11px; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Prioritas</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div
+                                style="font-size: 42px; font-weight: 800; color: #DC2626; letter-spacing: -1px; line-height: 1.2;">
+                                03</div>
+                            <div
+                                style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                <span class="material-icons"
+                                    style="font-size: 16px; color: #DC2626;">notification_important</span>
+                                Segera Proses
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div
+                    style="display: flex; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 12px;">
+                    <a href="#"
+                        style="padding: 10px 20px; border-radius: 8px; background: rgba(59, 130, 246, 0.1); color: #3B82F6; font-weight: 600; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="font-size: 18px;">move_to_inbox</span>
+                        Surat Masuk
+                    </a>
+                    <a href="#"
+                        style="padding: 10px 20px; border-radius: 8px; color: var(--text-muted); font-weight: 500; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="font-size: 18px;">outbox</span>
+                        Surat Keluar
+                    </a>
+                    <a href="#"
+                        style="padding: 10px 20px; border-radius: 8px; color: var(--text-muted); font-weight: 500; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="font-size: 18px;">folder</span>
+                        Arsip
+                    </a>
+                </div>
+
+                <!-- Filter & Actions Panel -->
+                <div class="stat-card-premium"
+                    style="padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <!-- Filters -->
+                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--primary-color);">calendar_today</span>
+                            <select id="filterBulan"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; font-weight: 500; background: #F8FAFC; color: var(--text-main); cursor: pointer; outline: none; transition: all 0.2s; box-shadow: var(--shadow-sm);">
+                                <option value="02-2026">Februari 2026</option>
+                                <option value="01-2026">Januari 2026</option>
+                                <option value="12-2025">Desember 2025</option>
+                            </select>
+                        </div>
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted);">category</span>
+                            <select id="filterKategori"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; cursor: pointer; outline: none; transition: all 0.2s; min-width: 160px;">
+                                <option value="all">Semua Kategori</option>
+                                <option value="dinas">Surat Dinas</option>
+                                <option value="undangan">Undangan</option>
+                                <option value="tugas">Surat Tugas</option>
+                                <option value="edaran">Surat Edaran</option>
+                            </select>
+                        </div>
+                        <div style="position: relative;">
+                            <span class="material-icons"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted);">filter_list</span>
+                            <select id="filterStatus"
+                                style="padding: 12px 16px 12px 40px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; cursor: pointer; outline: none; transition: all 0.2s; min-width: 160px;">
+                                <option value="all">Semua Status</option>
+                                <option value="disposisi">Menunggu Disposisi</option>
+                                <option value="terima">Diterima</option>
+                                <option value="arsip">Diarsipkan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <button onclick="exportSurat()"
+                            style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: white; color: #059669; border: 1px solid #10B981; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow-sm);">
+                            <span class="material-icons" style="font-size: 18px;">download</span>
+                            Export
+                        </button>
+                        <button onclick="openInputModal()"
+                            style="display: flex; align-items: center; gap: 8px; padding: 12px 24px; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: white; border: none; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                            <span class="material-icons" style="font-size: 18px;">add</span>
+                            Buat Surat Baru
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mail List Table -->
+                <div class="stat-card-premium"
+                    style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div
+                        style="padding: 24px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.5);">
+                        <div>
+                            <h3
+                                style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                                <span class="material-icons" style="color: var(--primary-color);">inbox</span>
+                                Daftar Surat Masuk
+                            </h3>
+                            <p style="margin: 4px 0 0; font-size: 13px; color: var(--text-muted);">Periode: Februari
+                                2026 • 48 Dokumen</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; font-size: 12px; font-weight: 500;">
+                            <span
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(245, 158, 11, 0.1); border-radius: 20px; color: #F59E0B;">
+                                <span style="width: 6px; height: 6px; background: #F59E0B; border-radius: 50%;"></span>
+                                Disposisi (5)
+                            </span>
+                            <span
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 20px; color: #059669;">
+                                <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+                                Selesai (35)
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1; overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px;">
+                            <thead>
+                                <tr style="background: #F8FAFC; position: sticky; top: 0;">
+                                    <th
+                                        style="text-align: left; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        No. Surat</th>
+                                    <th
+                                        style="text-align: left; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Pengirim</th>
+                                    <th
+                                        style="text-align: left; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Perihal</th>
+                                    <th
+                                        style="text-align: left; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Tgl Terima</th>
+                                    <th
+                                        style="text-align: left; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Sifat</th>
+                                    <th
+                                        style="text-align: center; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Status</th>
+                                    <th
+                                        style="text-align: right; padding: 16px 24px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Row 1 - Surat Masuk (Penting) -->
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='#F8FAFC'"
+                                    onmouseout="this.style.background='white'">
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--primary-color);">
+                                        005/DISDIK/II/2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="font-weight: 600;">Dinas Pendidikan</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Kota Bekasi</div>
+                                    </td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        Undangan Rapat Koordinasi UNBK
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        09 Feb 2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <span class="badge warning"
+                                            style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Penting</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                        <span class="badge warning"
+                                            style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Disposisi</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: right;">
+                                        <button
+                                            style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                                            <span class="material-icons" style="font-size: 20px;">more_vert</span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 - Surat Masuk (Biasa) -->
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='#F8FAFC'"
+                                    onmouseout="this.style.background='white'">
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--primary-color);">
+                                        12/U/SMA-BIN/I/2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="font-weight: 600;">SMA Binus</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Jakarta Selatan</div>
+                                    </td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        Permohonan Studi Banding OSIS
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        08 Feb 2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <span class="badge success"
+                                            style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Biasa</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                        <span class="badge success"
+                                            style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Selesai</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: right;">
+                                        <button
+                                            style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                                            <span class="material-icons" style="font-size: 20px;">more_vert</span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 - Surat Keluar -->
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='#F8FAFC'"
+                                    onmouseout="this.style.background='white'">
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--text-muted);">
+                                        098/SMAS/EXT/II/26</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="font-weight: 600;">CV. Maju Jaya</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Vendor IT</div>
+                                    </td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        Undangan Penawaran Pengadaan Laptop
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        07 Feb 2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <span class="badge success"
+                                            style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Biasa</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                        <span class="badge info"
+                                            style="background: rgba(59, 130, 246, 0.1); color: #3B82F6; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Terkirim</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: right;">
+                                        <button
+                                            style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                                            <span class="material-icons" style="font-size: 20px;">more_vert</span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 4 - Surat Masuk (Rahasia) -->
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='#F8FAFC'"
+                                    onmouseout="this.style.background='white'">
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--primary-color);">
+                                        ST/001/BKD/2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <div style="font-weight: 600;">Badan Kepegawaian</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Provinsi Jawa Barat
+                                        </div>
+                                    </td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <span class="badge danger"
+                                            style="background: rgba(239, 68, 68, 0.1); color: #EF4444; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-right: 4px;">RAHASIA</span>
+                                        SK Mutasi Guru ASN
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                                        05 Feb 2026</td>
+                                    <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
+                                        <span class="badge danger"
+                                            style="background: rgba(239, 68, 68, 0.1); color: #EF4444; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Sangat
+                                            Segera</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                        <span class="badge warning"
+                                            style="background: rgba(245, 158, 11, 0.1); color: #F59E0B; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600;">Proses</span>
+                                    </td>
+                                    <td
+                                        style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); text-align: right;">
+                                        <button
+                                            style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                                            <span class="material-icons" style="font-size: 20px;">more_vert</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Footer -->
+                    <div
+                        style="padding: 16px 24px; background: #F8FAFC; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Menampilkan 4 dari 48 dokumen</div>
+                        <div style="display: flex; gap: 8px;">
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">←
+                                Sebelumnya</button>
+                            <button
+                                style="padding: 6px 12px; border: none; background: #4F46E5; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">1</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">2</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">3</button>
+                            <button
+                                style="padding: 6px 12px; border: 1px solid var(--border-light); background: white; border-radius: 6px; font-size: 12px; cursor: pointer;">Selanjutnya
+                                →</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Mail Input Modal -->
+    <div id="mailModal"
+        style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; border-radius: 16px; width: 90%; max-width: 500px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin: 0; font-size: 18px;">✉️ Buat Surat Baru</h3>
+                <button onclick="closeModal()"
+                    style="background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div>
+                        <label
+                            style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Jenis
+                            Surat</label>
+                        <select id="modalJenis" onchange="toggleRecipientLabel()"
+                            style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                            <option value="masuk">Surat Masuk</option>
+                            <option value="keluar">Surat Keluar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label
+                            style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Tanggal
+                            Surat</label>
+                        <input type="date" id="modalTanggal"
+                            style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Nomor
+                        Surat</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="modalNoSurat" placeholder="Contoh: 001/DISDIK/II/2026"
+                            style="flex: 1; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                        <button onclick="generateNoSurat()"
+                            style="padding: 10px; background: #E0E7FF; color: #4F46E5; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600;">Auto</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label id="labelPengirim"
+                        style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Pengirim
+                        / Instansi</label>
+                    <input type="text" id="modalPengirim" placeholder="Nama Instansi / Pengirim"
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                </div>
+
+                <div>
+                    <label
+                        style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Perihal</label>
+                    <input type="text" id="modalPerihal" placeholder="Ringkasan isi surat..."
+                        style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px;">
+                </div>
+
+                <div>
+                    <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Upload
+                        File (PDF/IMG)</label>
+                    <div style="border: 2px dashed var(--border-light); border-radius: 8px; padding: 20px; text-align: center; color: var(--text-muted); cursor: pointer;"
+                        onclick="document.getElementById('fileInput').click()">
+                        <span class="material-icons" style="font-size: 24px; margin-bottom: 4px;">cloud_upload</span>
+                        <div style="font-size: 12px;">Klik untuk upload dokumen</div>
+                        <input type="file" id="fileInput" style="display: none;">
+                    </div>
+                </div>
+
+                <button onclick="saveSurat()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 8px;">
+                    ✓ Simpan Dokumen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize date
+        document.getElementById('modalTanggal').value = new Date().toISOString().split('T')[0];
+
+        function openInputModal() {
+            document.getElementById('mailModal').style.display = 'flex';
+            generateNoSurat(); // Auto generate on open
+        }
+
+        function closeModal() {
+            document.getElementById('mailModal').style.display = 'none';
+        }
+
+        function toggleRecipientLabel() {
+            const jenis = document.getElementById('modalJenis').value;
+            const label = document.getElementById('labelPengirim');
+            const input = document.getElementById('modalPengirim');
+
+            if (jenis === 'masuk') {
+                label.textContent = 'Pengirim / Instansi';
+                input.placeholder = 'Nama Instansi / Pengirim';
+            } else {
+                label.textContent = 'Tujuan / Penerima';
+                input.placeholder = 'Kepada Yth...';
+            }
+        }
+
+        function generateNoSurat() {
+            const r = Math.floor(Math.random() * 999).toString().padStart(3, '0');
+            const m = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'][new Date().getMonth()];
+            document.getElementById('modalNoSurat').value = `${r}/SMAS-TU/${m}/2026`;
+        }
+
+        function saveSurat() {
+            const no = document.getElementById('modalNoSurat').value;
+            const perihal = document.getElementById('modalPerihal').value;
+            if (!perihal) {
+                alert('Mohon isi perihal surat!');
+                return;
+            }
+            showToast(`✅ Surat No. ${no} berhasil disimpan!`);
+            closeModal();
+        }
+
+        function exportSurat() {
+            const rows = [
+                ["No Surat", "Pengirim", "Perihal", "Tanggal", "Sifat", "Status"],
+                ["005/DISDIK/II/2026", "Dinas Pendidikan", "Undangan Rapat", "09 Feb 2026", "Penting", "Disposisi"],
+                ["12/U/SMA-BIN/I/2026", "SMA Binus", "Studi Banding", "08 Feb 2026", "Biasa", "Selesai"]
+            ];
+
+            let csvContent = "data:text/csv;charset=utf-8,"
+                + rows.map(e => e.join(",")).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Laporan_Persuratan_Feb2026.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('✅ Laporan Excel berhasil diunduh!');
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #1F2937; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

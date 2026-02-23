@@ -454,6 +454,8 @@ ul {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    /* Prevent flex overflow */
 }
 
 .top-navbar {
