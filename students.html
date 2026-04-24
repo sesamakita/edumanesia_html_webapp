@@ -16,8 +16,8 @@
         <!-- Sidebar -->
         <aside class="sidebar sidebar-dark">
             <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
-                <div class="sidebar-logo" style="background: var(--primary-color);">
-                    <span class="material-icons">school</span>
+                <div class="sidebar-logo" style="background: white; padding: 6px;">
+                    <img src="assets/logo.png" alt="Edumanesia Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
                 <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
                     <span style="font-weight: 300; opacity: 0.7;">Admin</span>
@@ -183,82 +183,90 @@
                 <!-- Main Card -->
                 <div class="card" style="border-radius: 24px; overflow: hidden;">
 
-                    <!-- Toolbar -->
-                    <div
-                        style="padding: 24px 32px; background: #F8FAFC; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                    <!-- Consolidated Toolbar -->
+                    <div style="padding: 20px 32px; background: #F8FAFC; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                        
+                        <!-- Filters Group -->
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
+                                <span class="material-icons" style="font-size: 18px; color: var(--text-light);">filter_list</span>
+                                <select id="filterKelas" onchange="filterTable()"
+                                    style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 110px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
+                                    <option value="">Semua Kelas</option>
+                                    <option value="X">Kelas X</option>
+                                    <option value="XI">Kelas XI</option>
+                                    <option value="XII">Kelas XII</option>
+                                </select>
+                            </div>
 
-                        <!-- Filter -->
-                        <select id="filterKelas" onchange="filterTable()"
-                            style="padding: 12px 16px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; min-width: 120px;">
-                            <option value="">Semua Kelas</option>
-                            <option value="X">Kelas X</option>
-                            <option value="XI">Kelas XI</option>
-                            <option value="XII">Kelas XII</option>
-                        </select>
+                            <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
+                                <span class="material-icons" style="font-size: 18px; color: var(--text-light);">check_circle</span>
+                                <select id="filterStatus" onchange="filterTable()"
+                                    style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 120px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
+                                    <option value="">Semua Status</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                    <option value="Pindah">Pindah</option>
+                                    <option value="Lulus">Lulus</option>
+                                </select>
+                            </div>
+                        </div>
 
-                        <!-- Filter Status -->
-                        <select id="filterStatus" onchange="filterTable()"
-                            style="padding: 12px 16px; border: 1px solid var(--border-light); border-radius: 12px; font-size: 14px; background: white; min-width: 130px;">
-                            <option value="">Semua Status</option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
-                            <option value="Pindah">Pindah</option>
-                            <option value="Lulus">Lulus</option>
-                        </select>
+                        <!-- Action Buttons Group -->
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="display: flex; background: white; border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+                                <button onclick="openModal('importModal')"
+                                    style="padding: 10px 16px; border: none; background: transparent; border-right: 1px solid var(--border-light); font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-muted); transition: all 0.2s;">
+                                    <span class="material-icons" style="font-size: 18px;">upload_file</span>
+                                    Import
+                                </button>
+                                <button onclick="exportData()"
+                                    style="padding: 10px 16px; border: none; background: transparent; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-muted); transition: all 0.2s;">
+                                    <span class="material-icons" style="font-size: 18px;">download</span>
+                                    Export
+                                </button>
+                            </div>
+                            
+                            <button onclick="openModal('addStudentModal')"
+                                style="padding: 10px 20px; border: none; border-radius: 12px; background: var(--primary-color); color: white; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--glow-primary); transition: all 0.2s;"
+                                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(79, 70, 229, 0.4)';"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--glow-primary)';"
+                                >
+                                <span class="material-icons" style="font-size: 18px;">add</span>
+                                Tambah Siswa
+                            </button>
+                        </div>
                     </div>
-
-                    <!-- Action Buttons -->
-                    <div style="display: flex; gap: 12px;">
-                        <button onclick="openModal('importModal')"
-                            style="padding: 12px 20px; border: 1px solid var(--border-light); border-radius: 12px; background: white; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-main);">
-                            <span class="material-icons" style="font-size: 18px;">upload_file</span>
-                            Import
-                        </button>
-                        <button onclick="exportData()"
-                            style="padding: 12px 20px; border: 1px solid var(--border-light); border-radius: 12px; background: white; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-main);">
-                            <span class="material-icons" style="font-size: 18px;">download</span>
-                            Export
-                        </button>
-                        <button onclick="openModal('addStudentModal')"
-                            style="padding: 12px 24px; border: none; border-radius: 12px; background: var(--primary-color); color: white; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">
-                            <span class="material-icons" style="font-size: 18px;">add</span>
-                            Tambah Siswa
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Data Table -->
-                <div class="table-container"
-                    style="overflow-x: scroll !important; width: 100%; max-width: 100%; display: block; position: relative; padding-bottom: 12px;">
-                    <table id="studentsTable"
-                        style="width: 100%; border-collapse: collapse; min-width: 1600px; table-layout: auto;">
+                    
+                    <!-- Data Table -->
+                <div class="table-container" style="overflow-x: auto; width: 100%; background: white;">
+                    <table id="studentsTable" style="width: 100%; border-collapse: collapse; min-width: 1000px;">
                         <thead>
-                            <tr style="background: #F1F5F9;">
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                            <tr style="background: #F8FAFC; border-bottom: 2px solid var(--border-light);">
+                                <th style="padding: 16px 24px; text-align: left; width: 60px;">
+                                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll()" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary-color);">
                                 </th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Siswa</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    NIS / NISN</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Kelas</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Jenis Kelamin</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Tanggal Lahir</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Status</th>
-                                <th
-                                    style="padding: 16px 24px; text-align: center; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                                    Aksi</th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 300px;">
+                                    Siswa
+                                </th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 180px;">
+                                    NIS / NISN
+                                </th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 150px;">
+                                    Kelas
+                                </th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 150px;">
+                                    Jenis Kelamin
+                                </th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 180px;">
+                                    Tanggal Lahir
+                                </th>
+                                <th style="padding: 16px 24px; text-align: left; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 150px;">
+                                    Status
+                                </th>
+                                <th style="padding: 16px 24px; text-align: center; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; width: 150px;">
+                                    Aksi
+                                </th>
                             </tr>
                         </thead>
                         <tbody id="studentsTableBody">
@@ -294,8 +302,8 @@
                                 style="font-size: 18px; color: var(--text-muted);">chevron_right</span>
                         </button>
                     </div>
-                </div>
-            </div>
+                </div> <!-- Closing Main Card -->
+            </div> <!-- Closing dashboard-padding -->
 
     </div>
     </main>
@@ -673,46 +681,51 @@
             { id: 10, name: "Fitri Rahmawati", nis: "12354", nisn: "0012345687", kelas: "XII IPS 1", gender: "P", birthDate: "2008-12-01", status: "Aktif" },
         ];
 
-        // Render table
         function renderTable(data) {
             const tbody = document.getElementById('studentsTableBody');
             tbody.innerHTML = data.map(student => `
-                <tr style="border-bottom: 1px solid var(--border-light);">
+                <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
                     <td style="padding: 16px 24px;">
-                        <input type="checkbox" class="student-checkbox">
+                        <input type="checkbox" class="student-checkbox" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary-color);">
                     </td>
                     <td style="padding: 16px 24px;">
                         <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, ${student.gender === 'L' ? '#3B82F6, #1D4ED8' : '#EC4899, #DB2777'}); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="font-size: 20px; color: white;">person</span>
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, ${student.gender === 'L' ? '#4F46E5, #3B82F6' : '#EC4899, #DB2777'}); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px ${student.gender === 'L' ? 'rgba(79, 70, 229, 0.2)' : 'rgba(236, 72, 153, 0.2)'};">
+                                <span class="material-icons" style="font-size: 20px; color: white;">${student.gender === 'L' ? 'person' : 'person_3'}</span>
                             </div>
                             <div>
-                                <div style="font-size: 14px; font-weight: 700; color: #1E293B;">${student.name}</div>
+                                <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">${student.name}</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Siswa Aktif</div>
                             </div>
                         </div>
                     </td>
                     <td style="padding: 16px 24px;">
-                        <div style="font-size: 13px; font-weight: 600;">${student.nis}</div>
+                        <div style="font-size: 13px; font-weight: 600; color: var(--text-main);">${student.nis}</div>
                         <div style="font-size: 11px; color: var(--text-muted);">${student.nisn}</div>
                     </td>
                     <td style="padding: 16px 24px;">
-                        <span style="display: inline-block; padding: 6px 12px; background: rgba(79, 70, 229, 0.1); color: #4F46E5; font-size: 12px; font-weight: 700; border-radius: 6px;">${student.kelas}</span>
+                        <span style="display: inline-block; padding: 6px 12px; background: var(--primary-light); color: var(--primary-color); font-size: 12px; font-weight: 700; border-radius: 8px;">${student.kelas}</span>
                     </td>
-                    <td style="padding: 16px 24px; font-size: 13px;">${student.gender === 'L' ? 'Laki-laki' : 'Perempuan'}</td>
-                    <td style="padding: 16px 24px; font-size: 13px;">${formatDate(student.birthDate)}</td>
                     <td style="padding: 16px 24px;">
-                        <span style="display: inline-block; padding: 6px 12px; background: ${getStatusColor(student.status).bg}; color: ${getStatusColor(student.status).text}; font-size: 12px; font-weight: 700; border-radius: 100px;">${student.status}</span>
+                        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-main);">
+                            <span class="material-icons" style="font-size: 16px; color: ${student.gender === 'L' ? '#3B82F6' : '#EC4899'};">${student.gender === 'L' ? 'male' : 'female'}</span>
+                            ${student.gender === 'L' ? 'Laki-laki' : 'Perempuan'}
+                        </div>
+                    </td>
+                    <td style="padding: 16px 24px; font-size: 13px; color: var(--text-main);">${formatDate(student.birthDate)}</td>
+                    <td style="padding: 16px 24px;">
+                        <span style="display: inline-block; padding: 6px 14px; background: ${getStatusColor(student.status).bg}; color: ${getStatusColor(student.status).text}; font-size: 11px; font-weight: 800; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.5px;">${student.status}</span>
                     </td>
                     <td style="padding: 16px 24px; text-align: center;">
                         <div style="display: flex; gap: 8px; justify-content: center;">
-                            <button onclick="viewStudent(${student.id})" style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Lihat Detail">
-                                <span class="material-icons" style="font-size: 16px; color: var(--text-muted);">visibility</span>
+                            <button onclick="viewStudent(${student.id})" style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Lihat Detail" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.color='var(--primary-color)'" onmouseout="this.style.borderColor='var(--border-light)'; this.style.color='inherit'">
+                                <span class="material-icons" style="font-size: 18px;">visibility</span>
                             </button>
-                            <button style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Edit">
-                                <span class="material-icons" style="font-size: 16px; color: #3B82F6;">edit</span>
+                            <button style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Edit" onmouseover="this.style.borderColor='#3B82F6'; this.style.color='#3B82F6'" onmouseout="this.style.borderColor='var(--border-light)'; this.style.color='inherit'">
+                                <span class="material-icons" style="font-size: 18px;">edit</span>
                             </button>
-                            <button style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Hapus">
-                                <span class="material-icons" style="font-size: 16px; color: #EF4444;">delete</span>
+                            <button style="width: 32px; height: 32px; border: 1px solid var(--border-light); border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Hapus" onmouseover="this.style.borderColor='#EF4444'; this.style.color='#EF4444'" onmouseout="this.style.borderColor='var(--border-light)'; this.style.color='inherit'">
+                                <span class="material-icons" style="font-size: 18px;">delete</span>
                             </button>
                         </div>
                     </td>

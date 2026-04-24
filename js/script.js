@@ -63,3 +63,25 @@ function handleSaveProfile(event) {
     }, 1500);
 }
 
+// Password Toggle Visibility
+document.addEventListener('DOMContentLoaded', () => {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function () {
+            // Toggle the type attribute
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Toggle the icon
+            this.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+            
+            // Add a subtle scale animation
+            this.style.transform = 'translateY(-50%) scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(-50%) scale(1)';
+            }, 100);
+        });
+    }
+});
