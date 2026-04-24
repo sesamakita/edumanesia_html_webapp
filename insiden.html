@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Insiden - Admin Sekolah</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-dark">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
+                <div class="sidebar-logo" style="background: var(--primary-color);">
+                    <span class="material-icons">school</span>
+                </div>
+                <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">Edu
+                    <span style="font-weight: 300; opacity: 0.7;">Admin</span>
+                </h3>
+            </div>
+            <nav class="nav-links" style="padding: 32px 24px;">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="school_profile.html" class="nav-link">
+                    <span class="material-icons">domain</span>
+                    <span>Biodata Sekolah</span>
+                </a>
+                <p style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">Akademik</p>
+                <a href="students.html" class="nav-link">
+                    <span class="material-icons">people</span>
+                    <span>Data Siswa</span>
+                </a>
+                <a href="teachers.html" class="nav-link">
+                    <span class="material-icons">supervisor_account</span>
+                    <span>Data Guru</span>
+                </a>
+                <a href="classes.html" class="nav-link">
+                    <span class="material-icons">class</span>
+                    <span>Manajemen Kelas</span>
+                </a>
+                <p style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">Administrasi</p>
+                <a href="spp.html" class="nav-link">
+                    <span class="material-icons">payments</span>
+                    <span>Keuangan / SPP</span>
+                </a>
+                <a href="persuratan.html" class="nav-link">
+                    <span class="material-icons">mail</span>
+                    <span>Persuratan</span>
+                </a>
+                <a href="inventaris.html" class="nav-link">
+                    <span class="material-icons">inventory_2</span>
+                    <span>Inventaris & Sarpras</span>
+                </a>
+                <p style="padding: 0 16px; margin: 24px 0 12px; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px;">Monitoring Eksekutif</p>
+                <a href="dana_bos.html" class="nav-link">
+                    <span class="material-icons">account_balance_wallet</span>
+                    <span>Dana BOS</span>
+                </a>
+                <a href="insiden.html" class="nav-link active">
+                    <span class="material-icons">report_problem</span>
+                    <span>Laporan Insiden</span>
+                </a>
+                <a href="kesehatan.html" class="nav-link">
+                    <span class="material-icons">health_and_safety</span>
+                    <span>Kesehatan & UKS</span>
+                </a>
+                <div style="margin-top: auto;"></div>
+                <a href="settings.html" class="nav-link">
+                    <span class="material-icons">settings</span>
+                    <span>Pengaturan</span>
+                </a>
+                <a href="index.html" class="nav-link" style="color: #F87171; opacity: 0.8;">
+                    <span class="material-icons">logout</span>
+                    <span>Keluar</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content page-transition">
+            <header class="top-navbar">
+                <div class="page-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-icons" style="color: var(--error);">report_problem</span>
+                        <h2>Manajemen & Laporan Insiden</h2>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="text-align: right; margin-right: 8px;">
+                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
+                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-padding">
+                <div class="stats-grid">
+                    <div class="stat-card-premium">
+                        <div class="stat-lbl">Insiden Aktif</div>
+                        <div class="stat-val">03</div>
+                        <div class="trend-badge trend-down" style="background: #FEF2F2; color: #EF4444;">Butuh Penanganan</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-lbl">Selesai (Bulan Ini)</div>
+                        <div class="stat-val">12</div>
+                        <div class="trend-badge trend-up">80% Resolved</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-lbl">Tingkat Bahaya Tinggi</div>
+                        <div class="stat-val">0</div>
+                        <div class="trend-badge success">Aman</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                    <button class="btn-primary" style="background: var(--error); box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);">
+                        <span class="material-icons">add_alert</span> Laporkan Insiden Baru
+                    </button>
+                    <input type="text" class="input-modern" placeholder="Cari insiden..." style="width: 250px;">
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="background: #F8FAFC;">
+                                <th style="padding: 16px; text-align: left;">Waktu Kejadian</th>
+                                <th style="padding: 16px; text-align: left;">Kategori</th>
+                                <th style="padding: 16px; text-align: left;">Deskripsi</th>
+                                <th style="padding: 16px; text-align: center;">Tingkat</th>
+                                <th style="padding: 16px; text-align: center;">Status</th>
+                                <th style="padding: 16px; text-align: center;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Hari ini, 09:15</td>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span class="badge info">Kesehatan</span></td>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Siswa pingsan saat upacara bendera</td>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge warning">Medium</span></td>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge warning">Diproses</span></td>
+                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="material-icons" style="color: var(--primary-color); cursor: pointer;">edit</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

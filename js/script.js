@@ -23,13 +23,20 @@ function handleLogin(event) {
         document.head.appendChild(style);
     }
 
+    // Role Based Logic
+    const users = {
+        'admin@sekolah.id': { password: 'admin123', redirect: 'dashboard.html' },
+        'kepsek@sekolah.id': { password: 'kepsek123', redirect: 'kepsek_dashboard.html' },
+        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html' },
+        'gubernur@provinsi.go.id': { password: 'gubernur123', redirect: 'gubernur_dashboard.html' }
+    };
+
     // Simulate API call
     setTimeout(() => {
-        // Simple validation
-        if (email && password) {
-            window.location.href = 'dashboard.html';
+        if (users[email] && users[email].password === password) {
+            window.location.href = users[email].redirect;
         } else {
-            alert('Mohon isi email dan password');
+            alert('Email atau Password salah!');
             btn.disabled = false;
             btn.innerHTML = originalContent;
         }

@@ -13,14 +13,138 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .kpi-h-card {
+            background: var(--executive-glass);
+            backdrop-filter: var(--executive-blur);
+            border-radius: 24px;
+            padding: 28px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--executive-shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .kpi-h-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--card-accent);
+            border-radius: 0 4px 4px 0;
+            transition: width 0.3s ease;
+        }
+
+        .kpi-h-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.12),
+                0 0 30px var(--card-glow);
+            border-color: var(--card-accent);
+        }
+
+        .kpi-h-card:hover::before {
+            width: 6px;
+        }
+
+        .kpi-h-card .label {
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .kpi-h-card .value {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1E293B;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .glass-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 800;
+            background: rgba(var(--card-accent-rgb), 0.1);
+            color: var(--card-accent);
+            border: 1px solid rgba(var(--card-accent-rgb), 0.1);
+            margin-top: 12px;
+        }
+
+        .sidebar-dark {
+            background: linear-gradient(180deg, #1E1B4B 0%, #4338CA 100%) !important;
+            border-right: none !important;
+        }
+
+        .sidebar-dark .sidebar-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .sidebar-dark .nav-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            margin: 4px 16px !important;
+            border-radius: 12px !important;
+        }
+
+        .sidebar-dark .nav-link .material-icons {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .sidebar-dark .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #FFFFFF !important;
+            transform: translateX(5px);
+        }
+
+        .sidebar-dark .nav-link.active {
+            background: rgba(255, 255, 255, 0.15) !important;
+            color: #FFFFFF !important;
+            border-left: 4px solid #FFFFFF !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.1) !important;
+            font-weight: 700 !important;
+        }
+
+        .sidebar-dark .nav-link.active .material-icons {
+            color: #FFFFFF !important;
+        }
+    </style>
 </head>
 
-<body>
+<body class="mesh-bg">
     <div class="dashboard-layout">
         <!-- Sidebar -->
-        <aside class="sidebar sidebar-dark">
-            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0 32px;">
-                <div class="sidebar-logo" style="background: linear-gradient(135deg, var(--primary-color), #6366F1);">
+        <aside class="sidebar sidebar-dark" style="box-shadow: 10px 0 30px rgba(0,0,0,0.2);">
+            <div class="sidebar-header" style="border-bottom: 1px solid rgba(255,255,255,0.03); padding: 0 32px;">
+                <div class="sidebar-logo"
+                    style="background: linear-gradient(135deg, var(--primary-color), #6366F1); box-shadow: var(--glow-primary);">
                     <span class="material-icons">insights</span>
                 </div>
                 <h3 style="font-size: 18px; margin: 0; color: white; font-weight: 700; letter-spacing: -0.5px;">SMART
@@ -82,52 +206,60 @@
                     <div style="text-align: right;">
                         <div
                             style="font-size: 11px; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px;">
-                            Admin Jabar</div>
-                        <div style="font-size: 15px; font-weight: 700; color: var(--text-main);">Ridwan Kamil</div>
+                            Gubernur Sulteng</div>
+                        <div style="font-size: 15px; font-weight: 700; color: var(--text-main);">Dr. H. Anwar Hafid,
+                            M.Si</div>
                     </div>
                     <div class="user-avatar"
                         style="width: 44px; height: 44px; background: #0F172A; font-weight: 800; border: 2px solid white; box-shadow: var(--shadow-sm);">
-                        RK</div>
+                        AH</div>
                 </div>
             </header>
 
             <div class="dashboard-padding" style="padding: 40px 48px;">
 
                 <!-- Helicopter View KPIs -->
-                <div class="kpi-h-view" style="margin-bottom: 40px;">
-                    <div class="kpi-h-card">
+                <div class="kpi-h-view" style="margin-bottom: 40px; gap: 24px;">
+                    <!-- KPI 1: Satuan Pendidikan -->
+                    <div class="kpi-h-card"
+                        style="--card-accent: var(--success); --card-glow: rgba(16, 185, 129, 0.3); --card-accent-rgb: 16, 185, 129;">
                         <span class="label">Satuan Pendidikan</span>
                         <span class="value">4,128</span>
-                        <div class="glass-pill"
-                            style="color: var(--success); width: fit-content; margin-top: 8px; font-weight: 800;">
-                            <span class="material-icons"
-                                style="font-size: 14px; vertical-align: middle; margin-right: 4px;">check_circle</span>
+                        <div class="glass-pill">
+                            <span class="material-icons" style="font-size: 14px;">check_circle</span>
                             98% Aktif Lapor
                         </div>
                     </div>
-                    <div class="kpi-h-card">
+
+                    <!-- KPI 2: Realisasi BOS -->
+                    <div class="kpi-h-card"
+                        style="--card-accent: var(--primary-color); --card-glow: rgba(79, 70, 229, 0.3); --card-accent-rgb: 79, 70, 229;">
                         <span class="label">Realisasi BOS</span>
                         <span class="value">Rp 1.2T</span>
-                        <div class="glass-pill"
-                            style="color: var(--primary-color); width: fit-content; margin-top: 8px; font-weight: 800;">
+                        <div class="glass-pill">
+                            <span class="material-icons" style="font-size: 14px;">payments</span>
                             Serapan: 74.2%
                         </div>
                     </div>
-                    <div class="kpi-h-card">
+
+                    <!-- KPI 3: Putus Sekolah -->
+                    <div class="kpi-h-card"
+                        style="--card-accent: var(--error); --card-glow: rgba(239, 68, 68, 0.3); --card-accent-rgb: 239, 68, 68;">
                         <span class="label">Putus Sekolah</span>
-                        <span class="value">0.82<span style="font-size: 16px; opacity: 0.5;">%</span></span>
-                        <div class="glass-pill"
-                            style="color: var(--error); width: fit-content; margin-top: 8px; font-weight: 800;">
-                            <span class="material-icons"
-                                style="font-size: 14px; vertical-align: middle; margin-right: 4px;">trending_up</span>
+                        <span class="value">0.82<span style="font-size: 18px; opacity: 0.5;">%</span></span>
+                        <div class="glass-pill">
+                            <span class="material-icons" style="font-size: 14px;">trending_up</span>
                             Naik 0.05%
                         </div>
                     </div>
-                    <div class="kpi-h-card">
+
+                    <!-- KPI 4: Serap Lulusan SMK -->
+                    <div class="kpi-h-card"
+                        style="--card-accent: var(--secondary-color); --card-glow: rgba(236, 72, 153, 0.3); --card-accent-rgb: 236, 72, 153;">
                         <span class="label">Serap Lulusan SMK</span>
-                        <span class="value">82.4<span style="font-size: 16px; opacity: 0.5;">%</span></span>
-                        <div class="glass-pill"
-                            style="color: var(--secondary-color); width: fit-content; margin-top: 8px; font-weight: 800;">
+                        <span class="value">82.4<span style="font-size: 18px; opacity: 0.5;">%</span></span>
+                        <div class="glass-pill">
+                            <span class="material-icons" style="font-size: 14px;">work</span>
                             Work / College
                         </div>
                     </div>
@@ -135,95 +267,106 @@
 
                 <!-- Map & Infrastructure -->
                 <div class="grid-map-side" style="margin-bottom: 40px; gap: 32px;">
-                    <!-- Section 1: Peta Sebaran -->
                     <div class="card"
-                        style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: 24px; position: relative;">
+                        style="box-shadow: var(--executive-shadow); background: var(--executive-glass); backdrop-filter: var(--executive-blur); border: 1px solid rgba(255,255,255,0.4); padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: 24px; position: relative;">
                         <div
-                            style="padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid var(--border-light);">
+                            style="padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border-bottom: 1px solid var(--border-light); backdrop-filter: blur(10px);">
                             <div>
                                 <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
                                     Geospasial Kualitas Pendidikan</h3>
                                 <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Visualisasi
                                     real-time sebaran akreditasi sekolah</p>
                             </div>
-                            <select class="input-modern"
-                                style="padding: 8px 16px; width: auto; font-size: 12px; border-radius: 100px;">
-                                <option>Indikator: Akreditasi</option>
-                                <option>Indikator: Nilai Ujian</option>
-                                <option>Indikator: Sarpras</option>
-                            </select>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div
+                                    style="font-size: 11px; font-weight: 700; color: var(--success); display: flex; align-items: center; gap: 4px; background: #ECFDF5; padding: 6px 12px; border-radius: 100px;">
+                                    <div
+                                        style="width: 6px; height: 6px; background: var(--success); border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px var(--success);">
+                                    </div> Live Data
+                                </div>
+                                <select class="input-modern"
+                                    style="padding: 8px 16px; width: auto; font-size: 12px; border-radius: 100px; background: white;">
+                                    <option>Indikator: Akreditasi</option>
+                                    <option>Indikator: Nilai Ujian</option>
+                                    <option>Indikator: Sarpras</option>
+                                </select>
+                            </div>
                         </div>
                         <div id="map" style="height: 500px; width: 100%;"></div>
 
-                        <!-- Map Legend Overlay -->
-                        <div class="map-overlay-frosted" style="position: absolute; top: 20px; right: 20px;">
+                        <!-- Map Legend Overlay - Upgraded -->
+                        <div class="map-overlay-frosted"
+                            style="position: absolute; top: 100px; right: 20px; background: rgba(255,255,255,0.7); backdrop-filter: blur(15px); border-radius: 24px; padding: 24px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 40px rgba(0,0,0,0.1); z-index: 1000; width: 200px;">
                             <h4
-                                style="font-size: 11px; font-weight: 800; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light);">
-                                Legenda Status</h4>
+                                style="font-size: 11px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); text-align: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px;">
+                                LEGENDA STATUS</h4>
                             <div style="display: flex; flex-direction: column; gap: 12px;">
                                 <div
-                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700;">
                                     <span
-                                        style="width: 10px; height: 10px; background: #10B981; border-radius: 50%; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);"></span>
-                                    Baik (Akred. A)
+                                        style="width: 12px; height: 12px; background: #10B981; border-radius: 50%; box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);"></span>
+                                    Sangat Baik (A)
                                 </div>
                                 <div
-                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700;">
                                     <span
-                                        style="width: 10px; height: 10px; background: #F59E0B; border-radius: 50%; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);"></span>
-                                    Cukup (Akred. B)
+                                        style="width: 12px; height: 12px; background: #F59E0B; border-radius: 50%; box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);"></span>
+                                    Cukup (B)
                                 </div>
                                 <div
-                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600;">
+                                    style="display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700;">
                                     <span
-                                        style="width: 10px; height: 10px; background: #EF4444; border-radius: 50%; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);"></span>
-                                    Kritis (Butuh Advokasi)
+                                        style="width: 12px; height: 12px; background: #EF4444; border-radius: 50%; box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);"></span>
+                                    Kritis (Atensi)
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Section 2: Infrastruktur & Sarpras -->
-                    <div class="card" style="border-radius: 24px; padding: 32px;">
+                    <div class="card"
+                        style="box-shadow: var(--executive-shadow); background: var(--executive-glass); backdrop-filter: var(--executive-blur); border: 1px solid rgba(255,255,255,0.4); border-radius: 24px; padding: 32px;">
                         <div class="section-head-premium">
-                            <div>
+                            <div style="border-left: 4px solid var(--primary-color); padding-left: 16px;">
                                 <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
                                     Kesehatan Sarpras</h3>
                                 <p style="font-size: 12px; color: var(--text-muted); margin: 4px 0 0;">Data agregat
-                                    fisik bangunan</p>
+                                    fisik bangunan sekolah</p>
                             </div>
                         </div>
-                        <div style="height: 220px; margin-bottom: 32px;">
+                        <div style="height: 220px; margin-bottom: 32px; position: relative;">
                             <canvas id="infraChart"></canvas>
                         </div>
 
                         <div style="border-top: 1px solid var(--border-light); padding-top: 24px;">
                             <h4
                                 style="font-size: 11px; font-weight: 800; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light);">
-                                Atensi Pimpinan (Top 3)</h4>
+                                Wilayah Prioritas (Top 3)</h4>
                             <div style="display: flex; flex-direction: column; gap: 16px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; background: rgba(239, 68, 68, 0.05); padding: 12px; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.1);">
                                     <div>
-                                        <div style="font-size: 13px; font-weight: 700;">SMAN 1 Garut</div>
-                                        <div style="font-size: 11px; color: var(--text-muted);">Kab. Garut - Kec. Garut
-                                            Kota</div>
+                                        <div style="font-size: 13px; font-weight: 700;">Kab. Donggala</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">42 Gedung Rusak Berat
+                                        </div>
                                     </div>
                                     <span class="badge"
-                                        style="background: #FEF2F2; color: #EF4444; font-size: 10px; padding: 4px 12px;">Rusak
-                                        Berat</span>
+                                        style="background: #EF4444; color: white; font-size: 10px; padding: 4px 12px;">Urgent</span>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; background: rgba(245, 158, 11, 0.05); padding: 12px; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.1);">
                                     <div>
-                                        <div style="font-size: 13px; font-weight: 700;">SMKN 2 Tasikmalaya</div>
-                                        <div style="font-size: 11px; color: var(--text-muted);">Kota Tasikmalaya</div>
+                                        <div style="font-size: 13px; font-weight: 700;">Kab. Poso</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">28 Gedung Butuh Rehab
+                                        </div>
                                     </div>
                                     <span class="badge"
-                                        style="background: #FEF2F2; color: #EF4444; font-size: 10px; padding: 4px 12px;">Urgen</span>
+                                        style="background: #F59E0B; color: white; font-size: 10px; padding: 4px 12px;">Monitor</span>
                                 </div>
                             </div>
                             <button class="context-action-btn primary"
-                                style="width: 100%; margin-top: 24px; padding: 12px; font-size: 12px; background: var(--border-light); color: var(--text-main); box-shadow: none;">Buka
-                                Laporan Lengkap</button>
+                                style="width: 100%; margin-top: 24px; padding: 14px; font-size: 12px; background: #1E293B; color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(30,31,59,0.2);">Lihat
+                                Inventory Nasional</button>
                         </div>
                     </div>
                 </div>
@@ -248,8 +391,9 @@
                     </div>
 
                     <!-- Citizen Feedback -->
-                    <div class="card" style="border-radius: 24px; padding: 32px;">
-                        <div class="section-head-premium" style="border-left-color: var(--warning);">
+                    <div class="card"
+                        style="box-shadow: var(--executive-shadow); background: var(--executive-glass); backdrop-filter: var(--executive-blur); border: 1px solid rgba(255,158,11,0.2); border-left: 6px solid var(--warning); border-radius: 24px; padding: 32px;">
+                        <div class="section-head-premium">
                             <div>
                                 <h3 style="font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Aduan
                                     Publik</h3>
@@ -258,11 +402,11 @@
                             </div>
                         </div>
 
-                        <div class="complaint-list" style="display: flex; flex-direction: column; gap: 8px;">
+                        <div class="complaint-list" style="display: flex; flex-direction: column; gap: 12px;">
                             <div class="complaint-item"
-                                style="border-radius: 16px; padding: 16px; background: #F8FAFC; border: 1px solid transparent;">
+                                style="border-radius: 16px; padding: 16px; background: rgba(239, 68, 68, 0.03); border: 1px solid rgba(239, 68, 68, 0.1); display: flex; gap: 16px; transition: 0.3s;">
                                 <div
-                                    style="width: 40px; height: 40px; border-radius: 12px; background: #FEE2E2; color: #EF4444; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    style="width: 44px; height: 44px; border-radius: 12px; background: #EF4444; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);">
                                     <span class="material-icons" style="font-size: 20px;">report_problem</span>
                                 </div>
                                 <div style="flex: 1;">
@@ -270,20 +414,19 @@
                                         style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 4px;">
                                         <h4 style="font-size: 14px; font-weight: 700; color: #1E293B;">Pungli Seragam
                                         </h4>
-                                        <div class="glass-pill" style="background: #EF4444; color: white;">Urgent</div>
+                                        <div class="glass-pill"
+                                            style="background: #EF4444; color: white; font-size: 10px; padding: 2px 8px;">
+                                            URGENT</div>
                                     </div>
-                                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">SMAN 5
-                                        Karawang - Dilaporkan masif</div>
-                                    <div
-                                        style="font-size: 10px; color: var(--text-light); margin-top: 8px; font-weight: 600;">
-                                        DIPROSES DINAS • 5 MENIT LALU</div>
+                                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">SMAN 1
+                                        Palu - Dilaporkan masif melalui aplikasi Citizen</div>
                                 </div>
                             </div>
 
                             <div class="complaint-item"
-                                style="border-radius: 16px; padding: 16px; background: white; border: 1px solid var(--border-light);">
+                                style="border-radius: 16px; padding: 16px; background: rgba(255, 255, 255, 0.5); border: 1px solid var(--border-light); display: flex; gap: 16px; transition: 0.3s;">
                                 <div
-                                    style="width: 40px; height: 40px; border-radius: 12px; background: #FEF3C7; color: #F59E0B; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    style="width: 44px; height: 44px; border-radius: 12px; background: #F59E0B; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);">
                                     <span class="material-icons" style="font-size: 20px;">warning</span>
                                 </div>
                                 <div style="flex: 1;">
@@ -291,22 +434,20 @@
                                         style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 4px;">
                                         <h4 style="font-size: 14px; font-weight: 700; color: #1E293B;">Fasilitas Difabel
                                         </h4>
-                                        <div class="glass-pill" style="background: #F3F4F6; color: var(--text-muted);">
-                                            Normal</div>
+                                        <div class="glass-pill"
+                                            style="background: #F3F4F6; color: var(--text-muted); font-size: 10px; padding: 2px 8px;">
+                                            NORMAL</div>
                                     </div>
                                     <div style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">SMKN 1
-                                        Bogor - Eskalasi ke Sarpras</div>
-                                    <div
-                                        style="font-size: 10px; color: var(--text-light); margin-top: 8px; font-weight: 600;">
-                                        OPEN • 2 JAM LALU</div>
+                                        Donggala - Eskalasi ke Bidang Sarpras</div>
                                 </div>
                             </div>
                         </div>
 
                         <button class="btn-primary"
-                            style="width: 100%; margin-top: 32px; height: 48px; border-radius: 14px; background: #1E293B; color: white; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; box-shadow: 0 10px 20px rgba(30, 41, 59, 0.2);">
-                            <span class="material-icons" style="font-size: 18px;">bolt</span>
-                            Tanggapi Laporan (Action)
+                            style="width: 100%; margin-top: 32px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #1E293B, #334155); color: white; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 25px rgba(30, 41, 59, 0.3);">
+                            <span class="material-icons" style="font-size: 20px;">bolt</span>
+                            Tanggapi Aduan Publik
                         </button>
                     </div>
                 </div>
@@ -323,15 +464,17 @@
                 zoomControl: false,
                 scrollWheelZoom: false,
                 attributionControl: false
-            }).setView([-6.9175, 107.6191], 8);
+            }).setView([-0.8917, 120.8707], 7); // Adjusted center for better coverage of Central Sulawesi
 
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            }).addTo(map);
 
             const schools = [
-                { name: "SMAN 1 Bandung", coords: [-6.9147, 107.6098], status: "A" },
-                { name: "SMKN 2 Garut", coords: [-7.2278, 107.9087], status: "B" },
-                { name: "Sekolah Marginal X", coords: [-7.0000, 108.0000], status: "C" },
-                { name: "SMAN 3 Bogor", coords: [-6.5971, 106.7996], status: "A" }
+                { name: "SMAN 1 Palu", coords: [-0.8917, 119.8707], status: "A" },
+                { name: "SMKN 2 Donggala", coords: [-0.6773, 119.7420], status: "B" },
+                { name: "SMAN 1 Poso", coords: [-1.3959, 120.7523], status: "A" },
+                { name: "SMK Banggai", coords: [-0.9500, 122.7833], status: "C" }
             ];
 
             const colors = { A: '#10B981', B: '#F59E0B', C: '#EF4444' };
@@ -383,7 +526,7 @@
             new Chart(hrCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Bandung', 'Bogor', 'Bekasi', 'Garut', 'Cianjur', 'Sukabumi'],
+                    labels: ['Palu', 'Donggala', 'Poso', 'Sigi', 'Tolitoli', 'Banggai'],
                     datasets: [
                         {
                             label: 'Rasio Guru/Murid',
@@ -420,6 +563,29 @@
                     }
                 }
             });
+        });
+
+        // 4. Number Counting Animation
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Apply count up to first KPI card as example
+        document.querySelectorAll('.kpi-h-card .value').forEach(el => {
+            if (el.innerText.includes(',')) {
+                const finalVal = parseInt(el.innerText.replace(/,/g, ''));
+                animateValue(el, 0, finalVal, 2000);
+            }
         });
     </script>
 </body>
