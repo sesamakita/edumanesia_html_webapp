@@ -25,9 +25,9 @@ function handleLogin(event) {
 
     // Role Based Logic
     const users = {
-        'admin@sekolah.id': { password: 'admin123', redirect: 'dashboard.html' },
-        'kepsek@sekolah.id': { password: 'kepsek123', redirect: 'kepsek_dashboard.html' },
-        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html' },
+        'admin.smpn1poso@edumanesia.id': { password: 'AdminSmpPos1', redirect: 'dashboard.html' },
+        'kepsek.smpn1poso@edumanesia.id': { password: 'KepsekSmpPos1', redirect: 'kepsek_dashboard.html' },
+        'bupati@posokab.edumanesia.id': { password: 'PosoMaju2026!', redirect: 'bupati_dashboard.html' },
         'gubernur@provinsi.go.id': { password: 'gubernur123', redirect: 'gubernur_dashboard.html' }
     };
 
