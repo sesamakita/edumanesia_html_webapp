@@ -2421,7 +2421,7 @@
         // ============================================================
         // DATA: KEHADIRAN
         // ============================================================
-        const kecamatanData = [
+        let kecamatanData = [
             { name: 'Banggai', sekolah: 48, guru: 96, siswa: 91, status: 'Baik' },
             { name: 'Banggai Utara', sekolah: 32, guru: 94, siswa: 89, status: 'Baik' },
             { name: 'Banggai Tengah', sekolah: 41, guru: 91, siswa: 87, status: 'Cukup' },
@@ -2431,7 +2431,7 @@
             { name: 'Bokan Kepulauan', sekolah: 15, guru: 78, siswa: 69, status: 'Kritis' }
         ];
 
-        const alertSchools = [
+        let alertSchools = [
             { name: 'SMPN 1 Bokan Kepulauan', kec: 'Bokan Kepulauan', guru: 62, siswa: 58, type: 'critical' },
             { name: 'SDN 3 Bangkurung', kec: 'Bangkurung', guru: 70, siswa: 65, type: 'critical' },
             { name: 'SDN 7 Labobo', kec: 'Labobo', guru: 75, siswa: 72, type: 'warning' },
@@ -2507,7 +2507,7 @@
         // ============================================================
         // DATA: SARPRAS
         // ============================================================
-        const dakData = [
+        let dakData = [
             { name: 'Pengadaan Furnitur Sekolah', pct: 92, color: '#10B981', anggaran: 'Rp 8.4M', status: 'Selesai' },
             { name: 'Renovasi Ruang Kelas', pct: 75, color: '#4F46E5', anggaran: 'Rp 22.6M', status: 'Berjalan' },
             { name: 'Laboratorium IPA', pct: 60, color: '#3B82F6', anggaran: 'Rp 14.2M', status: 'Berjalan' },
@@ -2515,7 +2515,7 @@
             { name: 'Perpustakaan Digital', pct: 30, color: '#EC4899', anggaran: 'Rp 7.4M', status: 'Proses' },
         ];
 
-        const redZoneSchools = [
+        let redZoneSchools = [
             { name: 'SDN 04 Muara Gembong', kec: 'Muara Gembong', kondisi: 'Kritis', kerusakan: 'Atap ambruk 3 ruang kelas', est: 'Rp 2.1M' },
             { name: 'SDN 09 Bojongmangu', kec: 'Bojongmangu', kondisi: 'Kritis', kerusakan: 'Pondasi retak, berbahaya', est: 'Rp 3.4M' },
             { name: 'SMPN 03 Muara Gembong', kec: 'Muara Gembong', kondisi: 'Berat', kerusakan: 'Dinding luar rusak parah', est: 'Rp 1.8M' },
@@ -2565,7 +2565,7 @@
         // ============================================================
         // DATA: SDM
         // ============================================================
-        const sdmDistricts = [
+        let sdmDistricts = [
             { name: 'Banggai', asn: 350, honor: 120 },
             { name: 'Banggai Utara', asn: 280, honor: 150 },
             { name: 'Banggai Tengah', asn: 220, honor: 200 },
@@ -2620,7 +2620,7 @@
         // ============================================================
         // DATA: KESEHATAN
         // ============================================================
-        const stuntingData = [
+        let stuntingData = [
             { kec: 'Bangkurung', pct: 5.2, count: 94, color: '#EF4444' },
             { kec: 'Bokan Kepulauan', pct: 4.1, count: 76, color: '#F59E0B' },
             { kec: 'Labobo', pct: 3.0, count: 58, color: '#F59E0B' },
@@ -2629,7 +2629,7 @@
             { kec: 'Banggai', pct: 0.8, count: 14, color: '#10B981' },
         ];
 
-        const kesehatanPrograms = [
+        let kesehatanPrograms = [
             { title: 'UKS Aktif', value: '382 Sekolah', pct: 83, color: '#10B981', icon: 'local_hospital', desc: 'Termasuk 12 yang baru diaktifkan' },
             { title: 'PMT Berjalan', value: '210 Sekolah', pct: 46, color: '#3B82F6', icon: 'restaurant', desc: 'Makanan Tambahan Bergizi' },
             { title: 'Siswa Tervaksin', value: '117.420', pct: 82, color: '#8B5CF6', icon: 'vaccines', desc: 'Dari target 143.000 siswa' },
@@ -2677,7 +2677,7 @@
         // ============================================================
         // DATA: AKUNTABILITAS
         // ============================================================
-        const bosCompliance = [
+        let bosCompliance = [
             { kec: 'Banggai', total: 48, lapor: 48, pct: 100 },
             { kec: 'Banggai Utara', total: 32, lapor: 31, pct: 98 },
             { kec: 'Banggai Tengah', total: 41, lapor: 40, pct: 98 },
@@ -2708,7 +2708,7 @@
         // ============================================================
         // DATA: INSIDEN
         // ============================================================
-        const incidents = [
+        let incidents = [
             { id: 1, type: 'kritis', title: 'Perundungan Fisik', school: 'SDN 1 Banggai', time: '09:12', date: 'Hari ini', status: 'Ditangani', icon: 'priority_high', color: '#EF4444' },
             { id: 2, type: 'kritis', title: 'Krisis Air Bersih', school: 'SMPN 1 Bokan Kepulauan', time: '08:45', date: 'Hari ini', status: 'Proses', icon: 'water_drop', color: '#EF4444' },
             { id: 3, type: 'kritis', title: 'Gedung Nyaris Ambruk', school: 'SDN 3 Bangkurung', time: '07:30', date: 'Hari ini', status: 'Evakuasi', icon: 'domain_disabled', color: '#EF4444' },
@@ -3051,7 +3051,36 @@
                 }, 300);
             }
         });
+    
+        // ============================================================
+        // DYNAMIC AWS DYNAMODB INTEGRATION
+        // ============================================================
+        const AWS_API_URL = "https://vmgteifzdi.execute-api.ap-southeast-1.amazonaws.com/dashboard";
+
+        async function fetchDashboardData() {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso"; // fallback ke poso jika tidak ada session
+            
+            try {
+                const response = await fetch(\\?regency_id=\\);
+                const awsData = await response.json();
+                
+                if (awsData.kecamatanData) kecamatanData = awsData.kecamatanData.data;
+                if (awsData.alertSchools) alertSchools = awsData.alertSchools.data;
+                if (awsData.dakData) dakData = awsData.dakData.data;
+                if (awsData.stuntingData) stuntingData = awsData.stuntingData.data;
+                if (awsData.kesehatanPrograms) kesehatanPrograms = awsData.kesehatanPrograms.data;
+                
+                // Re-render UI after data is loaded
+                initSectionCharts(currentSection);
+            } catch (error) {
+                console.error("Gagal terhubung ke AWS DynamoDB:", error);
+            }
+        }
+
+        // Initialize fetching on load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchDashboardData();
+        });
     </script>
 </body>
-
 </html>

@@ -28,18 +28,22 @@ function handleLogin(event) {
         // Akun Baru (Poso)
         'admin.smpn1poso@edumanesia.id': { password: 'AdminSmpPos1', redirect: 'dashboard.html' },
         'kepsek.smpn1poso@edumanesia.id': { password: 'KepsekSmpPos1', redirect: 'kepsek_dashboard.html' },
-        'bupati@posokab.edumanesia.id': { password: 'PosoMaju2026!', redirect: 'bupati_poso_dashboard.html' },
+        'bupati@posokab.edumanesia.id': { password: 'PosoMaju2026!', redirect: 'bupati_dashboard.html', regency_id: 'poso' },
         
-        // Akun Lama (Default/Banggai Laut)
+        // Akun Lama (Default/Banggai)
         'admin@sekolah.id': { password: 'admin123', redirect: 'dashboard.html' },
         'kepsek@sekolah.id': { password: 'kepsek123', redirect: 'kepsek_dashboard.html' },
-        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html' },
+        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html', regency_id: 'banggai' },
         'gubernur@provinsi.go.id': { password: 'gubernur123', redirect: 'gubernur_dashboard.html' }
     };
 
     // Simulate API call
     setTimeout(() => {
         if (users[email] && users[email].password === password) {
+            // Save identity to memory for dynamic dashboard
+            if (users[email].regency_id) {
+                sessionStorage.setItem('userRegencyId', users[email].regency_id);
+            }
             window.location.href = users[email].redirect;
         } else {
             alert('Email atau Password salah!');
