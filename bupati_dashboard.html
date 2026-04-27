@@ -2853,20 +2853,36 @@
             // Leaflet Map
             if (!window._mapInited) {
                 window._mapInited = true;
-                window.mapInstance = L.map('districtMap', { zoomControl: true, scrollWheelZoom: false, attributionControl: true }).setView([-1.594, 123.518], 10);
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const mapCenter = regencyId === 'poso' ? [-1.550, 120.650] : [-1.594, 123.518];
+                window.mapInstance = L.map('districtMap', { zoomControl: true, scrollWheelZoom: false, attributionControl: true }).setView(mapCenter, 10);
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community'
                 }).addTo(window.mapInstance);
-                const kecamatans = [
-                    { name: "Banggai", coords: [-1.59, 123.54], color: "#10B981", val: "A" },
-                    { name: "Banggai Utara", coords: [-1.51, 123.53], color: "#F59E0B", val: "B" },
-                    { name: "Banggai Tengah", coords: [-1.63, 123.49], color: "#10B981", val: "A" },
-                    { name: "Banggai Selatan", coords: [-1.71, 123.53], color: "#F59E0B", val: "B" },
-                    { name: "Labobo", coords: [-1.78, 123.28], color: "#EF4444", val: "C" },
-                    { name: "Bangkurung", coords: [-1.93, 123.25], color: "#F59E0B", val: "B" },
-                    { name: "Bokan Kepulauan", coords: [-2.08, 123.48], color: "#EF4444", val: "C" }
-                ];
-                kecamatans.forEach(k => {
+                
+                let kecamatansMap = [];
+                if (regencyId === 'poso') {
+                    kecamatansMap = [
+                        { name: "Poso Kota", coords: [-1.39, 120.75], color: "#10B981", val: "A" },
+                        { name: "Poso Pesisir", coords: [-1.41, 120.65], color: "#10B981", val: "A" },
+                        { name: "Pamona Puselemba", coords: [-1.75, 120.62], color: "#F59E0B", val: "B" },
+                        { name: "Lore Utara", coords: [-1.42, 120.31], color: "#F59E0B", val: "B" },
+                        { name: "Lage", coords: [-1.46, 120.78], color: "#EF4444", val: "C" },
+                        { name: "Pamona Utara", coords: [-1.65, 120.68], color: "#EF4444", val: "C" },
+                        { name: "Poso Kota Selatan", coords: [-1.43, 120.74], color: "#F59E0B", val: "B" }
+                    ];
+                } else {
+                    kecamatansMap = [
+                        { name: "Banggai", coords: [-1.59, 123.54], color: "#10B981", val: "A" },
+                        { name: "Banggai Utara", coords: [-1.51, 123.53], color: "#F59E0B", val: "B" },
+                        { name: "Banggai Tengah", coords: [-1.63, 123.49], color: "#10B981", val: "A" },
+                        { name: "Banggai Selatan", coords: [-1.71, 123.53], color: "#F59E0B", val: "B" },
+                        { name: "Labobo", coords: [-1.78, 123.28], color: "#EF4444", val: "C" },
+                        { name: "Bangkurung", coords: [-1.93, 123.25], color: "#F59E0B", val: "B" },
+                        { name: "Bokan Kepulauan", coords: [-2.08, 123.48], color: "#EF4444", val: "C" }
+                    ];
+                }
+                kecamatansMap.forEach(k => {
                     L.circle(k.coords, { color: k.color, fillColor: k.color, fillOpacity: 0.6, radius: 4500, weight: 2 }).addTo(window.mapInstance).bindPopup(`<div style="padding:10px"><b>Kecamatan ${k.name}</b><br>Status: <span style="color:${k.color};font-weight:800">${k.val}</span></div>`);
                 });
             } else if (window.mapInstance) {
@@ -3069,6 +3085,32 @@
                 if (awsData.dakData) dakData = awsData.dakData.data;
                 if (awsData.stuntingData) stuntingData = awsData.stuntingData.data;
                 if (awsData.kesehatanPrograms) kesehatanPrograms = awsData.kesehatanPrograms.data;
+                
+                // Update text secara dinamis
+                const bupatiNameText = regencyId === 'poso' ? 'Roy A. Pesudo' : 'Bapak Kadis';
+                
+                // Cari elemen yang mengandung teks tersebut dan update
+                document.querySelectorAll('*').forEach(el => {
+                    if(el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
+                        if(el.textContent.includes('Bapak Kadis') || el.textContent.includes('Roy A. Pesudo')) {
+                            el.textContent = 'Selamat Pagi, ' + bupatiNameText;
+                        }
+                        if(el.textContent.trim() === 'Kab. Banggai Laut' || el.textContent.trim() === 'Kab. Poso') {
+                            el.textContent = 'Kab. ' + (regencyId === 'poso' ? 'Poso' : 'Banggai Laut');
+                        }
+                    }
+                });
+                
+                // Paksa render ulang semua tabel yang terpengaruh
+                if (typeof renderKecamatanTable === 'function') renderKecamatanTable();
+                if (typeof renderAlertSchools === 'function') renderAlertSchools();
+                if (typeof renderDakProgress === 'function') renderDakProgress();
+                if (typeof renderRedZone === 'function') renderRedZone();
+                if (typeof renderSdmGapAnalysis === 'function') renderSdmGapAnalysis();
+                if (typeof renderStunting === 'function') renderStunting();
+                if (typeof renderKesehatanPrograms === 'function') renderKesehatanPrograms();
+                if (typeof renderBosCompliance === 'function') renderBosCompliance();
+                if (typeof renderInsidenFeed === 'function') renderInsidenFeed();
                 
                 // Re-render UI after data is loaded
                 initSectionCharts(currentSection);
