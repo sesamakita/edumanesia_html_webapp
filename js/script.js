@@ -28,7 +28,7 @@ function handleLogin(event) {
         // Akun Baru (Poso)
         'admin.smpn1poso@edumanesia.id': { password: 'AdminSmpPos1', redirect: 'dashboard.html' },
         'kepsek.smpn1poso@edumanesia.id': { password: 'KepsekSmpPos1', redirect: 'kepsek_dashboard.html' },
-        'bupati@posokab.edumanesia.id': { password: 'PosoMaju2026!', redirect: 'bupati_dashboard.html' },
+        'bupati@posokab.edumanesia.id': { password: 'PosoMaju2026!', redirect: 'bupati_poso_dashboard.html' },
         
         // Akun Lama (Default/Banggai Laut)
         'admin@sekolah.id': { password: 'admin123', redirect: 'dashboard.html' },
