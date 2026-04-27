@@ -3061,7 +3061,7 @@
             const regencyId = sessionStorage.getItem("userRegencyId") || "poso"; // fallback ke poso jika tidak ada session
             
             try {
-                const response = await fetch(\\?regency_id=\\);
+                const response = await fetch(AWS_API_URL + "?regency_id=" + regencyId);
                 const awsData = await response.json();
                 
                 if (awsData.kecamatanData) kecamatanData = awsData.kecamatanData.data;
