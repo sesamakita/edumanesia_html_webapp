@@ -698,7 +698,7 @@
                     <div style="height: 32px; width: 1px; background: var(--border-light); margin: 0 8px;"></div>
                     <div style="text-align: right;">
                         <div
-                            style="font-size: 11px; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1px;">
+                            id="regionLabel" style="font-size: 11px; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1px;">
                             Kab. Banggai Laut</div>
                         <div style="font-size: 15px; font-weight: 700;">Moh. Rivai</div>
                     </div>
@@ -729,8 +729,8 @@
                             </div>
                             <div>
                                 <div style="font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Executive Authority</div>
-                                <h1 style="font-size: 44px; font-weight: 900; color: white; margin: 0; letter-spacing: -1.5px; font-family: 'Outfit', sans-serif; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">Selamat Pagi, Pak Kadis</h1>
-                                <p style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 14px; max-width: 480px; font-weight: 400; line-height: 1.6;">Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.</p>
+                                <h1 id="greetingText" style="font-size: 44px; font-weight: 900; color: white; margin: 0; letter-spacing: -1.5px; font-family: 'Outfit', sans-serif; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">Selamat Pagi, Pak Kadis</h1>
+                                <p id="regionDesc" style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 14px; max-width: 480px; font-weight: 400; line-height: 1.6;">Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.</p>
                             </div>
                         </div>
 
@@ -3034,17 +3034,22 @@
                 // Update text secara dinamis
                 const bupatiNameText = regencyId === 'poso' ? 'Roy A. Pesudo' : 'Bapak Kadis';
                 
-                // Cari elemen yang mengandung teks tersebut dan update
-                document.querySelectorAll('*').forEach(el => {
-                    if(el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
-                        if(el.textContent.includes('Bapak Kadis') || el.textContent.includes('Roy A. Pesudo')) {
-                            el.textContent = 'Selamat Pagi, ' + bupatiNameText;
-                        }
-                        if(el.textContent.trim() === 'Kab. Banggai Laut' || el.textContent.trim() === 'Kab. Poso') {
-                            el.textContent = 'Kab. ' + (regencyId === 'poso' ? 'Poso' : 'Banggai Laut');
-                        }
-                    }
-                });
+                // Update teks header dan label wilayah secara langsung via ID
+                if (regencyId === 'poso') {
+                    const greeting = document.getElementById('greetingText');
+                    const label = document.getElementById('regionLabel');
+                    const desc = document.getElementById('regionDesc');
+                    if (greeting) greeting.textContent = 'Selamat Pagi, Roy A. Pesudo';
+                    if (label) label.textContent = 'Kab. Poso';
+                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.';
+                } else {
+                    const greeting = document.getElementById('greetingText');
+                    const label = document.getElementById('regionLabel');
+                    const desc = document.getElementById('regionDesc');
+                    if (greeting) greeting.textContent = 'Selamat Pagi, Moh. Rivai';
+                    if (label) label.textContent = 'Kab. Banggai Laut';
+                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.';
+                }
                 
                 // Paksa render ulang semua tabel yang terpengaruh
                 if (typeof renderKecamatanTable === 'function') renderKecamatanTable();
