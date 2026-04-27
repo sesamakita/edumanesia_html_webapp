@@ -33,7 +33,7 @@ function handleLogin(event) {
         // Akun Lama (Default/Banggai)
         'admin@sekolah.id': { password: 'admin123', redirect: 'dashboard.html' },
         'kepsek@sekolah.id': { password: 'kepsek123', redirect: 'kepsek_dashboard.html' },
-        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html', regency_id: 'banggai' },
+        'bupati@daerah.go.id': { password: 'bupati123', redirect: 'bupati_dashboard.html', regency_id: 'banggai_laut' },
         'gubernur@provinsi.go.id': { password: 'gubernur123', redirect: 'gubernur_dashboard.html' }
     };
 

@@ -2808,24 +2808,14 @@
             if (!window._mapInited) {
                 window._mapInited = true;
                 const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
-                const mapCenter = regencyId === 'poso' ? [-1.550, 120.650] : [-1.594, 123.518];
+                const mapCenter = regencyId === 'banggai_laut' ? [-1.594, 123.518] : [-1.550, 120.650];
                 window.mapInstance = L.map('districtMap', { zoomControl: true, scrollWheelZoom: false, attributionControl: true }).setView(mapCenter, 10);
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community'
                 }).addTo(window.mapInstance);
                 
                 let kecamatansMap = [];
-                if (regencyId === 'poso') {
-                    kecamatansMap = [
-                        { name: "Poso Kota", coords: [-1.39, 120.75], color: "#10B981", val: "A" },
-                        { name: "Poso Pesisir", coords: [-1.41, 120.65], color: "#10B981", val: "A" },
-                        { name: "Pamona Puselemba", coords: [-1.75, 120.62], color: "#F59E0B", val: "B" },
-                        { name: "Lore Utara", coords: [-1.42, 120.31], color: "#F59E0B", val: "B" },
-                        { name: "Lage", coords: [-1.46, 120.78], color: "#EF4444", val: "C" },
-                        { name: "Pamona Utara", coords: [-1.65, 120.68], color: "#EF4444", val: "C" },
-                        { name: "Poso Kota Selatan", coords: [-1.43, 120.74], color: "#F59E0B", val: "B" }
-                    ];
-                } else {
+                if (regencyId === 'banggai_laut') {
                     kecamatansMap = [
                         { name: "Banggai", coords: [-1.59, 123.54], color: "#10B981", val: "A" },
                         { name: "Banggai Utara", coords: [-1.51, 123.53], color: "#F59E0B", val: "B" },
@@ -2834,6 +2824,16 @@
                         { name: "Labobo", coords: [-1.78, 123.28], color: "#EF4444", val: "C" },
                         { name: "Bangkurung", coords: [-1.93, 123.25], color: "#F59E0B", val: "B" },
                         { name: "Bokan Kepulauan", coords: [-2.08, 123.48], color: "#EF4444", val: "C" }
+                    ];
+                } else {
+                    kecamatansMap = [
+                        { name: "Poso Kota", coords: [-1.39, 120.75], color: "#10B981", val: "A" },
+                        { name: "Poso Pesisir", coords: [-1.41, 120.65], color: "#10B981", val: "A" },
+                        { name: "Pamona Puselemba", coords: [-1.75, 120.62], color: "#F59E0B", val: "B" },
+                        { name: "Lore Utara", coords: [-1.42, 120.31], color: "#F59E0B", val: "B" },
+                        { name: "Lage", coords: [-1.46, 120.78], color: "#EF4444", val: "C" },
+                        { name: "Pamona Utara", coords: [-1.65, 120.68], color: "#EF4444", val: "C" },
+                        { name: "Poso Kota Selatan", coords: [-1.43, 120.74], color: "#F59E0B", val: "B" }
                     ];
                 }
                 kecamatansMap.forEach(k => {
@@ -3020,9 +3020,10 @@
 
         async function fetchDashboardData() {
             const regencyId = sessionStorage.getItem("userRegencyId") || "poso"; // fallback ke poso jika tidak ada session
+            const apiKey = regencyId === 'banggai_laut' ? 'banggai_laut' : regencyId;
             
             try {
-                const response = await fetch(AWS_API_URL + "?regency_id=" + regencyId);
+                const response = await fetch(AWS_API_URL + "?regency_id=" + apiKey);
                 const awsData = await response.json();
                 
                 if (awsData.kecamatanData) kecamatanData = awsData.kecamatanData.data;
@@ -3035,20 +3036,17 @@
                 const bupatiNameText = regencyId === 'poso' ? 'Roy A. Pesudo' : 'Bapak Kadis';
                 
                 // Update teks header dan label wilayah secara langsung via ID
-                if (regencyId === 'poso') {
-                    const greeting = document.getElementById('greetingText');
-                    const label = document.getElementById('regionLabel');
-                    const desc = document.getElementById('regionDesc');
-                    if (greeting) greeting.textContent = 'Selamat Pagi, Roy A. Pesudo';
-                    if (label) label.textContent = 'Kab. Poso';
-                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.';
-                } else {
-                    const greeting = document.getElementById('greetingText');
-                    const label = document.getElementById('regionLabel');
-                    const desc = document.getElementById('regionDesc');
+                const greeting = document.getElementById('greetingText');
+                const label = document.getElementById('regionLabel');
+                const desc = document.getElementById('regionDesc');
+                if (regencyId === 'banggai_laut') {
                     if (greeting) greeting.textContent = 'Selamat Pagi, Moh. Rivai';
                     if (label) label.textContent = 'Kab. Banggai Laut';
                     if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.';
+                } else {
+                    if (greeting) greeting.textContent = 'Selamat Pagi, Roy A. Pesudo';
+                    if (label) label.textContent = 'Kab. Poso';
+                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.';
                 }
                 
                 // Paksa render ulang semua tabel yang terpengaruh
