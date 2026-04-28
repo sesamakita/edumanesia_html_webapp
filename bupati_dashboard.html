@@ -2514,6 +2514,12 @@
                 bias: 94.2, stunting: 312, kek: 128, uks_aktif: 382, uks_pct: '83%',
                 bos_total: 186, bos_salur: 138, bos_gauge: 74.2, bos_serapat: '74.2%', bos_lapor: 8, bos_audit: 3, bos_rp_salur: 'Rp 138M', bos_rp_sisa: 'Rp 48M',
                 ins_kritis: 3, ins_waspada: 7, ins_info: 12, sla_avg: 42,
+                chartClassroom: [1850, 450, 112],
+                chartKehadiranTrend: { guru: [91, 93, 92, 94], siswa: [85, 87, 86, 88] },
+                chartSdmRadar: [78, 85, 82, 72, 65],
+                chartBias: [38, 28, 18, 16],
+                chartBosTren: [14, 32, 52, 74.2],
+                chartInsidenKat: [12, 8, 15, 5],
                 ai_rek: 'Alokasikan DAK Sisa Semester 1 sebesar Rp 8.2 Miliar untuk 3 sekolah zona kritis di Kec. Poso Kota Selatan dan Pamona Utara.',
                 redZone: [
                     { name: 'SDN 4 Poso Kota Selatan', kec: 'Poso Kota Selatan', kondisi: 'Kritis', kerusakan: 'Atap ambruk 3 ruang kelas', est: 'Rp 2.1M' },
@@ -2558,6 +2564,12 @@
                 bias: 88.0, stunting: 357, kek: 84, uks_aktif: 250, uks_pct: '75%',
                 bos_total: 124, bos_salur: 74, bos_gauge: 59.7, bos_serapat: '59.7%', bos_lapor: 14, bos_audit: 5, bos_rp_salur: 'Rp 74M', bos_rp_sisa: 'Rp 50M',
                 ins_kritis: 2, ins_waspada: 5, ins_info: 8, sla_avg: 48,
+                chartClassroom: [920, 240, 76],
+                chartKehadiranTrend: { guru: [78, 80, 81, 82], siswa: [72, 75, 77, 79] },
+                chartSdmRadar: [65, 70, 68, 60, 55],
+                chartBias: [30, 25, 20, 25],
+                chartBosTren: [30, 42, 55, 59.7],
+                chartInsidenKat: [5, 12, 4, 8],
                 ai_rek: 'Alokasikan DAK Sisa Semester 1 sebesar Rp 4.2 Miliar untuk 2 sekolah zona kritis di Kec. Labobo dan Bangkurung.',
                 redZone: [
                     { name: 'SDN 2 Labobo', kec: 'Labobo', kondisi: 'Kritis', kerusakan: 'Ruang kelas ambruk 2 unit', est: 'Rp 1.8M' },
@@ -3081,23 +3093,51 @@
         function renderAkuntabilitasCharts() {
             const ctx = document.getElementById('bosGaugeChart');
             if (ctx && !chartInstances['bosGaugeChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['bosGaugeChart'] = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        datasets: [{ data: [74.2, 25.8], backgroundColor: ['#EC4899', '#F1F5F9'], borderWidth: 0, circumference: 220, rotation: -110 }]
+                        datasets: [{ 
+                            data: [cfg.bos_gauge, 100 - cfg.bos_gauge], 
+                            backgroundColor: ['#EC4899', '#F1F5F9'], 
+                            borderWidth: 0, 
+                            circumference: 220, 
+                            rotation: -110 
+                        }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '78%', plugins: { legend: { display: false } } }
                 });
             }
             const trenCtx = document.getElementById('bosTrenChart');
             if (trenCtx && !chartInstances['bosTrenChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['bosTrenChart'] = new Chart(trenCtx, {
                     type: 'line',
                     data: {
                         labels: ['Jan', 'Feb', 'Mar', 'Apr'],
                         datasets: [
-                            { label: 'Realisasi BOS', data: [14, 32, 52, 74.2], borderColor: '#EC4899', backgroundColor: 'rgba(236,72,153,0.08)', fill: true, tension: 0.4, borderWidth: 2.5, pointBackgroundColor: '#EC4899', pointRadius: 5 },
-                            { label: 'Target Linear', data: [25, 50, 75, 100], borderColor: '#E2E8F0', borderDash: [6, 4], tension: 0, pointRadius: 0, borderWidth: 2 }
+                            { 
+                                label: 'Realisasi BOS', 
+                                data: cfg.chartBosTren || [14, 32, 52, 74.2], 
+                                borderColor: '#EC4899', 
+                                backgroundColor: 'rgba(236,72,153,0.08)', 
+                                fill: true, 
+                                tension: 0.4, 
+                                borderWidth: 2.5, 
+                                pointBackgroundColor: '#EC4899', 
+                                pointRadius: 5 
+                            },
+                            { 
+                                label: 'Target Linear', 
+                                data: [25, 50, 75, 100], 
+                                borderColor: '#E2E8F0', 
+                                borderDash: [6, 4], 
+                                tension: 0, 
+                                pointRadius: 0, 
+                                borderWidth: 2 
+                            }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, ticks: { callback: v => v + '%', font: { weight: '600' } }, grid: { color: '#f1f5f9' } }, x: { grid: { display: false }, ticks: { font: { weight: '700' } } } }, plugins: { legend: { position: 'top', align: 'end', labels: { boxWidth: 10, usePointStyle: true, font: { weight: '600' } } } } }
@@ -3108,11 +3148,17 @@
         function renderInsidenCharts() {
             const ctx = document.getElementById('insidenKategoriChart');
             if (ctx && !chartInstances['insidenKategoriChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['insidenKategoriChart'] = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Perundungan', 'Infrastruktur', 'Kecelakaan', 'Kehilangan', 'Kesehatan', 'Bencana'],
-                        datasets: [{ data: [8, 6, 4, 5, 4, 2], backgroundColor: ['#EF4444', '#F59E0B', '#F97316', '#8B5CF6', '#10B981', '#3B82F6'], borderRadius: 8 }]
+                        labels: ['Perundungan', 'Infrastruktur', 'Konflik', 'Kehilangan', 'Kesehatan', 'Bencana'],
+                        datasets: [{ 
+                            data: cfg.chartInsidenKat || [8, 6, 4, 5, 4, 2], 
+                            backgroundColor: ['#EF4444', '#F59E0B', '#F97316', '#8B5CF6', '#10B981', '#3B82F6'], 
+                            borderRadius: 8 
+                        }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { font: { weight: '600' }, stepSize: 2 }, grid: { color: '#f1f5f9' } }, x: { grid: { display: false }, ticks: { font: { weight: '700', size: 10 } } } }, plugins: { legend: { display: false } } }
                 });
