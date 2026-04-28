@@ -3223,11 +3223,16 @@
                 const response = await fetch(AWS_API_URL + "?regency_id=" + apiKey);
                 const awsData = await response.json();
                 
-                if (awsData.kecamatanData) kecamatanData = awsData.kecamatanData.data;
-                if (awsData.alertSchools) alertSchools = awsData.alertSchools.data;
-                if (awsData.dakData) dakData = awsData.dakData.data;
-                if (awsData.stuntingData) stuntingData = awsData.stuntingData.data;
+                if (awsData.kecamatanData)     kecamatanData    = awsData.kecamatanData.data;
+                if (awsData.alertSchools)      alertSchools     = awsData.alertSchools.data;
+                if (awsData.dakData)           dakData          = awsData.dakData.data;
+                if (awsData.stuntingData)      stuntingData     = awsData.stuntingData.data;
                 if (awsData.kesehatanPrograms) kesehatanPrograms = awsData.kesehatanPrograms.data;
+
+                // ── Data yang sebelumnya hardcoded, kini dari DynamoDB ──
+                if (awsData.incidents)      cfg.incidents      = awsData.incidents.data;
+                if (awsData.slas)           cfg.slas           = awsData.slas.data;
+                if (awsData.retirementYears) cfg.retirementYears = awsData.retirementYears.data;
 
                 // ── Override cfg dengan data dari DynamoDB (jika tersedia) ──
                 if (awsData.statistik_kpi) {
