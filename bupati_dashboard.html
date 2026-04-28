@@ -3106,26 +3106,73 @@
                 if (awsData.dakData) dakData = awsData.dakData.data;
                 if (awsData.stuntingData) stuntingData = awsData.stuntingData.data;
                 if (awsData.kesehatanPrograms) kesehatanPrograms = awsData.kesehatanPrograms.data;
-                
-                // Update text secara dinamis
-                const bupatiNameText = regencyId === 'poso' ? 'Roy A. Pesudo' : 'Bapak Kadis';
-                
-                // Update teks header dan label wilayah secara langsung via ID
-                const greeting = document.getElementById('greetingText');
-                const label = document.getElementById('regionLabel');
-                const desc = document.getElementById('regionDesc');
-                if (regencyId === 'banggai_laut') {
-                    if (greeting) greeting.textContent = 'Selamat Pagi, Moh. Rivai';
-                    if (label) label.textContent = 'Kab. Banggai Laut';
-                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.';
-                } else {
-                    if (greeting) greeting.textContent = 'Selamat Pagi, Roy A. Pesudo';
-                    if (label) label.textContent = 'Kab. Poso';
-                    if (desc) desc.textContent = 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.';
+
+                // ── Override cfg dengan data dari DynamoDB (jika tersedia) ──
+                if (awsData.statistik_kpi) {
+                    const d = awsData.statistik_kpi;
+                    if (d.health_score)   cfg.healthScore    = d.health_score;
+                    if (d.health_grade)   cfg.healthGrade    = d.health_grade;
+                    if (d.guru_pct)       cfg.guruPct        = Number(d.guru_pct);
+                    if (d.guru_abs)       cfg.guruAbs        = d.guru_abs;
+                    if (d.siswa_pct)      cfg.siswaPct       = Number(d.siswa_pct);
+                    if (d.siswa_abs)      cfg.siswaAbs       = d.siswa_abs;
+                    if (d.tu_pct)         cfg.tuPct          = Number(d.tu_pct);
+                    if (d.tu_abs)         cfg.tuAbs          = d.tu_abs;
+                    if (d.total_sekolah)  cfg.totalSekolah   = Number(d.total_sekolah);
+                    if (d.sekolah_lapor)  cfg.sekolahLapor   = Number(d.sekolah_lapor);
+                    if (d.ai_rek)         cfg.ai_rek         = d.ai_rek;
                 }
-                
-                // Terapkan konfigurasi region ke stat cards
+                if (awsData.sarpras_kpi) {
+                    const d = awsData.sarpras_kpi;
+                    if (d.rusak_berat)    cfg.rusak_berat    = Number(d.rusak_berat);
+                    if (d.rusak_sedang)   cfg.rusak_sedang   = Number(d.rusak_sedang);
+                    if (d.serapan_dak)    cfg.serapan_dak    = Number(d.serapan_dak);
+                    if (d.proyek_count)   cfg.proyek_count   = Number(d.proyek_count);
+                    if (d.proyek_nilai)   cfg.proyek_nilai   = d.proyek_nilai;
+                    if (d.total_dak)      cfg.total_dak      = d.total_dak;
+                }
+                if (awsData.sdm_kpi) {
+                    const d = awsData.sdm_kpi;
+                    if (d.total_ptk)      cfg.total_ptk      = Number(d.total_ptk);
+                    if (d.asn_count)      cfg.asn_count      = Number(d.asn_count);
+                    if (d.asn_pct)        cfg.asn_pct        = d.asn_pct;
+                    if (d.honor_count)    cfg.honor_count    = Number(d.honor_count);
+                    if (d.honor_pct)      cfg.honor_pct      = d.honor_pct;
+                    if (d.pensiun)        cfg.pensiun        = Number(d.pensiun);
+                }
+                if (awsData.kesehatan_kpi) {
+                    const d = awsData.kesehatan_kpi;
+                    if (d.bias)           cfg.bias           = Number(d.bias);
+                    if (d.stunting)       cfg.stunting       = Number(d.stunting);
+                    if (d.kek)            cfg.kek            = Number(d.kek);
+                    if (d.uks_aktif)      cfg.uks_aktif      = Number(d.uks_aktif);
+                    if (d.uks_pct)        cfg.uks_pct        = d.uks_pct;
+                }
+                if (awsData.bos_kpi) {
+                    const d = awsData.bos_kpi;
+                    if (d.bos_total)      cfg.bos_total      = Number(d.bos_total);
+                    if (d.bos_salur)      cfg.bos_salur      = Number(d.bos_salur);
+                    if (d.bos_gauge)      cfg.bos_gauge      = Number(d.bos_gauge);
+                    if (d.bos_serapat)    cfg.bos_serapat    = d.bos_serapat;
+                    if (d.bos_lapor)      cfg.bos_lapor      = Number(d.bos_lapor);
+                    if (d.bos_audit)      cfg.bos_audit      = Number(d.bos_audit);
+                    if (d.bos_rp_salur)   cfg.bos_rp_salur   = d.bos_rp_salur;
+                    if (d.bos_rp_sisa)    cfg.bos_rp_sisa    = d.bos_rp_sisa;
+                }
+                if (awsData.insiden_kpi) {
+                    const d = awsData.insiden_kpi;
+                    if (d.ins_kritis)     cfg.ins_kritis     = Number(d.ins_kritis);
+                    if (d.ins_waspada)    cfg.ins_waspada    = Number(d.ins_waspada);
+                    if (d.ins_info)       cfg.ins_info       = Number(d.ins_info);
+                    if (d.sla_avg)        cfg.sla_avg        = Number(d.sla_avg);
+                }
+                if (awsData.redZone)       cfg.redZone       = awsData.redZone.data;
+                if (awsData.sdmDistricts)  cfg.sdmDistricts  = awsData.sdmDistricts.data;
+                if (awsData.bosCompliance) cfg.bosCompliance = awsData.bosCompliance.data;
+
+                // Terapkan konfigurasi region ke stat cards (dari DynamoDB atau fallback JS)
                 applyRegionConfig(cfg);
+
 
                 // Paksa render ulang semua tabel yang terpengaruh
                 if (typeof renderKecamatanTable === 'function') renderKecamatanTable();
