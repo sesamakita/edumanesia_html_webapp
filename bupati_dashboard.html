@@ -2500,6 +2500,9 @@
                 bupatiName: 'Roy A. Pesudo', regionName: 'Kab. Poso', initials: 'PS',
                 regionDesc: 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.',
                 greeting: 'Selamat Pagi, Roy A. Pesudo',
+                chartLabels: ['Poso Kota', 'P. Pesisir', 'Pamona', 'Lore Utara', 'Lage', 'P. Utara', 'P. Kota Sel.'],
+                chartDeptData: { asn: [520, 420, 380, 290, 210, 160, 120], honor: [80, 120, 210, 180, 220, 280, 310] },
+                sarprasData: { baik: [45, 38, 32, 25, 18, 15, 10], sedang: [12, 10, 15, 12, 14, 16, 20], kritis: [2, 3, 5, 4, 6, 8, 12] },
                 healthScore: '88.2', healthGrade: 'A',
                 guruPct: 94, guruAbs: '7.842 / 8.350',
                 siswaPct: 88, siswaAbs: '142.500',
@@ -2541,6 +2544,9 @@
                 bupatiName: 'Moh. Rivai', regionName: 'Kab. Banggai Laut', initials: 'BL',
                 regionDesc: 'Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.',
                 greeting: 'Selamat Pagi, Moh. Rivai',
+                chartLabels: ['Banggai', 'B. Utara', 'B. Tengah', 'B. Selatan', 'Labobo', 'Bangkurung'],
+                chartDeptData: { asn: [350, 280, 220, 150, 120, 45], honor: [120, 150, 200, 210, 250, 310] },
+                sarprasData: { baik: [35, 45, 28, 18, 12, 6, 4], sedang: [10, 14, 10, 8, 8, 8, 8], kritis: [3, 3, 3, 2, 2, 4, 3] },
                 healthScore: '81.5', healthGrade: 'B',
                 guruPct: 82, guruAbs: '4.510 / 5.500',
                 siswaPct: 79, siswaAbs: '67.200',
@@ -2938,13 +2944,15 @@
             // Teacher Dept Chart
             const teachCtx = document.getElementById('teacherDeptChart');
             if (teachCtx && !chartInstances['teacherDeptChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['teacherDeptChart'] = new Chart(teachCtx, {
                     type: 'bar',
                     data: {
-                        labels: ['Banggai', 'B. Utara', 'B. Tengah', 'B. Selatan', 'Labobo', 'Bangkurung'],
+                        labels: cfg.chartLabels,
                         datasets: [
-                            { label: 'ASN (PNS/PPPK)', data: [350, 280, 220, 150, 120, 45], backgroundColor: '#4F46E5', borderRadius: 8, barThickness: 20 },
-                            { label: 'Non-ASN (Honorer)', data: [120, 150, 200, 210, 250, 310], backgroundColor: '#E2E8F0', borderRadius: 8, barThickness: 20 }
+                            { label: 'ASN (PNS/PPPK)', data: cfg.chartDeptData.asn, backgroundColor: '#4F46E5', borderRadius: 8, barThickness: 20 },
+                            { label: 'Non-ASN (Honorer)', data: cfg.chartDeptData.honor, backgroundColor: '#E2E8F0', borderRadius: 8, barThickness: 20 }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { y: { stacked: true, grid: { borderDash: [4, 4], color: '#f1f5f9' }, ticks: { font: { weight: '600' } } }, x: { stacked: true, grid: { display: false }, ticks: { font: { weight: '700' } } } }, plugins: { legend: { position: 'top', align: 'end', labels: { boxWidth: 10, usePointStyle: true, font: { weight: '700' } } } } }
@@ -2987,14 +2995,16 @@
         function renderSarprasChart() {
             const ctx = document.getElementById('sarprasKecChart');
             if (ctx && !chartInstances['sarprasKecChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['sarprasKecChart'] = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Banggai', 'Banggai Utara', 'Banggai Tengah', 'Banggai Selatan', 'Labobo', 'Bangkurung', 'Bokan Kepulauan'],
+                        labels: cfg.chartLabels,
                         datasets: [
-                            { label: 'Baik', data: [35, 45, 28, 18, 12, 6, 4], backgroundColor: '#10B981', borderRadius: 4, barThickness: 20 },
-                            { label: 'Sedang', data: [10, 14, 10, 8, 8, 8, 8], backgroundColor: '#F59E0B', borderRadius: 4, barThickness: 20 },
-                            { label: 'Kritis', data: [3, 3, 3, 2, 2, 4, 3], backgroundColor: '#EF4444', borderRadius: 4, barThickness: 20 }
+                            { label: 'Baik', data: cfg.sarprasData.baik, backgroundColor: '#10B981', borderRadius: 4, barThickness: 20 },
+                            { label: 'Sedang', data: cfg.sarprasData.sedang, backgroundColor: '#F59E0B', borderRadius: 4, barThickness: 20 },
+                            { label: 'Kritis', data: cfg.sarprasData.kritis, backgroundColor: '#EF4444', borderRadius: 4, barThickness: 20 }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { y: { stacked: true, grid: { color: '#f1f5f9' }, ticks: { font: { weight: '600' } } }, x: { stacked: true, grid: { display: false }, ticks: { font: { weight: '600', size: 11 } } } }, plugins: { legend: { display: false } } }
@@ -3127,6 +3137,14 @@
                     if (d.total_sekolah)  cfg.totalSekolah   = Number(d.total_sekolah);
                     if (d.sekolah_lapor)  cfg.sekolahLapor   = Number(d.sekolah_lapor);
                     if (d.ai_rek)         cfg.ai_rek         = d.ai_rek;
+                    
+                    // Chart Data
+                    if (d.chart_labels)   cfg.chartLabels    = d.chart_labels;
+                    if (d.dept_asn)       cfg.chartDeptData.asn = d.dept_asn.map(Number);
+                    if (d.dept_honor)     cfg.chartDeptData.honor = d.dept_honor.map(Number);
+                    if (d.sarpras_baik)   cfg.sarprasData.baik = d.sarpras_baik.map(Number);
+                    if (d.sarpras_sedang) cfg.sarprasData.sedang = d.sarpras_sedang.map(Number);
+                    if (d.sarpras_kritis) cfg.sarprasData.kritis = d.sarpras_kritis.map(Number);
                 }
                 if (awsData.sarpras_kpi) {
                     const d = awsData.sarpras_kpi;
