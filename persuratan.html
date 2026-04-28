@@ -114,11 +114,11 @@
 
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -376,8 +376,8 @@
                                         style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--primary-color);">
                                         005/DISDIK/II/2026</td>
                                     <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="font-weight: 600;">Dinas Pendidikan</div>
-                                        <div style="font-size: 11px; color: var(--text-muted);">Kota Bekasi</div>
+                                        <div style="font-weight: 600;">Dinas Pendidikan Provinsi</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Sulawesi Tengah</div>
                                     </td>
                                     <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
                                         Undangan Rapat Koordinasi UNBK
@@ -478,9 +478,8 @@
                                         style="padding: 16px 24px; border-bottom: 1px solid var(--border-light); font-weight: 600; color: var(--primary-color);">
                                         ST/001/BKD/2026</td>
                                     <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="font-weight: 600;">Badan Kepegawaian</div>
-                                        <div style="font-size: 11px; color: var(--text-muted);">Provinsi Jawa Barat
-                                        </div>
+                                        <div style="font-weight: 600;">BKD / BKPSDM</div>
+                                        <div style="font-size: 11px; color: var(--text-muted);">Sekretariat Daerah</div>
                                     </td>
                                     <td style="padding: 16px 24px; border-bottom: 1px solid var(--border-light);">
                                         <span class="badge danger"
@@ -695,6 +694,28 @@
                 row.style.display = text.includes(searchTerm) ? '' : 'none';
             });
         });
+
+        // Regional Sync Logic
+        window.onload = () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            const config = {
+                poso: { bupati: 'Roy A. Pesudo', initial: 'PS', label: 'Kabupaten Poso' },
+                banggai_laut: { bupati: 'Moh. Rivai', initial: 'BL', label: 'Kab. Banggai Laut' }
+            };
+            
+            const reg = config[regencyId] || config.poso;
+            
+            document.getElementById('headerBupatiName').textContent = reg.bupati;
+            document.getElementById('headerInitials').textContent = reg.initial;
+            document.getElementById('regionLabel').textContent = reg.label;
+
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+        };
     </script>
 </body>
 

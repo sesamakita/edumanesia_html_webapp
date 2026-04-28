@@ -90,11 +90,11 @@
                 </div>
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -103,18 +103,18 @@
                 <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="stat-card-premium">
                         <div class="stat-lbl">Normal (BMI)</div>
-                        <div class="stat-val">842</div>
-                        <div class="trend-badge trend-up">68% Total</div>
+                        <div id="statNormal" class="stat-val">-</div>
+                        <div class="trend-badge trend-up">Diatas 85% Wilayah</div>
                     </div>
                     <div class="stat-card-premium">
                         <div class="stat-lbl">Gizi Kurang</div>
-                        <div class="stat-val">45</div>
-                        <div class="trend-badge trend-down">3.6% Total</div>
+                        <div id="statKurang" class="stat-val">-</div>
+                        <div class="trend-badge trend-down">Diatensi Dinkes</div>
                     </div>
                     <div class="stat-card-premium" style="border-left: 4px solid var(--error);">
                         <div class="stat-lbl">Risiko Stunting</div>
-                        <div class="stat-val">12</div>
-                        <div class="trend-badge trend-down" style="background: #FEF2F2; color: #EF4444;">Butuh Atensi</div>
+                        <div id="statStunting" class="stat-val">-</div>
+                        <div class="trend-badge trend-down" style="background: #FEF2F2; color: #EF4444;">Prioritas Utama</div>
                     </div>
                 </div>
 
@@ -134,11 +134,71 @@
         </main>
     </div>
     <script>
-        const ctx = document.getElementById('healthChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: { labels: ['Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], datasets: [{ label: 'Siswa Normal', data: [820, 825, 830, 835, 840, 842], borderColor: '#10B981', tension: 0.4 }] },
-            options: { responsive: true, maintainAspectRatio: false }
+        document.addEventListener('DOMContentLoaded', () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            // Konfigurasi Identitas & Data Kesehatan
+            const config = {
+                poso: { 
+                    bupati: 'Roy A. Pesudo', 
+                    initial: 'PS', 
+                    label: 'Kabupaten Poso',
+                    normal: '12,450',
+                    kurang: '842',
+                    stunting: '184',
+                    chartData: [11800, 12000, 12200, 12350, 12400, 12450]
+                },
+                banggai_laut: { 
+                    bupati: 'Moh. Rivai', 
+                    initial: 'BL', 
+                    label: 'Kab. Banggai Laut',
+                    normal: '7,120',
+                    kurang: '412',
+                    stunting: '92',
+                    chartData: [6800, 6900, 7000, 7050, 7100, 7120]
+                }
+            };
+            
+            const reg = config[regencyId] || config.poso;
+            
+            // Update Header
+            document.getElementById('headerBupatiName').textContent = reg.bupati;
+            document.getElementById('headerInitials').textContent = reg.initial;
+            document.getElementById('regionLabel').textContent = reg.label;
+
+            // Update Stats
+            document.getElementById('statNormal').textContent = reg.normal;
+            document.getElementById('statKurang').textContent = reg.kurang;
+            document.getElementById('statStunting').textContent = reg.stunting;
+
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+
+            // Render Chart
+            const ctx = document.getElementById('healthChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: { 
+                    labels: ['Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], 
+                    datasets: [{ 
+                        label: 'Siswa Status Normal', 
+                        data: reg.chartData, 
+                        borderColor: '#10B981', 
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4 
+                    }] 
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: false } }
+                }
+            });
         });
     </script>
 </body>
