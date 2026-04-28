@@ -2932,12 +2932,20 @@
                     window.mapInstance.invalidateSize(true);
                 }, 500);
             }
-            // Classroom Chart
             const classCtx = document.getElementById('classroomChart');
             if (classCtx && !chartInstances['classroomChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['classroomChart'] = new Chart(classCtx, {
                     type: 'pie',
-                    data: { labels: ['Baik', 'Cukup', 'Kritis'], datasets: [{ data: [1800, 500, 150], backgroundColor: ['#4F46E5', '#818CF8', '#E2E8F0'], borderWidth: 0 }] },
+                    data: { 
+                        labels: ['Baik', 'Sedang', 'Kritis'], 
+                        datasets: [{ 
+                            data: cfg.chartClassroom || [1800, 500, 150], 
+                            backgroundColor: ['#4F46E5', '#818CF8', '#E2E8F0'], 
+                            borderWidth: 0 
+                        }] 
+                    },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { size: 10, weight: '700' }, padding: 20 } } } }
                 });
             }
@@ -2964,16 +2972,20 @@
             const months = ['Jan', 'Feb', 'Mar', 'Apr'];
             const ctx = document.getElementById('kehadiranTrendChart');
             if (ctx && !chartInstances['kehadiranTrendChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
+                const trend = cfg.chartKehadiranTrend || { guru: [91, 93, 92, 94], siswa: [85, 87, 86, 88] };
+                
                 chartInstances['kehadiranTrendChart'] = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: months,
                         datasets: [
-                            { label: 'Guru', data: [91, 93, 92, 94], borderColor: '#4F46E5', backgroundColor: 'rgba(79,70,229,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#4F46E5', pointRadius: 5, borderWidth: 2.5 },
-                            { label: 'Siswa', data: [85, 87, 86, 88], borderColor: '#EC4899', backgroundColor: 'rgba(236,72,153,0.06)', tension: 0.4, fill: true, pointBackgroundColor: '#EC4899', pointRadius: 5, borderWidth: 2.5 }
+                            { label: 'Guru', data: trend.guru, borderColor: '#4F46E5', backgroundColor: 'rgba(79,70,229,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#4F46E5', pointRadius: 5, borderWidth: 2.5 },
+                            { label: 'Siswa', data: trend.siswa, borderColor: '#EC4899', backgroundColor: 'rgba(236,72,153,0.06)', tension: 0.4, fill: true, pointBackgroundColor: '#EC4899', pointRadius: 5, borderWidth: 2.5 }
                         ]
                     },
-                    options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 80, max: 100, ticks: { callback: v => v + '%', font: { weight: '600' } }, grid: { color: '#f1f5f9' } }, x: { grid: { display: false }, ticks: { font: { weight: '700' } } } }, plugins: { legend: { display: false } } }
+                    options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 60, max: 100, ticks: { callback: v => v + '%', font: { weight: '600' } }, grid: { color: '#f1f5f9' } }, x: { grid: { display: false }, ticks: { font: { weight: '700' } } } }, plugins: { legend: { display: false } } }
                 });
             }
             const jenjangCtx = document.getElementById('kehadiranJenjangChart');
@@ -3015,13 +3027,15 @@
         function renderSdmCharts() {
             const ctx = document.getElementById('sdmRadarChart');
             if (ctx && !chartInstances['sdmRadarChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['sdmRadarChart'] = new Chart(ctx, {
                     type: 'radar',
                     data: {
                         labels: ['Pedagogik', 'Kepribadian', 'Sosial', 'Profesional', 'TIK Literacy'],
                         datasets: [{
                             label: 'Rata-rata Kab.',
-                            data: [78, 85, 82, 72, 65],
+                            data: cfg.chartSdmRadar || [78, 85, 82, 72, 65],
                             borderColor: '#4F46E5',
                             backgroundColor: 'rgba(79,70,229,0.12)',
                             borderWidth: 2.5,
@@ -3038,7 +3052,7 @@
                             pointRadius: 3
                         }]
                     },
-                    options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 50, max: 100, ticks: { stepSize: 10, font: { size: 9 } }, grid: { color: '#E2E8F0' } } }, plugins: { legend: { position: 'bottom', labels: { font: { size: 10, weight: '600' }, boxWidth: 10, usePointStyle: true } } } }
+                    options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 40, max: 100, ticks: { stepSize: 10, font: { size: 9 } }, grid: { color: '#E2E8F0' } } }, plugins: { legend: { position: 'bottom', labels: { font: { size: 10, weight: '600' }, boxWidth: 10, usePointStyle: true } } } }
                 });
             }
         }
@@ -3046,11 +3060,18 @@
         function renderKesehatanCharts() {
             const ctx = document.getElementById('biasChart');
             if (ctx && !chartInstances['biasChart']) {
+                const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+                const cfg = REGION_CONFIG[regencyId] || REGION_CONFIG['poso'];
                 chartInstances['biasChart'] = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
                         labels: ['DT (Difteri-Tetanus)', 'Campak Rubella', 'Td Booster', 'Belum divaksin'],
-                        datasets: [{ data: [38, 28, 18, 16], backgroundColor: ['#10B981', '#3B82F6', '#8B5CF6', '#E2E8F0'], borderWidth: 0, hoverOffset: 8 }]
+                        datasets: [{ 
+                            data: cfg.chartBias || [38, 28, 18, 16], 
+                            backgroundColor: ['#10B981', '#3B82F6', '#8B5CF6', '#E2E8F0'], 
+                            borderWidth: 0, 
+                            hoverOffset: 8 
+                        }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, font: { size: 11, weight: '600' }, padding: 12 } } } }
                 });
@@ -3145,6 +3166,19 @@
                     if (d.sarpras_baik)   cfg.sarprasData.baik = d.sarpras_baik.map(Number);
                     if (d.sarpras_sedang) cfg.sarprasData.sedang = d.sarpras_sedang.map(Number);
                     if (d.sarpras_kritis) cfg.sarprasData.kritis = d.sarpras_kritis.map(Number);
+
+                    // New Dynamic Chart Datasets
+                    if (d.chart_classroom) cfg.chartClassroom = d.chart_classroom.map(Number);
+                    if (d.chart_kehadiran_trend) {
+                        cfg.chartKehadiranTrend = {
+                            guru: d.chart_kehadiran_trend.guru.map(Number),
+                            siswa: d.chart_kehadiran_trend.siswa.map(Number)
+                        };
+                    }
+                    if (d.chart_sdm_radar) cfg.chartSdmRadar = d.chart_sdm_radar.map(Number);
+                    if (d.chart_bias)      cfg.chartBias     = d.chart_bias.map(Number);
+                    if (d.chart_bos_tren)  cfg.chartBosTren  = d.chart_bos_tren.map(Number);
+                    if (d.chart_insiden_kat) cfg.chartInsidenKat = d.chart_insiden_kat.map(Number);
                 }
                 if (awsData.sarpras_kpi) {
                     const d = awsData.sarpras_kpi;
