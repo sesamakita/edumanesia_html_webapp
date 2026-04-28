@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Insiden - Admin Sekolah</title>
+    <title id="pageTitle">Laporan Insiden - Edumanesia</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -118,8 +118,8 @@
                 </div>
 
                 <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
-                    <button class="btn-primary" style="background: var(--error); box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);">
-                        <span class="material-icons">add_alert</span> Laporkan Insiden Baru
+                    <button class="btn-primary" style="background: var(--primary-color); box-shadow: var(--glow-primary);">
+                        <span class="material-icons">download</span> Export Laporan Wilayah
                     </button>
                     <input type="text" class="input-modern" placeholder="Cari insiden..." style="width: 250px;">
                 </div>
@@ -160,10 +160,11 @@
             
             const config = identity[regencyId] || identity.poso;
             
-            // Update Header
+            // Update Header & Title
             document.getElementById('headerBupatiName').textContent = config.bupati;
             document.getElementById('headerInitials').textContent = config.initial;
             document.getElementById('regionLabel').textContent = config.label;
+            document.getElementById('pageTitle').textContent = `Laporan Insiden - ${config.label}`;
 
             // Update Sidebar Logo (Premium)
             const sidebar = document.querySelector('.sidebar');

@@ -115,11 +115,11 @@
 
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -128,21 +128,21 @@
 
                 <!-- Quick Shortcuts -->
                 <div class="shortcut-row">
-                    <div class="btn-shortcut">
-                        <span class="material-icons" style="color: var(--primary-color);">person_add</span>
-                        Input Siswa Baru
+                    <div class="btn-shortcut" onclick="location.href='school_profile.html'">
+                        <span class="material-icons" style="color: var(--primary-color);">analytics</span>
+                        Monitoring Sekolah
+                    </div>
+                    <div class="btn-shortcut" onclick="location.href='dana_bos.html'">
+                        <span class="material-icons" style="color: var(--success);">payments</span>
+                        Realisasi Dana BOS
+                    </div>
+                    <div class="btn-shortcut" onclick="location.href='insiden.html'">
+                        <span class="material-icons" style="color: var(--error);">report_problem</span>
+                        Laporan Insiden
                     </div>
                     <div class="btn-shortcut">
-                        <span class="material-icons" style="color: var(--success);">post_add</span>
-                        Buat Surat Baru
-                    </div>
-                    <div class="btn-shortcut">
-                        <span class="material-icons" style="color: var(--warning);">add_card</span>
-                        Catat Pembayaran
-                    </div>
-                    <div class="btn-shortcut">
-                        <span class="material-icons" style="color: var(--secondary-color);">sync</span>
-                        Sinkron Dapodik
+                        <span class="material-icons" style="color: var(--secondary-color);">description</span>
+                        Laporan Tahunan
                     </div>
                 </div>
 
@@ -840,31 +840,84 @@
 
     <!-- Chart Config -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Regional Data Configuration
+        const config = {
+            poso: {
+                bupati: 'Roy A. Pesudo',
+                initial: 'PS',
+                label: 'Kabupaten Poso',
+                stats: {
+                    absensi: '96.2%',
+                    siswa: '14,250',
+                    alpha: '42',
+                    bos: 'Rp 12.5M',
+                    spp: 'Rp 2.45M',
+                    guru: '1,120',
+                    surat: '124'
+                }
+            },
+            banggai_laut: {
+                bupati: 'Moh. Rivai',
+                initial: 'BL',
+                label: 'Kab. Banggai Laut',
+                stats: {
+                    absensi: '94.8%',
+                    siswa: '8,420',
+                    alpha: '18',
+                    bos: 'Rp 7.8M',
+                    spp: 'Rp 1.12M',
+                    guru: '680',
+                    surat: '86'
+                }
+            }
+        };
+
+        window.onload = () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            const reg = config[regencyId] || config.poso;
+
+            // Sync Identity
+            document.getElementById('headerBupatiName').textContent = reg.bupati;
+            document.getElementById('headerInitials').textContent = reg.initial;
+            document.getElementById('regionLabel').textContent = reg.label;
+
+            // Sync Dashboard Stats (Simulated)
+            document.querySelector('.badge.info').textContent = `${reg.stats.absensi} Hadir`;
+            document.querySelectorAll('.premium-value')[0].textContent = reg.stats.siswa;
+            document.querySelectorAll('.premium-value')[1].textContent = reg.stats.alpha;
+            document.querySelector('.text-success').textContent = `+ ${reg.stats.spp}`;
+            document.querySelectorAll('.premium-value')[2].textContent = reg.stats.surat;
+            document.querySelectorAll('.premium-value')[3].textContent = reg.stats.guru;
+
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+
+            // Initialize Charts
+            initCharts();
+        };
+
+        function initCharts() {
             const ctx = document.getElementById('academicProgressChart').getContext('2d');
-
-            Chart.defaults.font.family = "'Inter', sans-serif";
-            Chart.defaults.color = '#6B7280';
-
             new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: ['Matematika', 'B. Indo', 'B. Inggris', 'IPA', 'IPS', 'Agama'],
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
                     datasets: [{
-                        label: 'Sudah Input (%)',
-                        data: [100, 95, 80, 70, 60, 45],
-                        backgroundColor: '#4F46E5',
-                        borderRadius: 4,
+                        label: 'Kepatuhan Pelaporan',
+                        data: [65, 78, 72, 85, 80, 92],
+                        borderColor: '#4F46E5',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)'
                     }]
                 },
                 options: {
-                    indexAxis: 'y',
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { backgroundColor: '#1F2937', padding: 10 }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
                         x: { max: 100, beginAtZero: true, grid: { borderDash: [4, 4] } },
                         y: { grid: { display: false } }
