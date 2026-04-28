@@ -89,11 +89,11 @@
                 </div>
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -101,19 +101,19 @@
             <div class="dashboard-padding">
                 <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="stat-card-premium">
-                        <div class="stat-lbl">Insiden Aktif</div>
-                        <div class="stat-val">03</div>
+                        <div class="stat-lbl">Insiden Kritis</div>
+                        <div id="stat-kritis" class="stat-val">0</div>
                         <div class="trend-badge trend-down" style="background: #FEF2F2; color: #EF4444;">Butuh Penanganan</div>
                     </div>
                     <div class="stat-card-premium">
-                        <div class="stat-lbl">Selesai (Bulan Ini)</div>
-                        <div class="stat-val">12</div>
-                        <div class="trend-badge trend-up">80% Resolved</div>
+                        <div class="stat-lbl">Insiden Waspada</div>
+                        <div id="stat-waspada" class="stat-val">0</div>
+                        <div class="trend-badge" style="background: #FFFBEB; color: #D97706;">Monitoring</div>
                     </div>
                     <div class="stat-card-premium">
-                        <div class="stat-lbl">Tingkat Bahaya Tinggi</div>
-                        <div class="stat-val">0</div>
-                        <div class="trend-badge success">Aman</div>
+                        <div class="stat-lbl">Informasi</div>
+                        <div id="stat-info" class="stat-val">0</div>
+                        <div class="trend-badge success">Normal</div>
                     </div>
                 </div>
 
@@ -129,6 +129,7 @@
                         <thead>
                             <tr style="background: #F8FAFC;">
                                 <th style="padding: 16px; text-align: left;">Waktu Kejadian</th>
+                                <th style="padding: 16px; text-align: left;">Sekolah</th>
                                 <th style="padding: 16px; text-align: left;">Kategori</th>
                                 <th style="padding: 16px; text-align: left;">Deskripsi</th>
                                 <th style="padding: 16px; text-align: center;">Tingkat</th>
@@ -136,14 +137,9 @@
                                 <th style="padding: 16px; text-align: center;">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="incidentTableBody">
                             <tr>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Hari ini, 09:15</td>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span class="badge info">Kesehatan</span></td>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Siswa pingsan saat upacara bendera</td>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge warning">Medium</span></td>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge warning">Diproses</span></td>
-                                <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="material-icons" style="color: var(--primary-color); cursor: pointer;">edit</span></td>
+                                <td colspan="7" style="padding: 32px; text-align: center; color: var(--text-muted);">Memuat data insiden wilayah...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -151,5 +147,72 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            // Konfigurasi Identitas
+            const identity = {
+                poso: { bupati: 'Roy A. Pesudo', initial: 'PS', label: 'Kabupaten Poso' },
+                banggai_laut: { bupati: 'Moh. Rivai', initial: 'BL', label: 'Kab. Banggai Laut' }
+            };
+            
+            const config = identity[regencyId] || identity.poso;
+            
+            // Update Header
+            document.getElementById('headerBupatiName').textContent = config.bupati;
+            document.getElementById('headerInitials').textContent = config.initial;
+            document.getElementById('regionLabel').textContent = config.label;
+
+            // Update Sidebar Logo (Premium)
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+
+            // Fetch Data dari API
+            fetchIncidents(regencyId);
+        });
+
+        async function fetchIncidents(regencyId) {
+            const API_URL = `https://vmgteifzdi.execute-api.ap-southeast-1.amazonaws.com/default/dashboard?regency_id=${regencyId}`;
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data.statistik_kpi) {
+                    document.getElementById('stat-kritis').textContent = String(data.statistik_kpi.ins_kritis).padStart(2, '0');
+                    document.getElementById('stat-waspada').textContent = String(data.statistik_kpi.ins_waspada).padStart(2, '0');
+                    document.getElementById('stat-info').textContent = String(data.statistik_kpi.ins_info).padStart(2, '0');
+                    
+                    const incidents = data.statistik_kpi.incidents || [];
+                    renderTable(incidents);
+                }
+            } catch (err) {
+                console.error("Gagal memuat data:", err);
+            }
+        }
+
+        function renderTable(incidents) {
+            const tbody = document.getElementById('incidentTableBody');
+            if (incidents.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="padding: 32px; text-align: center;">Tidak ada insiden aktif.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = incidents.map(i => `
+                <tr>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">${i.date}, ${i.time}</td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">${i.school}</td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span class="badge info">${i.title}</span></td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); font-size: 12px;">Monitoring laporan wilayah...</td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge ${i.type === 'kritis' ? 'danger' : 'warning'}">${i.type.toUpperCase()}</span></td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="badge success">${i.status}</span></td>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: center;"><span class="material-icons" style="color: var(--primary-color); cursor: pointer;">visibility</span></td>
+                </tr>
+            `).join('');
+        }
+    </script>
 </body>
 </html>

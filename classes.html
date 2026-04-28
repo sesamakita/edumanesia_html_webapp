@@ -240,11 +240,11 @@
 
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -259,7 +259,7 @@
                                 <span class="material-icons" style="color: #4F46E5;">meeting_room</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">36</div>
+                                <div id="statTotalKelas" style="font-size: 24px; font-weight: 800; color: #1E293B;">-</div>
                                 <div style="font-size: 12px; color: var(--text-muted);">Total Kelas</div>
                             </div>
                         </div>
@@ -271,7 +271,7 @@
                                 <span class="material-icons" style="color: #10B981;">group_add</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">1,240</div>
+                                <div id="statTotalSiswa" style="font-size: 24px; font-weight: 800; color: #1E293B;">-</div>
                                 <div style="font-size: 12px; color: var(--text-muted);">Siswa Terdistribusi</div>
                             </div>
                         </div>
@@ -631,8 +631,33 @@
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         function saveClass(e) { e.preventDefault(); alert('Kelas berhasil disimpan!'); closeModal('addClassModal'); }
 
-        // Initial Render
-        window.onload = () => renderTable();
+        // Initial Render & Regional Sync
+        window.onload = () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            // Konfigurasi Identitas
+            const identity = {
+                poso: { bupati: 'Roy A. Pesudo', initial: 'PS', label: 'Kabupaten Poso', kelas: 382, siswa: '14,250' },
+                banggai_laut: { bupati: 'Moh. Rivai', initial: 'BL', label: 'Kab. Banggai Laut', kelas: 215, siswa: '8,420' }
+            };
+            
+            const config = identity[regencyId] || identity.poso;
+            
+            // Update Header & Stats
+            document.getElementById('headerBupatiName').textContent = config.bupati;
+            document.getElementById('headerInitials').textContent = config.initial;
+            document.getElementById('regionLabel').textContent = config.label;
+            document.getElementById('statTotalKelas').textContent = config.kelas;
+            document.getElementById('statTotalSiswa').textContent = config.siswa;
+
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+
+            renderTable();
+        };
     </script>
 </body>
 
