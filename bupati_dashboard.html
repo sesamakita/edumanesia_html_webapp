@@ -700,11 +700,11 @@
                         <div
                             id="regionLabel" style="font-size: 11px; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1px;">
                             Kab. Banggai Laut</div>
-                        <div style="font-size: 15px; font-weight: 700;">Moh. Rivai</div>
+                        <div id="headerBupatiName" style="font-size: 15px; font-weight: 700;">Roy A. Pesudo</div>
                     </div>
                     <div class="user-avatar"
                         style="width: 44px; height: 44px; background: #0F172A; font-weight: 800; border: 2px solid white; box-shadow: var(--shadow-sm);">
-                        BL</div>
+                        id="headerInitials">PS</div>
                 </div>
             </header>
 
@@ -719,7 +719,7 @@
                         <div style="display: flex; align-items: center; gap: 40px; position: relative; z-index: 1;">
                             <div style="position: relative;">
                                 <!-- Premium Initial Avatar -->
-                                <div style="width: 130px; height: 130px; border-radius: 30px; background: linear-gradient(135deg, #ffffff, #f1f5f9); display: flex; align-items: center; justify-content: center; font-size: 56px; font-weight: 900; color: #1E1B4B; box-shadow: inset 0 -4px 0 rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.8); font-family: 'Outfit', sans-serif;">MR</div>
+                                <div id="heroInitials" style="width: 130px; height: 130px; border-radius: 30px; background: linear-gradient(135deg, #ffffff, #f1f5f9); display: flex; align-items: center; justify-content: center; font-size: 56px; font-weight: 900; color: #1E1B4B; box-shadow: inset 0 -4px 0 rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.8); font-family: 'Outfit', sans-serif;">PS</div>
                                 <!-- Sleek Verified Regional Seal -->
                                 <div style="position: absolute; right: -12px; bottom: -12px; width: 48px; height: 48px; background: #10B981; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 4px solid #312E81; color: white; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); z-index: 2;">
                                     <span class="material-icons" style="font-size: 22px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));">workspace_premium</span>
@@ -2497,6 +2497,9 @@
 
         const REGION_CONFIG = {
             poso: {
+                bupatiName: 'Roy A. Pesudo', regionName: 'Kab. Poso', initials: 'PS',
+                regionDesc: 'Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.',
+                greeting: 'Selamat Pagi, Roy A. Pesudo',
                 healthScore: '88.2', healthGrade: 'A',
                 guruPct: 94, guruAbs: '7.842 / 8.350',
                 siswaPct: 88, siswaAbs: '142.500',
@@ -2535,6 +2538,9 @@
                 ]
             },
             banggai_laut: {
+                bupatiName: 'Moh. Rivai', regionName: 'Kab. Banggai Laut', initials: 'BL',
+                regionDesc: 'Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.',
+                greeting: 'Selamat Pagi, Moh. Rivai',
                 healthScore: '81.5', healthGrade: 'B',
                 guruPct: 82, guruAbs: '4.510 / 5.500',
                 siswaPct: 79, siswaAbs: '67.200',
@@ -3170,6 +3176,16 @@
                 if (awsData.sdmDistricts)  cfg.sdmDistricts  = awsData.sdmDistricts.data;
                 if (awsData.bosCompliance) cfg.bosCompliance = awsData.bosCompliance.data;
 
+                // ── Metadata Region (Jika ada di DB) ──
+                if (awsData.statistik_kpi) {
+                    const d = awsData.statistik_kpi;
+                    if (d.bupati_name) cfg.bupatiName = d.bupati_name;
+                    if (d.region_name) cfg.regionName = d.region_name;
+                    if (d.region_desc) cfg.regionDesc = d.region_desc;
+                    if (d.greeting)    cfg.greeting   = d.greeting;
+                    if (d.initials)    cfg.initials   = d.initials;
+                }
+
                 // Terapkan konfigurasi region ke stat cards (dari DynamoDB atau fallback JS)
                 applyRegionConfig(cfg);
 
@@ -3217,7 +3233,15 @@
                 const el = document.getElementById(id);
                 if (el) el.textContent = val;
             }
-            // Executive
+            // Header & Hero
+            setText('regionLabel', cfg.regionName);
+            setText('headerBupatiName', cfg.bupatiName);
+            setText('headerInitials', cfg.initials);
+            setText('heroInitials', cfg.initials);
+            setText('greetingText', cfg.greeting);
+            setText('regionDesc', cfg.regionDesc);
+
+            // Executive Stat Cards
             setText('health-score-val', cfg.healthScore);
             setText('health-score-grade', cfg.healthGrade);
             setC('exec-guru-pct', cfg.guruPct);

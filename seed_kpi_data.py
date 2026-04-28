@@ -22,6 +22,9 @@ def m(d):  return {'M': d}
 ALL_DATA = {
     'poso': {
         'statistik_kpi': {
+            'bupati_name': s('Roy A. Pesudo'), 'region_name': s('Kab. Poso'),
+            'initials': s('PS'), 'greeting': s('Selamat Pagi, Roy A. Pesudo'),
+            'region_desc': s('Monitoring data agregat pendidikan Kabupaten Poso secara komprehensif melalui Edumanesia Intelligence.'),
             'health_score': s('88.2'), 'health_grade': s('A'),
             'guru_pct': n(94), 'guru_abs': s('7.842 / 8.350'),
             'siswa_pct': n(88), 'siswa_abs': s('142.500'),
@@ -78,6 +81,9 @@ ALL_DATA = {
     },
     'banggai_laut': {
         'statistik_kpi': {
+            'bupati_name': s('Moh. Rivai'), 'region_name': s('Kab. Banggai Laut'),
+            'initials': s('BL'), 'greeting': s('Selamat Pagi, Moh. Rivai'),
+            'region_desc': s('Monitoring data agregat pendidikan Kabupaten Banggai Laut secara komprehensif melalui Edumanesia Intelligence.'),
             'health_score': s('81.5'), 'health_grade': s('B'),
             'guru_pct': n(82), 'guru_abs': s('4.510 / 5.500'),
             'siswa_pct': n(79), 'siswa_abs': s('67.200'),
