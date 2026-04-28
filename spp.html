@@ -115,11 +115,11 @@
 
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -147,9 +147,9 @@
                             <div style="font-size: 20px; font-weight: 800; color: var(--text-primary); line-height: 1;">
                                 Rp
                             </div>
-                            <div
+                            <div id="statTotalTagihan"
                                 style="font-size: 32px; font-weight: 800; color: var(--text-primary); letter-spacing: -1px; line-height: 1.2;">
-                                150.000.000</div>
+                                0</div>
                             <div
                                 style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
                                 <span class="material-icons"
@@ -176,9 +176,9 @@
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 4px;">
                             <div style="font-size: 20px; font-weight: 800; color: #059669; line-height: 1;">Rp</div>
-                            <div
+                            <div id="statTotalTerbayar"
                                 style="font-size: 32px; font-weight: 800; color: #059669; letter-spacing: -1px; line-height: 1.2;">
-                                117.000.000</div>
+                                0</div>
                             <div
                                 style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
                                 <span class="material-icons"
@@ -204,9 +204,9 @@
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 4px;">
                             <div style="font-size: 20px; font-weight: 800; color: #F59E0B; line-height: 1;">Rp</div>
-                            <div
+                            <div id="statTotalBelum"
                                 style="font-size: 32px; font-weight: 800; color: #F59E0B; letter-spacing: -1px; line-height: 1.2;">
-                                24.000.000</div>
+                                0</div>
                             <div
                                 style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 8px;">
                                 <span class="material-icons" style="font-size: 16px; color: #F59E0B;">schedule</span>
@@ -312,20 +312,10 @@
 
                     <!-- Action Buttons Group -->
                     <div style="display: flex; align-items: flex-end; gap: 12px; height: 100%; padding-top: 24px;">
-                        <button onclick="sendBulkReminder()"
-                            style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: white; color: var(--primary-color); border: 1.5px solid var(--primary-color); border-radius: 14px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Outfit', sans-serif;">
-                            <span class="material-icons" style="font-size: 18px;">notifications_active</span>
-                            Kirim Reminder
-                        </button>
                         <button onclick="exportSPP()"
                             style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: white; color: #059669; border: 1.5px solid #10B981; border-radius: 14px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Outfit', sans-serif;">
                             <span class="material-icons" style="font-size: 18px;">download</span>
-                            Export
-                        </button>
-                        <button onclick="openInputModal()"
-                            style="display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: white; border: none; border-radius: 14px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); font-family: 'Outfit', sans-serif;">
-                            <span class="material-icons" style="font-size: 18px;">add_circle</span>
-                            Catat Pembayaran
+                            Export Laporan
                         </button>
                     </div>
                 </div>
@@ -338,11 +328,10 @@
                         <div>
                             <h3
                                 style="margin: 0; font-size: 18px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: var(--primary-color);">table_chart</span>
-                                Status Pembayaran SPP
+                                Realisasi Iuran Sekolah
                             </h3>
-                            <p style="margin: 4px 0 0; font-size: 13px; color: var(--text-muted);">Periode: Februari
-                                2026 • Total: 300 siswa</p>
+                            <p id="tableSub" style="margin: 4px 0 0; font-size: 13px; color: var(--text-muted);">Periode: Februari
+                                2026 • Wilayah: Kabupaten Poso</p>
                         </div>
                         <div style="display: flex; align-items: center; gap: 16px; font-size: 12px; font-weight: 500;">
                             <span
@@ -369,277 +358,26 @@
                                 <tr style="background: #F8FAFC; position: sticky; top: 0;">
                                     <th
                                         style="padding: 14px 16px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Siswa</th>
+                                        Nama Satuan Pendidikan</th>
                                     <th
                                         style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Kelas</th>
+                                        Jenjang</th>
                                     <th
                                         style="padding: 14px 12px; text-align: right; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Nominal</th>
+                                        Target</th>
+                                    <th
+                                        style="padding: 14px 12px; text-align: right; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
+                                        Realisasi</th>
                                     <th
                                         style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Jatuh Tempo</th>
-                                    <th
-                                        style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Tgl Bayar</th>
+                                        % Serapan</th>
                                     <th
                                         style="padding: 14px 12px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
                                         Status</th>
-                                    <th
-                                        style="padding: 14px 16px; text-align: center; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border-light);">
-                                        Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="sppTableBody">
-                                <!-- Row 1 - Lunas -->
-                                <tr>
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
-                                                AF</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Ahmad Farhan</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024001
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        9A</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 500.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        10 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
-                                        05 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
-                                            Lunas</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <button onclick="printKwitansi('Ahmad Farhan')"
-                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
-                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
-                                            Kwitansi
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 2 - Lunas -->
-                                <tr>
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FCE7F3; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #DB2777; font-size: 12px;">
-                                                SA</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Siti Aisyah</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024002
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        9A</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 500.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        10 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
-                                        03 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
-                                            Lunas</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <button onclick="printKwitansi('Siti Aisyah')"
-                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
-                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
-                                            Kwitansi
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 3 - Belum Bayar -->
-                                <tr style="background: #FFFBEB;">
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
-                                                BS</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Budi Santoso</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024003
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        9B</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 500.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        10 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
-                                        —</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⏳
-                                            Belum Bayar</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; gap: 6px; justify-content: center;">
-                                            <button onclick="inputPembayaran('Budi Santoso')"
-                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
-                                            <button onclick="sendReminder('Budi Santoso')"
-                                                style="padding: 6px 10px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- Row 4 - Tunggakan -->
-                                <tr style="background: #FEF2F2;">
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FEF3C7; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #D97706; font-size: 12px;">
-                                                RP</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Rizky Pratama</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024004
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        8A</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 1.000.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #DC2626; font-weight: 500;">
-                                        10 Jan 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
-                                        —</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #FEE2E2; color: #DC2626; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⚠️
-                                            Tunggak 2 bln</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; gap: 6px; justify-content: center;">
-                                            <button onclick="inputPembayaran('Rizky Pratama')"
-                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
-                                            <button onclick="sendReminder('Rizky Pratama')"
-                                                style="padding: 6px 10px; background: #DC2626; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- Row 5 - Lunas -->
-                                <tr>
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #FCE7F3; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #DB2777; font-size: 12px;">
-                                                DL</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Dewi Lestari</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024005
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        8B</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 500.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        10 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: #059669; font-weight: 500;">
-                                        08 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #ECFDF5; color: #059669; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">✓
-                                            Lunas</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <button onclick="printKwitansi('Dewi Lestari')"
-                                            style="padding: 6px 12px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; margin: 0 auto;">
-                                            <span class="material-icons" style="font-size: 14px;">receipt</span>
-                                            Kwitansi
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Row 6 - Belum Bayar -->
-                                <tr style="background: #FFFBEB;">
-                                    <td style="padding: 12px 16px; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <div
-                                                style="width: 36px; height: 36px; border-radius: 10px; background: #E0E7FF; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #4F46E5; font-size: 12px;">
-                                                AW</div>
-                                            <div>
-                                                <div style="font-weight: 500;">Andi Wijaya</div>
-                                                <div style="font-size: 11px; color: var(--text-muted);">NIS: 2024006
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        7A</td>
-                                    <td
-                                        style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">
-                                        Rp 500.000</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        10 Feb 2026</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
-                                        —</td>
-                                    <td
-                                        style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <span
-                                            style="background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">⏳
-                                            Belum Bayar</span>
-                                    </td>
-                                    <td
-                                        style="padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-light);">
-                                        <div style="display: flex; gap: 6px; justify-content: center;">
-                                            <button onclick="inputPembayaran('Andi Wijaya')"
-                                                style="padding: 6px 10px; background: #4F46E5; color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">Bayar</button>
-                                            <button onclick="sendReminder('Andi Wijaya')"
-                                                style="padding: 6px 10px; background: #F3F4F6; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">📱</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <!-- Dynamic Data -->
                             </tbody>
                         </table>
                     </div>
@@ -720,6 +458,81 @@
     </div>
 
     <script>
+        // Regional Sync & Aggregate Data Logic
+        window.onload = () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            const config = {
+                poso: { 
+                    bupati: 'Roy A. Pesudo', 
+                    initial: 'PS', 
+                    label: 'Kabupaten Poso',
+                    tagihan: '1.450.000.000',
+                    terbayar: '1.200.000.000',
+                    belum: '250.000.000',
+                    schools: [
+                        { name: 'SMA Negeri 1 Poso', jenjang: 'SMA', target: '450jt', realisasi: '400jt', percent: '88%', status: 'Lancar' },
+                        { name: 'SMP Negeri 2 Poso', jenjang: 'SMP', target: '300jt', realisasi: '280jt', percent: '93%', status: 'Sangat Baik' },
+                        { name: 'SD Negeri 1 Poso', jenjang: 'SD', target: '200jt', realisasi: '120jt', percent: '60%', status: 'Perhatian' },
+                        { name: 'SMA Negeri 3 Poso', jenjang: 'SMA', target: '500jt', realisasi: '400jt', percent: '80%', status: 'Lancar' }
+                    ]
+                },
+                banggai_laut: { 
+                    bupati: 'Moh. Rivai', 
+                    initial: 'BL', 
+                    label: 'Kab. Banggai Laut',
+                    tagihan: '840.000.000',
+                    terbayar: '710.000.000',
+                    belum: '130.000.000',
+                    schools: [
+                        { name: 'SMK Negeri 1 Banggai', jenjang: 'SMK', target: '340jt', realisasi: '310jt', percent: '91%', status: 'Sangat Baik' },
+                        { name: 'SMP Negeri 1 Banggai', jenjang: 'SMP', target: '250jt', realisasi: '200jt', percent: '80%', status: 'Lancar' },
+                        { name: 'SD Negeri 1 Banggai', jenjang: 'SD', target: '150jt', realisasi: '110jt', percent: '73%', status: 'Lancar' },
+                        { name: 'SMA Negeri 1 Banggai', jenjang: 'SMA', target: '100jt', realisasi: '90jt', percent: '90%', status: 'Sangat Baik' }
+                    ]
+                }
+            };
+            
+            const reg = config[regencyId] || config.poso;
+            
+            if(document.getElementById('headerBupatiName')) document.getElementById('headerBupatiName').textContent = reg.bupati;
+            if(document.getElementById('headerInitials')) document.getElementById('headerInitials').textContent = reg.initial;
+            if(document.getElementById('regionLabel')) document.getElementById('regionLabel').textContent = reg.label;
+            document.getElementById('tableSub').textContent = `Periode: Februari 2026 • Wilayah: ${reg.label}`;
+
+            // Render Table
+            const tbody = document.getElementById('sppTableBody');
+            tbody.innerHTML = reg.schools.map(s => `
+                <tr>
+                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light); font-weight: 600;">${s.name}</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">${s.jenjang}</td>
+                    <td style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600;">Rp ${s.target}</td>
+                    <td style="padding: 12px; text-align: right; border-bottom: 1px solid var(--border-light); font-weight: 600; color: #059669;">Rp ${s.realisasi}</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                        <div style="width: 100%; height: 6px; background: #E2E8F0; border-radius: 3px; margin-bottom: 4px;">
+                            <div style="width: ${s.percent}; height: 100%; background: var(--primary-color); border-radius: 3px;"></div>
+                        </div>
+                        <span style="font-size: 11px; font-weight: 700;">${s.percent}</span>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid var(--border-light);">
+                        <span style="background: ${s.status === 'Perhatian' ? '#FEF2F2' : '#ECFDF5'}; color: ${s.status === 'Perhatian' ? '#DC2626' : '#059669'}; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">
+                            ${s.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut' && sidebar) {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
+            }
+        };
+
+        function exportSPP() {
+            alert('Mengekspor laporan realisasi iuran wilayah...');
+        }
+
         // Initialize date
         document.getElementById('modalTanggal').value = new Date().toISOString().split('T')[0];
 
@@ -741,63 +554,6 @@
             const siswa = document.getElementById('modalSiswa').value;
             showToast(`✅ Pembayaran ${siswa} berhasil dicatat!`);
             closeModal();
-        }
-
-        function printKwitansi(nama) {
-            const htmlContent = `
-                <html>
-                <head>
-                    <title>Kwitansi SPP - ${nama}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto; }
-                        .header { text-align: center; border-bottom: 2px solid #4F46E5; padding-bottom: 20px; margin-bottom: 30px; }
-                        .logo { font-size: 32px; margin-bottom: 10px; }
-                        h1 { margin: 0; color: #4F46E5; }
-                        .kwitansi-no { color: #6B7280; font-size: 14px; margin-top: 5px; }
-                        .detail { margin: 20px 0; }
-                        .row { display: flex; padding: 10px 0; border-bottom: 1px solid #E5E7EB; }
-                        .label { width: 150px; color: #6B7280; }
-                        .value { font-weight: 600; }
-                        .total { background: #F3F4F6; padding: 15px; border-radius: 8px; margin-top: 20px; display: flex; justify-content: space-between; }
-                        .total-label { font-weight: 600; }
-                        .total-value { font-size: 20px; font-weight: 700; color: #059669; }
-                        .footer { margin-top: 40px; text-align: center; color: #9CA3AF; font-size: 12px; }
-                        .stamp { margin-top: 30px; text-align: right; }
-                        .stamp-box { display: inline-block; border: 2px solid #059669; padding: 15px 30px; border-radius: 8px; color: #059669; font-weight: 700; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <div class="logo">🎓</div>
-                        <h1>EDUMANESIA</h1>
-                        <div class="kwitansi-no">KWITANSI #SPP-2026-${Math.floor(Math.random() * 9000) + 1000}</div>
-                    </div>
-                    <div class="detail">
-                        <div class="row"><span class="label">Nama Siswa</span><span class="value">${nama}</span></div>
-                        <div class="row"><span class="label">Kelas</span><span class="value">9A</span></div>
-                        <div class="row"><span class="label">Periode</span><span class="value">Februari 2026</span></div>
-                        <div class="row"><span class="label">Tanggal Bayar</span><span class="value">${new Date().toLocaleDateString('id-ID')}</span></div>
-                        <div class="row"><span class="label">Metode</span><span class="value">Tunai</span></div>
-                    </div>
-                    <div class="total">
-                        <span class="total-label">TOTAL PEMBAYARAN</span>
-                        <span class="total-value">Rp 500.000</span>
-                    </div>
-                    <div class="stamp">
-                        <div class="stamp-box">LUNAS ✓</div>
-                    </div>
-                    <div class="footer">
-                        Dicetak pada: ${new Date().toLocaleString('id-ID')}<br>
-                        Terima kasih atas pembayaran Anda
-                    </div>
-                </body>
-                </html>
-            `;
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(htmlContent);
-            printWindow.document.close();
-            printWindow.focus();
-            setTimeout(() => printWindow.print(), 500);
         }
 
         function sendReminder(nama) {

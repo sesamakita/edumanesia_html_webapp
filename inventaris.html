@@ -114,11 +114,11 @@
 
                 <div style="display: flex; gap: 16px; align-items: center;">
                     <div style="text-align: right; margin-right: 8px;">
-                        <div style="font-size: 12px; color: var(--text-muted);">Ka. Tata Usaha</div>
-                        <div style="font-size: 14px; font-weight: 700;">Bu Ani Rahayu</div>
+                        <div id="regionLabel" style="font-size: 11px; color: var(--secondary-color); font-weight: 700; text-transform: uppercase;">Kabupaten</div>
+                        <div id="headerBupatiName" style="font-size: 14px; font-weight: 700;">Memuat...</div>
                     </div>
                     <div class="user-menu">
-                        <div class="user-avatar" style="background: #1E1B4B;">AR</div>
+                        <div id="headerInitials" class="user-avatar" style="background: #1E1B4B;">...</div>
                     </div>
                 </div>
             </header>
@@ -130,11 +130,11 @@
                     <div class="card" style="padding: 24px; border-radius: 16px; border-left: 4px solid #4F46E5;">
                         <div style="display: flex; align-items: center; gap: 16px;">
                             <div style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: #4F46E5;">inventory_2</span>
+                                <span class="material-icons" style="color: #4F46E5;">corporate_fare</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">1,240</div>
-                                <div style="font-size: 12px; color: var(--text-muted);">Total Item Aset</div>
+                                <div id="statTotalSchools" style="font-size: 24px; font-weight: 800; color: #1E293B;">0</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Total Satdik</div>
                             </div>
                         </div>
                     </div>
@@ -142,11 +142,11 @@
                     <div class="card" style="padding: 24px; border-radius: 16px; border-left: 4px solid #10B981;">
                         <div style="display: flex; align-items: center; gap: 16px;">
                             <div style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: #10B981;">check_circle</span>
+                                <span class="material-icons" style="color: #10B981;">inventory_2</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">1,145</div>
-                                <div style="font-size: 12px; color: var(--text-muted);">Kondisi Baik (92%)</div>
+                                <div id="statTotalItems" style="font-size: 24px; font-weight: 800; color: #1E293B;">0</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Total Aset Wilayah</div>
                             </div>
                         </div>
                     </div>
@@ -157,8 +157,8 @@
                                 <span class="material-icons" style="color: #F59E0B;">build</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">24</div>
-                                <div style="font-size: 12px; color: var(--text-muted);">Perlu Perbaikan</div>
+                                <div id="statPerbaikan" style="font-size: 24px; font-weight: 800; color: #1E293B;">0</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Aset Rusak</div>
                             </div>
                         </div>
                     </div>
@@ -166,11 +166,11 @@
                     <div class="card" style="padding: 24px; border-radius: 16px; border-left: 4px solid #8B5CF6;">
                         <div style="display: flex; align-items: center; gap: 16px;">
                             <div style="width: 48px; height: 48px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                <span class="material-icons" style="color: #8B5CF6;">schedule</span>
+                                <span class="material-icons" style="color: #8B5CF6;">fact_check</span>
                             </div>
                             <div>
-                                <div style="font-size: 24px; font-weight: 800; color: #1E293B;">08</div>
-                                <div style="font-size: 12px; color: var(--text-muted);">Peminjaman Aktif</div>
+                                <div id="statAudit" style="font-size: 24px; font-weight: 800; color: #1E293B;">94%</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Kepatuhan Audit</div>
                             </div>
                         </div>
                     </div>
@@ -185,56 +185,33 @@
                         <!-- Filters Group -->
                         <div style="display: flex; gap: 12px; align-items: center;">
                             <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
-                                <span class="material-icons" style="font-size: 18px; color: var(--primary-color);">category</span>
+                                <span class="material-icons" style="font-size: 18px; color: var(--primary-color);">corporate_fare</span>
+                                <select id="filterSekolah" onchange="filterAssets()"
+                                    style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 150px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
+                                    <option value="all">Semua Sekolah</option>
+                                    <option>SMA Negeri 1 Poso</option>
+                                    <option>SMP Negeri 2 Poso</option>
+                                    <option>SMK Negeri 1 Banggai</option>
+                                </select>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
+                                <span class="material-icons" style="font-size: 18px; color: var(--text-light);">category</span>
                                 <select id="filterKategori" onchange="filterAssets()"
                                     style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 130px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
                                     <option value="all">Semua Kategori</option>
                                     <option value="elektronik">Elektronik</option>
                                     <option value="mebel">Mebel & Fasilitas</option>
-                                    <option value="alat_lab">Alat Laboratorium</option>
-                                </select>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
-                                <span class="material-icons" style="font-size: 18px; color: var(--text-light);">room</span>
-                                <select id="filterLokasi" onchange="filterAssets()"
-                                    style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 120px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
-                                    <option value="all">Semua Lokasi</option>
-                                    <option value="lab_kom">Lab Komputer</option>
-                                    <option value="r_guru">Ruang Guru</option>
-                                    <option value="kelas">Kelas</option>
-                                </select>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 8px; background: white; padding: 4px 12px; border: 1px solid var(--border-light); border-radius: 12px;">
-                                <span class="material-icons" style="font-size: 18px; color: var(--text-light);">tune</span>
-                                <select id="filterKondisi" onchange="filterAssets()"
-                                    style="border: none; padding: 8px 0; font-size: 14px; background: transparent; min-width: 120px; outline: none; cursor: pointer; color: var(--text-main); font-weight: 500;">
-                                    <option value="all">Semua Kondisi</option>
-                                    <option value="baik">Baik</option>
-                                    <option value="rusak_ringan">Rusak Ringan</option>
-                                    <option value="rusak_berat">Rusak Berat</option>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Action Buttons Group -->
                         <div style="display: flex; gap: 12px; align-items: center;">
-                            <div style="display: flex; background: white; border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                                <button onclick="exportData()"
-                                    style="padding: 10px 16px; border: none; background: transparent; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-muted); transition: all 0.2s;">
-                                    <span class="material-icons" style="font-size: 18px;">download</span>
-                                    Export
-                                </button>
-                            </div>
-                            
-                            <button onclick="openInputModal()"
-                                style="padding: 10px 20px; border: none; border-radius: 12px; background: var(--primary-color); color: white; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--glow-primary); transition: all 0.2s;"
-                                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(79, 70, 229, 0.4)';"
-                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--glow-primary)';"
-                                >
-                                <span class="material-icons" style="font-size: 18px;">add_circle</span>
-                                Tambah Aset
+                            <button onclick="exportData()"
+                                style="padding: 10px 16px; border: 1px solid var(--border-light); border-radius: 12px; background: white; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; color: var(--text-muted); transition: all 0.2s;">
+                                <span class="material-icons" style="font-size: 18px;">download</span>
+                                Export Laporan
                             </button>
                         </div>
                     </div>
@@ -412,64 +389,52 @@
         </div>
     </div>
 
-    <script>
-        // Initialize date
-        document.getElementById('modalTanggal').value = new Date().toISOString().split('T')[0];
+        // Regional Sync Logic
+        window.onload = () => {
+            const regencyId = sessionStorage.getItem("userRegencyId") || "poso";
+            
+            const config = {
+                poso: { 
+                    bupati: 'Roy A. Pesudo', 
+                    initial: 'PS', 
+                    label: 'Kabupaten Poso',
+                    schools: '142',
+                    items: '12.450',
+                    rusak: '430'
+                },
+                banggai_laut: { 
+                    bupati: 'Moh. Rivai', 
+                    initial: 'BL', 
+                    label: 'Kab. Banggai Laut',
+                    schools: '84',
+                    items: '6.280',
+                    rusak: '190'
+                }
+            };
+            
+            const reg = config[regencyId] || config.poso;
+            
+            document.getElementById('headerBupatiName').textContent = reg.bupati;
+            document.getElementById('headerInitials').textContent = reg.initial;
+            document.getElementById('regionLabel').textContent = reg.label;
 
-        function openInputModal() {
-            document.getElementById('assetModal').style.display = 'flex';
-            generateKode();
-        }
+            document.getElementById('statTotalSchools').textContent = reg.schools;
+            document.getElementById('statTotalItems').textContent = reg.items;
+            document.getElementById('statPerbaikan').textContent = reg.rusak;
 
-        function closeModal() {
-            document.getElementById('assetModal').style.display = 'none';
-        }
-
-        function generateKode() {
-            const r = Math.floor(Math.random() * 9999).toString().padStart(4, '0');
-            const cat = document.getElementById('modalKategori').value.substring(0, 3).toUpperCase();
-            document.getElementById('modalKode').value = `AST-${cat}-${r}`;
-        }
-
-        function saveAsset() {
-            const nama = document.getElementById('modalNama').value;
-            if (!nama) {
-                alert('Mohon isi nama barang!');
-                return;
+            // Sidebar Color Sync
+            const sidebar = document.querySelector('.sidebar');
+            if (regencyId === 'banggai_laut') {
+                sidebar.style.background = 'linear-gradient(180deg, #1E1B4B 0%, #312E81 100%)';
             }
-            showToast(`✅ Aset "${nama}" berhasil didaftarkan!`);
-            closeModal();
-        }
+        };
 
         function exportData() {
-            showToast('✅ Data Inventaris berhasil di-export ke Excel!');
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #1F2937; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            alert('Mengekspor laporan inventaris wilayah...');
         }
 
         function filterAssets() {
-            const kat = document.getElementById('filterKategori').value.toLowerCase();
-            const lok = document.getElementById('filterLokasi').value.toLowerCase();
-            const kon = document.getElementById('filterKondisi').value.toLowerCase();
-            
-            const rows = document.querySelectorAll('#assetsTable tbody tr');
-            rows.forEach(row => {
-                const rowKat = row.cells[3].textContent.toLowerCase();
-                const rowLok = row.cells[4].textContent.toLowerCase();
-                const rowKon = row.cells[5].textContent.toLowerCase();
-                
-                const matchKat = kat === 'all' || rowKat.includes(kat.replace('_', ' '));
-                const matchLok = lok === 'all' || rowLok.includes(lok.replace('_', ' '));
-                const matchKon = kon === 'all' || rowKon.includes(kon.replace('_', ' '));
-                
-                row.style.display = (matchKat && matchLok && matchKon) ? '' : 'none';
-            });
+            // Simplified for regional view
         }
 
         // Search functionality
